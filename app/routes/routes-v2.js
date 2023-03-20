@@ -1,5 +1,5 @@
 module.exports = function (router) {
-  const version = 'v1'
+  const version = 'v2'
 
    //---------------------- Error Messages --------------------------------//
   
@@ -62,6 +62,25 @@ module.exports = function (router) {
 		res.redirect('/' + version + '/search-qualifications/search-qualifications-results-download')
     } else {
 		res.redirect('/' + version + '/search-qualifications/search-qualifications-results-download-link')
+    }
+  })
+  
+  router.post('/' + version + '/search-qualifications/search-qualifications-user-form', function (req, res) {
+	req.session.data.errorsQualificationUser = {}
+    let hasError = false
+    let userType = req.session.data['user']
+
+	
+
+    if (userType === undefined) {
+		hasError = true
+		req.session.data.errorsQualificationUser['qualification-user'] = 'Select a user type'
+    }
+
+    if (hasError) {
+		res.redirect('/' + version + '/search-qualifications/search-qualifications-user')
+    } else {
+		res.redirect('/' + version + '/search-qualifications/search-qualifications')
     }
   })
  
@@ -177,6 +196,12 @@ module.exports = function (router) {
     res.render(version + '/search-qualifications/start', { 'version': version })
   })
   
+  router.get('/' + version + '/search-qualifications/search-qualifications-user', function (req, res) {
+	req.session.data.errorsQualificationUser = {}
+	req.session.data['user'] = undefined 
+    res.render(version + '/search-qualifications/search-qualifications-user', { 'version': version })
+  })
+
   router.get('/' + version + '/search-qualifications/search-qualifications', function (req, res) {
 	req.session.data.errorsQualificationSearch = {}
     res.render(version + '/search-qualifications/search-qualifications', { 'version': version })

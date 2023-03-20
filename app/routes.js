@@ -11,3 +11,4 @@ const router = govukPrototypeKit.requests.setupRouter()
 module.exports = router
 
 require('./routes/routes-v1.js')(router)
+require('./routes/routes-v2.js')(router)
