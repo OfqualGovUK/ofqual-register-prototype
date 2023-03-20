@@ -1,5 +1,5 @@
 module.exports = function (router) {
-  const version = 'v2'
+  const version = 'v3'
 
    //---------------------- Error Messages --------------------------------//
   
@@ -65,20 +65,20 @@ module.exports = function (router) {
     }
   })
   
-  router.post('/' + version + '/search-qualifications/search-qualifications-user-form', function (req, res) {
-	req.session.data.errorsQualificationUser = {}
+  router.post('/' + version + '/search-qualifications/search-qualifications-data-form', function (req, res) {
+	req.session.data.errorsQualificationdata = {}
     let hasError = false
-    let userType = req.session.data['user']
+    let dataType = req.session.data['data']
 
 	
 
-    if (userType === undefined) {
+    if (dataType === undefined) {
 		hasError = true
-		req.session.data.errorsQualificationUser['qualification-user'] = 'Select a user type'
+		req.session.data.errorsQualificationData['qualification-data'] = 'Select a dataset'
     }
 
     if (hasError) {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-user')
+		res.redirect('/' + version + '/search-qualifications/search-qualifications-data')
     } else {
 		res.redirect('/' + version + '/search-qualifications/search-qualifications')
     }
@@ -127,20 +127,20 @@ module.exports = function (router) {
     }
   })
   
-  router.post('/' + version + '/search-organizations/search-organizations-user-form', function (req, res) {
-	req.session.data.errorsOrganizationUser = {}
+  router.post('/' + version + '/search-organizations/search-organizations-data-form', function (req, res) {
+	req.session.data.errorsOrganizationData = {}
     let hasError = false
-    let userType = req.session.data['user']
+    let dataType = req.session.data['data']
 
 	
 
-    if (userType === undefined) {
+    if (dataType === undefined) {
 		hasError = true
-		req.session.data.errorsOrganizationUser['organization-user'] = 'Select a user type'
+		req.session.data.errorsOrganizationData['organization-data'] = 'Select a dataset'
     }
 
     if (hasError) {
-		res.redirect('/' + version + '/search-organizations/search-organizations-user')
+		res.redirect('/' + version + '/search-organizations/search-organizations-data')
     } else {
 		res.redirect('/' + version + '/search-organizations/search-organizations')
     }
@@ -200,20 +200,20 @@ module.exports = function (router) {
     }
   })
   
-  router.post('/' + version + '/compare-qualifications/compare-qualifications-user-form', function (req, res) {
-	req.session.data.errorsComparecompareQualificationsUser = {}
+  router.post('/' + version + '/compare-qualifications/compare-qualifications-data-form', function (req, res) {
+	req.session.data.errorsComparecompareQualificationsData = {}
     let hasError = false
-    let userType = req.session.data['user']
+    let dataType = req.session.data['data']
 
 	
 
-    if (userType === undefined) {
+    if (dataType === undefined) {
 		hasError = true
-		req.session.data.errorsComparecompareQualificationsUser['compare-qualification-user'] = 'Select a user type'
+		req.session.data.errorsComparecompareQualificationsData['compare-qualification-data'] = 'Select a dataset'
     }
 
     if (hasError) {
-		res.redirect('/' + version + '/compare-qualifications/compare-qualifications-user')
+		res.redirect('/' + version + '/compare-qualifications/compare-qualifications-data')
     } else {
 		res.redirect('/' + version + '/compare-qualifications/compare-search-qualifications')
     }
@@ -234,10 +234,10 @@ module.exports = function (router) {
     res.render(version + '/search-qualifications/start', { 'version': version })
   })
   
-  router.get('/' + version + '/search-qualifications/search-qualifications-user', function (req, res) {
-	req.session.data.errorsQualificationUser = {}
-	req.session.data['user'] = undefined 
-    res.render(version + '/search-qualifications/search-qualifications-user', { 'version': version })
+  router.get('/' + version + '/search-qualifications/search-qualifications-data', function (req, res) {
+	req.session.data.errorsQualificationData = {}
+	req.session.data['data'] = undefined 
+    res.render(version + '/search-qualifications/search-qualifications-data', { 'version': version })
   })
 
   router.get('/' + version + '/search-qualifications/search-qualifications', function (req, res) {
@@ -269,10 +269,10 @@ module.exports = function (router) {
     res.render(version + '/search-organizations/start', { 'version': version })
   })
   
-  router.get('/' + version + '/search-organizations/search-organizations-user', function (req, res) {
-	req.session.data.errorsOrganizationUser = {}
-	req.session.data['user'] = undefined 
-    res.render(version + '/search-organizations/search-organizations-user', { 'version': version })
+  router.get('/' + version + '/search-organizations/search-organizations-data', function (req, res) {
+	req.session.data.errorsOrganizationData = {}
+	req.session.data['data'] = undefined 
+    res.render(version + '/search-organizations/search-organizations-data', { 'version': version })
   })
 
   
@@ -296,10 +296,10 @@ module.exports = function (router) {
     res.render(version + '/compare-qualifications/start', { 'version': version })
   })
   
-  router.get('/' + version + '/compare-qualifications/compare-qualifications-user', function (req, res) {
-	req.session.data.errorsComparecompareQualificationsUser = {}
-	req.session.data['user'] = undefined 
-    res.render(version + '/compare-qualifications/compare-qualifications-user', { 'version': version })
+  router.get('/' + version + '/compare-qualifications/compare-qualifications-data', function (req, res) {
+	req.session.data.errorsComparecompareQualificationsData = {}
+	req.session.data['data'] = undefined 
+    res.render(version + '/compare-qualifications/compare-qualifications-data', { 'version': version })
   })
 
   

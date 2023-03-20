@@ -12,7 +12,7 @@
     html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
   }) }}
   {{ govukBackLink({
-    href: "compare-qualifications-user",
+    href: "search-organizations-data",
     text: "Back"
   }) }}
 {% endblock %}
@@ -22,15 +22,15 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-		<form action="/{{version}}/compare-qualifications/compare-search-qualifications-form" method="post" novalidate>
+		<form action="/{{version}}/search-organizations/search-organizations-form" method="post" novalidate>
 
-		{% if (data['errorsCompareQualificationSearch'] | length !== 0) %}
+		{% if (data['errorsOrganizationSearch'] | length !== 0) %}
 
 			<div aria-labelledby="error-summary-title" class="govuk-error-summary" data-module="govuk-error-summary" role="alert" tabindex="-1">
 				<h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 					<div class="govuk-error-summary__body">
 						<ul class="govuk-list govuk-error-summary__list">
-						{% for item, message in data['errorsQualificationSearch'] %}
+						{% for item, message in data['errorsOrganizationSearch'] %}
 							<li>
 								<a href="#{{item}}">{{message}}</a>
 							</li>
@@ -42,21 +42,21 @@
 		{% endif %}
 
                       
-			<div class="govuk-form-group {% if (data['errorsCompareQualificationSearch']['compare-qualification-search-term-empty']) %} govuk-form-group--error {% endif %}">
+			<div class="govuk-form-group {% if (data['errorsOrganizationSearch']['organization-search-term-empty']) %} govuk-form-group--error {% endif %}">
 				<h1 class="govuk-label-wrapper">
-					<label class="govuk-label govuk-label--l" for="compare-qualification-search-term">
-					Search qualifications to compare
+					<label class="govuk-label govuk-label--l" for="organization-search-term">
+					Search awarding organizations
 					</label>
-					<p id="compare-qualification-search-term-empty" class="govuk-error-message">
-					<span class="govuk-visually-hidden">Error:</span> {{data['errorsCompareQualificationSearch']['compare-qualification-search-term-empty']}}</p>
+					<p id="organization-search-term-empty" class="govuk-error-message">
+					<span class="govuk-visually-hidden">Error:</span> {{data['errorsOrganizationSearch']['organization-search-term-empty']}}</p>
 				</h1>
-					<input class="govuk-input {% if (data['errorsCompareQualificationSearch']['compare-qualification-search-term-empty']) %} govuk-input--error {% endif %}" id="compare-qualification-search-term" name="compare-qualification-search-term" type="text">
+					<input class="govuk-input {% if (data['errorsOrganizationSearch']['organization-search-term-empty']) %} govuk-input--error {% endif %}" id="organization-search-term" name="organization-search-term" type="text">
 			</div>
 
 			{% from "govuk/components/button/macro.njk" import govukButton %}
 
 			{{ govukButton({
-			  text: "Search qualifications"
+			  text: "Search awarding organizations"
 			}) }}
 		</form>
 	</div>
@@ -74,8 +74,8 @@
 						</a>
 					</li>
 					<li>
-						<a href="../search-organizations/start">
-						Find an awarding organization
+						<a href="../compare-qualifications/start">
+						Compare up to 3 qualifications
 						</a>
 					</li>
 					<li>

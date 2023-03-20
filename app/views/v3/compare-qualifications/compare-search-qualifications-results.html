@@ -1,0 +1,130 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "compare-search-qualifications",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+	<div class="govuk-grid-column-two-thirds">
+	
+		<form action="/{{version}}/compare-qualifications/compare-search-qualifications-results-form" method="post" novalidate>
+		
+		{% if (data['errorsCompareQualificationSearchResults'] | length !== 0) %}
+
+			<div aria-labelledby="error-summary-title" class="govuk-error-summary" data-module="govuk-error-summary" role="alert" tabindex="-1">
+				<h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+					<div class="govuk-error-summary__body">
+						<ul class="govuk-list govuk-error-summary__list">
+						{% for item, message in data['errorsCompareQualificationSearchResults'] %}
+							<li>
+								<a href="#{{item}}">{{message}}</a>
+							</li>
+						{% endfor %}
+						</ul>
+					</div>
+			</div>
+
+		{% endif %}
+		
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-one-third">
+			<h2 class="govuk-heading-s">XXXXX results</h2>
+			</div>
+		</div>
+		
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">		
+
+
+
+<div class="govuk-form-group {% if (data['errorsCompareQualificationSearchResults'] | length !== 0) %} govuk-form-group--error {% endif %}">
+  <fieldset class="govuk-fieldset" aria-describedby="compare-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Compare qualifications
+      </h1>
+    </legend>
+    <div id="compare-hint" class="govuk-hint">
+      Select up to 3 qualifications.
+    </div>
+    <p id="qualification-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> {% for item, message in data['errorsCompareQualificationSearchResults'] %}
+{{message}}	{% endfor %}
+    </p>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="qualification" name="qualification" type="checkbox" value="qualification1" {% if (data['qualification'] !== undefined) and ('qualification1' in data['qualification']) %} checked {% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="qualification">
+				Title<br><br>
+				Description of the qualification
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="qualification-2" name="qualification" type="checkbox" value="qualification2" {% if (data['qualification'] !== undefined) and ('qualification2' in data['qualification']) %} checked {% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="qualification-2">
+				Title<br><br>
+				Description of the qualification
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="qualification-3" name="qualification" type="checkbox" value="qualification3" {% if (data['qualification'] !== undefined) and ('qualification3' in data['qualification']) %} checked {% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="qualification-3">
+				Title<br><br>
+				Description of the qualification
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="qualification-4" name="qualification" type="checkbox" value="qualification4" {% if (data['qualification'] !== undefined) and ('qualification4' in data['qualification']) %} checked {% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="qualification-4">
+				Title<br><br>
+				Description of the qualification
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="qualification-5" name="qualification" type="checkbox" value="qualification5" {% if (data['qualification'] !== undefined) and ('qualification5' in data['qualification']) %} checked {% endif %}>
+        <label class="govuk-label govuk-checkboxes__label" for="qualification-5">
+				Title<br><br>
+				Description of the qualification
+        </label>
+      </div> 
+    </div>
+  </fieldset>
+</div>
+
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+{{ govukPagination({
+   next: {
+    labelText: "2 of 3",
+    href: "#"
+  }
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+text: "Compare selected"
+}) }}
+
+		
+		</form>
+
+	</div>
+</div>
+
+{% endblock %}

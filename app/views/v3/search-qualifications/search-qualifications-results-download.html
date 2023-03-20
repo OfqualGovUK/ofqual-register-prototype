@@ -12,7 +12,7 @@ text: "alpha"
 html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
 }) }}
 {{ govukBackLink({
-href: "start",
+href: "search-qualifications-results",
 text: "Back"
 }) }}
 {% endblock %}
@@ -25,15 +25,15 @@ text: "Back"
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-		<form action="/{{version}}/search-qualifications/search-qualifications-user-form" method="post" novalidate>
+		<form action="/{{version}}/search-qualifications/search-qualifications-results-download-form" method="post" novalidate>
 
-		{% if (data['errorsQualificationUser'] | length !== 0) %}
+		{% if (data['errorsQualificationDownload'] | length !== 0) %}
 
 			<div aria-labelledby="error-summary-title" class="govuk-error-summary" data-module="govuk-error-summary" role="alert" tabindex="-1">
 				<h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 					<div class="govuk-error-summary__body">
 						<ul class="govuk-list govuk-error-summary__list">
-						{% for item, message in data['errorsQualificationUser'] %}
+						{% for item, message in data['errorsQualificationDownload'] %}
 							<li>
 								<a href="#{{item}}">{{message}}</a>
 							</li>
@@ -45,34 +45,34 @@ text: "Back"
 		{% endif %}
 
 
-			<div class="govuk-form-group {% if (data['errorsQualificationUser']['qualification-user']) %} govuk-form-group--error {% endif %}">
+			<div class="govuk-form-group {% if (data['errorsQualificationDownload']['qualification-download-format-empty']) %} govuk-form-group--error {% endif %}">
 
 				<fieldset class="govuk-fieldset">
 					<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 						<h1 class="govuk-fieldset__heading">
-						Which user are you?
+						Which file format would you like to download?
 						</h1>
 					</legend>
-					<p id="qualification-user" class="govuk-error-message">
-					<span class="govuk-visually-hidden">Error:</span> {{data['errorsQualificationUser']['qualification-user']}}
+					<p id="qualification-download-format-empty" class="govuk-error-message">
+					<span class="govuk-visually-hidden">Error:</span> {{data['errorsQualificationDownload']['qualification-download-format-empty']}}
 					</p>
 					<div class="govuk-radios" data-module="govuk-radios">
 						<div class="govuk-radios__item">
-							<input class="govuk-radios__input" id="user-1" name="user" type="radio" value="student">
-							<label class="govuk-label govuk-radios__label" for="user-1">
-							Student
+							<input class="govuk-radios__input" id="file-format-1" name="format" type="radio" value="zip">
+							<label class="govuk-label govuk-radios__label" for="file-format-1">
+							ZIP
 							</label>
 						</div>
 						<div class="govuk-radios__item">
-							<input class="govuk-radios__input" id="user-2" name="user" type="radio" value="teacher">
-							<label class="govuk-label govuk-radios__label" for="user-2">
-							Teacher
+							<input class="govuk-radios__input" id="file-format-2" name="format" type="radio" value="xml">
+							<label class="govuk-label govuk-radios__label" for="file-format-2">
+							XML
 							</label>
 						</div>
 						<div class="govuk-radios__item">
-							<input class="govuk-radios__input" id="user-3" name="user" type="radio" value="advisor">
-							<label class="govuk-label govuk-radios__label" for="user-3">
-							Career advisor
+							<input class="govuk-radios__input" id="file-format-3" name="format" type="radio" value="sql">
+							<label class="govuk-label govuk-radios__label" for="file-format-3">
+							SQL
 							</label>
 						</div>
 					</div>
@@ -83,7 +83,7 @@ text: "Back"
 			{% from "govuk/components/button/macro.njk" import govukButton %}
 
 			{{ govukButton({
-			text: "Select user"
+			text: "Select format"
 			}) }}
 		</form>
 
