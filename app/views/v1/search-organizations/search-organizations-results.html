@@ -1,0 +1,131 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "search-organizations",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<form action="/{{version}}/search-organizations/search-organizations-results-form" method="post" novalidate>
+
+		{% if (data['errorsOrganizationSearchResults'] | length !== 0) %}
+
+			<div aria-labelledby="error-summary-title" class="govuk-error-summary" data-module="govuk-error-summary" role="alert" tabindex="-1">
+				<h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+					<div class="govuk-error-summary__body">
+						<ul class="govuk-list govuk-error-summary__list">
+						{% for item, message in data['errorsOrganizationSearchResults'] %}
+							<li>
+								<a href="#{{item}}">{{message}}</a>
+							</li>
+						{% endfor %}
+						</ul>
+					</div>
+			</div>
+
+		{% endif %}
+
+                      
+			<div class="govuk-form-group {% if (data['errorsOrganizationSearchResults']['organization-search-term-results-empty']) %} govuk-form-group--error {% endif %}">
+				<h1 class="govuk-label-wrapper">
+					<label class="govuk-label govuk-label--l" for="organization-search-term-results">
+					Organizations
+					</label>
+					<p id="organization-search-term-results-empty" class="govuk-error-message">
+					<span class="govuk-visually-hidden">Error:</span> {{data['errorsOrganizationSearchResults']['organization-search-term-results-empty']}}</p>
+				</h1>
+					<input class="govuk-input {% if (data['errorsOrganizationSearchResults']['organization-search-term-results-empty']) %} govuk-input--error {% endif %}" id="organization-search-term-results" name="organization-search-term-results" type="text" value="{{ data['organization-search-term'] }}">
+			</div>
+
+			{% from "govuk/components/button/macro.njk" import govukButton %}
+
+			{{ govukButton({
+			  text: "Search organizations"
+			}) }}
+		</form>
+	</div>
+</div>
+<div class="govuk-grid-row">
+
+	<div class="govuk-grid-column-three-quarters">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-full">
+			<h2 class="govuk-heading-s">XXXXX results</h2>
+			</div>
+		</div>
+		
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">		
+
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+{{ govukSelect({
+  id: "sort",
+  name: "sort",
+  label: {
+    text: "Sort by"
+  },
+  items: [
+    {
+      value: "viewed",
+      text: "Most viewed"
+    },
+    {
+      value: "relevance",
+      text: "Relevance",
+      selected: true
+    },
+    {
+      value: "newest",
+      text: "Updated (newest)"
+    },
+    {
+      value: "oldest",
+      text: "Updated (oldest)"
+    }
+  ]
+}) }}
+
+		<ul class="govuk-list govuk-list--spaced">
+			<li class="results-list-item">
+				<a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="search-organizations-results-details">Title</a>
+				<p class="govuk-body govuk-!-margin-top-2">text<p/>
+			</li>
+			<li class="results-list-item">
+				<a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="search-organizations-results-details">Title</a>
+				<p class="govuk-body govuk-!-margin-top-2">text<p/>
+			</li>
+			<li class="results-list-item">
+				<a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="search-organizations-results-details">Title</a>
+				<p class="govuk-body govuk-!-margin-top-2">text<p/>
+			</li>
+		</ul>
+
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+{{ govukPagination({
+   next: {
+    labelText: "2 of 3",
+    href: "#"
+  }
+}) }}
+
+	</div>
+</div>
+
+{% endblock %}

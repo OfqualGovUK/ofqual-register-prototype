@@ -1,45 +1,42 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {{ govukHeader() }}
+GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
+{{ govukPhaseBanner({
 tag: {
 text: "alpha"
 },
 html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-  }) }}
-
+}) }}
+{{ govukBackLink({
+href: "search-qualifications-results-download",
+text: "Back"
+}) }}
 {% endblock %}
 
 {% block content %}
+
+
+
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
 		<h1 class="govuk-heading-l">
-		Find a qualification 
+		Download you {{data['format']}} file
 		</h1>
 
-		<p>Some text about this service.</p>
+		<p><a href="#">Download file 12-3454-fs-424rr.{{data['format']}}</a>.</p>
 
 			{% from "govuk/components/button/macro.njk" import govukButton %}
 
 			{{ govukButton({
-			  text: "Find a qualification",
-			  href: "search-qualifications",
-			  isStartButton: true
+			  text: "Back to search results",
+			  href: "search-qualifications-results"
 			}) }}
-
-		<h2 class="govuk-heading-m">Before you start</h2>
-
-		<p>Some other considerations before users start the journey, if applicable.</p>
 
 	</div>
 

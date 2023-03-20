@@ -24,7 +24,7 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
 	<div class="govuk-grid-column-two-thirds">
 
 		<h1 class="govuk-heading-l">
-		Find a qualification 
+		Find an awarding organization 
 		</h1>
 
 		<p>Some text about this service.</p>
@@ -32,8 +32,8 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
 			{% from "govuk/components/button/macro.njk" import govukButton %}
 
 			{{ govukButton({
-			  text: "Find a qualification",
-			  href: "search-qualifications",
+			  text: "Find an organization",
+			  href: "search-organizations",
 			  isStartButton: true
 			}) }}
 
@@ -51,8 +51,8 @@ html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a
 			<nav role="navigation" aria-labelledby="subsection-title">
 				<ul class="govuk-list govuk-!-font-size-16">
 					<li>
-						<a href="../search-organizations/start">
-						Find an awarding organization
+						<a href="../search-qualifications/start">
+						Find a qualification
 						</a>
 					</li>
 					<li>
