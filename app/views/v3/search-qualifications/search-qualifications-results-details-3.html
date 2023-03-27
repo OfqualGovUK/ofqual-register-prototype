@@ -1,0 +1,468 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "search-qualifications-results",
+    text: "Back to search results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<h1 class="govuk-heading-l">
+		AOONE Level 3 Free Standing Mathematics Qualification: Additional Maths
+		</h1>
+		
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Qualification Number"
+      },
+      value: {
+		text: "900/2548/0"
+      }
+    },
+    {
+      key: {
+        text: "Qualification Title"
+      },
+      value: {
+        text: "AOONE Level 3 Free Standing Mathematics Qualification: Additional Maths"
+      }
+    },
+    {
+      key: {
+        text: "Owner Organisation Recognition Number"
+      },
+      value: {
+		text: "RN9000"
+      }
+    },
+    {
+      key: {
+        text: "Owner Organisation Name"
+      },
+      value: {
+		text: "AOONE Ltd"
+      }
+    },
+    {
+      key: {
+        text: "Owner Organisation Acronym"
+      },
+      value: {
+		text: "AOONE"
+      }
+    },
+    {
+      key: {
+        text: "Qualification Level"
+      },
+      value: {
+		text: "Level 3"
+      }
+    },
+    {
+      key: {
+        text: "Qualification Type"
+      },
+      value: {
+		text: "Other General Qualification"
+      }
+    },
+    {
+      key: {
+        text: "Total Credits"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Qualification SSA"
+      },
+      value: {
+		text: "02.2 Mathematics and statistics"
+      }
+    },
+    {
+      key: {
+        text: "Qualification Status"
+      },
+      value: {
+		text: "Available to learners"
+      }
+    },
+    {
+      key: {
+        text: "Regulation Start Date"
+      },
+      value: {
+		text: "01/09/2002 00:00"
+      }
+    },
+    {
+      key: {
+        text: "Operational Start Date"
+      },
+      value: {
+		text: "01/09/2002 00:00"
+      }
+    },
+    {
+      key: {
+        text: "Operational End Date"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Certification End Date"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Total Qualification Time"
+      },
+      value: {
+		text: "60"
+      }
+    },
+    {
+      key: {
+        text: "Guided Learning Hours"
+      },
+      value: {
+		text: "60"
+      }
+    },
+    {
+      key: {
+        text: "Offered In England"
+      },
+      value: {
+		text: "Yes"
+      }
+    },
+    {
+      key: {
+        text: "Offered In Northern Ireland"
+      },
+      value: {
+		text: "No"
+      }
+    },
+    {
+      key: {
+        text: "Overall Grading Type"
+      },
+      value: {
+		text: "Graded"
+      }
+    },
+    {
+      key: {
+        text: "Assessment Methods"
+      },
+      value: {
+		text: "Written Examination"
+      }
+    },
+    {
+      key: {
+        text: "NI Discount Code"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Grading Scale"
+      },
+      value: {
+		text: "A/B/C/D/E"
+      }
+    },
+    {
+      key: {
+        text: "Specialisms"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Link To Specification"
+      },
+      value: {
+		html: '<a href="https://www.ocr.org.uk/Images/76669-specification.pdf">https://www.ocr.org.uk/Images/76669-specification.pdf</a>'
+      }
+    },
+    {
+      key: {
+        text: "Currently and / or will consider offering internationally"
+      },
+      value: {
+		text: "Yes"
+      }
+    }
+  ]
+}) }}
+
+		<h2 class="govuk-heading-m">Additional Ofqual data</h2>
+			<p>Some text about these details.</p>
+
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Objective 1"
+      },
+      value: {
+		text: "AO explanation of the objective and purpose of the qualification - to enter an occupation, alignment with professional requirements, to support learners advancing to other fields of study; as a form of leisure / recreation"
+      }
+    },
+    {
+      key: {
+        text: "Pre-requisites"
+      },
+      value: {
+		text: "N/A"
+      }
+    },
+    {
+      key: {
+        text: "Knowledge and skills to be assessed"
+      },
+      value: {
+		text: "Two to three sentences of narrative to be included here"
+      }
+    },
+    {
+      key: {
+        text: "Standard Qualification Fee"
+      },
+      value: {
+		text: "150"
+      }
+    },
+    {
+      key: {
+        text: "Other fee information"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+        text: "Link to qualification level conditions that apply"
+      },
+      value: {
+		html: '<a href="https://www.gov.uk/government/publications/qualification-level-conditions-for-functional-skills-qualifications">https://www.gov.uk/government/publications/qualification-level-conditions-for-functional-skills-qualifications</a>'
+      }
+    },
+    {
+      key: {
+        text: "2020-21 certificates"
+      },
+      value: {
+		text: "45000"
+      }
+    },
+    {
+      key: {
+        text: "2021-22 certificates"
+      },
+      value: {
+		text: "43100"
+      }
+    },
+    {
+      key: {
+        text: "2022-23 certificates"
+      },
+      value: {
+		text: "39800"
+      }
+    }
+  ]
+}) }}
+
+		<h2 class="govuk-heading-m">External data</h2>
+			<p>Some text about these details.</p>
+
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Currently eligible for funding"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Eligible for funding stream 1"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Eligible for funding stream 2"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Eligible for funding stream 3"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Eligible for funding stream 4"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Currently included in performance table"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Min performance table points"
+      },
+      value: {
+		text: "1.7"
+      }
+    },
+    {
+      key: {
+        text: "Max performance table points"
+      },
+      value: {
+		text: "6"
+      }
+    },
+    {
+      key: {
+        text: "Eligible for UCAS points"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+        text: "Min UCAS points"
+      },
+      value: {
+		text: "4"
+      }
+    },
+    {
+      key: {
+        text: "Max UCAS points"
+      },
+      value: {
+		text: "21"
+      }
+    }
+  ]
+}) }}
+
+		<p class="govuk-body-s">Published 1 March 2023<br>
+		Last updated 15 March 2023</p>
+		
+		{% from "govuk/components/button/macro.njk" import govukButton %}
+
+		{{ govukButton({
+		  text: "Get updates about this page",
+		  classes: "govuk-button--secondary"
+		}) }}
+
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+			<h2 class="govuk-heading-m" id="subsection-title">
+			Subsection
+			</h2>
+			<nav role="navigation" aria-labelledby="subsection-title">
+				<ul class="govuk-list govuk-!-font-size-16">
+					<li>
+						<a href="../search-organizations/start">
+						Find an awarding organization
+						</a>
+					</li>
+					<li>
+						<a href="../compare-qualifications/start">
+						Compare up to 3 qualifications
+						</a>
+					</li>
+				</ul>
+			<h2 class="govuk-heading-m" id="subsection-title">
+			Similar qualifications
+			</h2>
+			<nav role="navigation" aria-labelledby="subsection-title">
+				<ul class="govuk-list govuk-!-font-size-16">
+					<li>
+						<a href="search-qualifications-results-details-4">
+						AOTHREE Level 3 Certificate in Counselling Skills
+						</a>
+					</li>
+					<li>
+						<a href="search-qualifications-results-details-5">
+						OFOUR Level 2 Certificate in Coaching
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+	</div>
+</div>
+{% endblock %}

@@ -186,8 +186,28 @@ module.exports = function (router) {
     res.render(version + '/search-qualifications/search-qualifications-results', { 'version': version })
   })
   
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details', { 'version': version })
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-1', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-1', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-2', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-2', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-3', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-3', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-4', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-4', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-5', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-5', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-6', function (req, res) {
+    res.render(version + '/search-qualifications/search-qualifications-results-details-6', { 'version': version })
   })
   
   router.get('/' + version + '/search-qualifications/search-qualifications-results-download', function (req, res) {
