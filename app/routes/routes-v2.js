@@ -305,7 +305,23 @@ module.exports = function (router) {
     res.render(version + '/search-organizations/search-organizations-results', { 'version': version })
   })
   
-  router.get('/' + version + '/search-organizations/search-organizations-results-details', function (req, res) {
+  router.get('/' + version + '/search-organizations/search-organizations-results-details-1', function (req, res) {
+    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+  })
+  
+  router.get('/' + version + '/search-organizations/search-organizations-results-details-2', function (req, res) {
+    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+  })  
+  
+  router.get('/' + version + '/search-organizations/search-organizations-results-details-3', function (req, res) {
+    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+  })  
+  
+  router.get('/' + version + '/search-organizations/search-organizations-results-details-4', function (req, res) {
+    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+  })  
+  
+  router.get('/' + version + '/search-organizations/search-organizations-results-details-5', function (req, res) {
     res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
   })  
   

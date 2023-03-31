@@ -1,0 +1,226 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "search-organizations-results",
+    text: "Back to search results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<h1 class="govuk-heading-l">
+		AOONE Ltd
+		</h1>
+		
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+		text: "Recognition Number"
+      },
+      value: {
+		text: "RN9001"
+      }
+    },
+    {
+      key: {
+		text: "Name"
+      },
+      value: {
+		text: "AOONE Ltd"
+      }
+    },
+    {
+      key: {
+		text: "Acronym"
+      },
+      value: {
+		text: "AOONE"
+      }
+    },
+    {
+      key: {
+		text: "Email"
+      },
+      value: {
+		html: '<a href="mailto:support@">support@</a>'
+      }
+    },
+    {
+      key: {
+		text: "Website"
+      },
+      value: {
+		html: '<a href="http://www.google.co.uk">http://www.google.co.uk</a>'
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Status"
+      },
+      value: {
+		text: "Recognised"
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Recognised From"
+      },
+      value: {
+		text: "17/09/2020 00:00"
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Recognised To"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Status"
+      },
+      value: {
+		text: "Recognised"
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Recognised From"
+      },
+      value: {
+		text: "01/01/2020"
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Recognised To"
+      },
+      value: {
+		text: ""
+      }
+    }
+	
+  ]
+}) }}
+
+		<h2 class="govuk-heading-m">Additional Register data</h2>
+			<p>Some text about these details.</p>
+
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+		text: "Special Cond 1"
+      },
+      value: {
+		text: "x"
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 2"
+      },
+      value: {
+		text: "x"
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 3"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 4"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 5"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Past enforcement activity"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Link to most recent enforcement activity"
+      },
+      value: {
+		text: ""
+      }
+    }
+  ]
+}) }}
+
+		<p class="govuk-body-s">Published 1 March 2023<br>
+		Last updated 15 March 2023</p>
+		
+		{% from "govuk/components/button/macro.njk" import govukButton %}
+
+		{{ govukButton({
+		  text: "Get updates about this page",
+		  classes: "govuk-button--secondary"
+		}) }}
+
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+
+		<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+			<h2 class="govuk-heading-m" id="subsection-title">
+			Subsection
+			</h2>
+			<nav role="navigation" aria-labelledby="subsection-title">
+				<ul class="govuk-list govuk-!-font-size-16">
+					<li>
+						<a href="../search-qualifications/start">
+						Find a qualification
+						</a>
+					</li>
+					<li>
+						<a href="../compare-qualifications/start">
+						Compare up to 3 qualifications
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+
+	</div>
+</div>
+{% endblock %}

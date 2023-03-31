@@ -13,7 +13,7 @@
   }) }}
   {{ govukBackLink({
     href: "search-organizations-results",
-    text: "Back"
+    text: "Back to search results"
   }) }}
 {% endblock %}
 
@@ -23,7 +23,7 @@
 	<div class="govuk-grid-column-two-thirds">
 
 		<h1 class="govuk-heading-l">
-		Title
+		AO Five Ltd
 		</h1>
 		
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -32,60 +32,156 @@
   rows: [
     {
       key: {
-        text: "Data name"
+		text: "Recognition Number"
       },
       value: {
-        text: "Data item"
+		text: "RN9005"
       }
     },
     {
       key: {
-        text: "Data name"
+		text: "Name"
       },
       value: {
-        text: "data item"
+		text: "AO Five Ltd"
       }
     },
     {
       key: {
-        text: "Data name"
+		text: "Acronym"
       },
       value: {
-        html: "Data item 1<br>Data item 2<br>Data item 3"
+		text: "AOFIVE"
       }
     },
     {
       key: {
-        text: "Data name"
+		text: "Email"
       },
       value: {
-        html: '<p class="govuk-body">Data item 1</p><a href="#">Data item 2</a>'
+		html: '<a href="mailto:AOemail@">AOemail@</a>'
+      }
+    },
+    {
+      key: {
+		text: "Website"
+      },
+      value: {
+		html: '<a href="http://www.google.co.uk">http://www.google.co.uk</a>'
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Status"
+      },
+      value: {
+		text: "Recognised"
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Recognised From"
+      },
+      value: {
+		text: "01/04/2019 00:00"
+      }
+    },
+    {
+      key: {
+		text: "Ofqual Recognised To"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Status"
+      },
+      value: {
+		text: "Recognised"
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Recognised From"
+      },
+      value: {
+		text: "01/01/2020"
+      }
+    },
+    {
+      key: {
+		text: "CCEA Regulation Recognised To"
+      },
+      value: {
+		text: ""
       }
     }
+	
   ]
 }) }}
 
-		<h2 class="govuk-heading-m">Additional details</h2>
+		<h2 class="govuk-heading-m">Additional Register data</h2>
 			<p>Some text about these details.</p>
-		<img src="/public/images/fff.png" alt="Alt text goes here.">
 
 
 {{ govukSummaryList({
   rows: [
     {
       key: {
-        text: "Data name"
+		text: "Special Cond 1"
       },
       value: {
-        text: "Data item"
+		text: "x"
       }
     },
     {
       key: {
-        text: "Data name"
+		text: "Special Cond 2"
       },
       value: {
-        text: "Data item"
+		text: "x"
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 3"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 4"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Special Cond 5"
+      },
+      value: {
+		text: ""
+      }
+    },
+    {
+      key: {
+		text: "Past enforcement activity"
+      },
+      value: {
+		text: "Y"
+      }
+    },
+    {
+      key: {
+		text: "Link to most recent enforcement activity"
+      },
+      value: {
+		html: '<a href="www.ofqual.gov.uk">www.ofqual.gov.uk</a>'
       }
     }
   ]
@@ -119,11 +215,6 @@
 					<li>
 						<a href="../compare-qualifications/start">
 						Compare up to 3 qualifications
-						</a>
-					</li>
-					<li>
-						<a href="#" class="govuk-!-font-weight-bold">
-						More <span class="govuk-visually-hidden">in Subsection</span>
 						</a>
 					</li>
 				</ul>
