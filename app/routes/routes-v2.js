@@ -306,23 +306,23 @@ module.exports = function (router) {
   })
   
   router.get('/' + version + '/search-organizations/search-organizations-results-details-1', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+    res.render(version + '/search-organizations/search-organizations-results-details-1', { 'version': version })
   })
   
   router.get('/' + version + '/search-organizations/search-organizations-results-details-2', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+    res.render(version + '/search-organizations/search-organizations-results-details-2', { 'version': version })
   })  
   
   router.get('/' + version + '/search-organizations/search-organizations-results-details-3', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+    res.render(version + '/search-organizations/search-organizations-results-details-3', { 'version': version })
   })  
   
   router.get('/' + version + '/search-organizations/search-organizations-results-details-4', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+    res.render(version + '/search-organizations/search-organizations-results-details-4', { 'version': version })
   })  
   
   router.get('/' + version + '/search-organizations/search-organizations-results-details-5', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details', { 'version': version })
+    res.render(version + '/search-organizations/search-organizations-results-details-5', { 'version': version })
   })  
   
    //---------------------- Routing Compare -------------------------------//
