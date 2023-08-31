@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "../",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">		
+			<h1 class="govuk-heading-l">Prototype {{version}} - September 2023</h1>
+				<p class="govuk-body">Theme: MVP presentation, basic search and compare functions</p>
+
+				<p class="govuk-body"><a href="search-qualifications/start">Find a qualification</a></p>
+				<p class="govuk-body"><a href="search-organizations/start">Find an awarding organization</a></p>
+				<p class="govuk-body"><a href="compare-qualifications/start">Compare up to 3 qualifications</a></p>
+			
+
+
+	</div>
+</div>
+
+
+{% endblock %}

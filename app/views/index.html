@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
 {% block pageTitle %}
 Home – {{serviceName}} – GOV.UK Prototype Kit
 {% endblock %}
@@ -20,14 +22,23 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 		<h1 class="govuk-heading-xl">
 		  {{ serviceName }}
 		</h1>
-			<h2 class="govuk-heading-m">About this prototype</h2>
-				<p class="govuk-body">This prototype is designed for X user groups:</p>
+			<h2 class="govuk-heading-m" id="about-this-prototype">About this prototype</h2>
+				<p class="govuk-body">This prototype is designed for:</p>
 				<ul class="govuk-list govuk-list--bullet">
 					<li>
-						Student
+						heads of department
 					</li>
 					<li>
-						[other category here]
+						teachers
+					</li>
+					<li>
+						exams officers
+					</li>
+					<li>
+						programme managers
+					</li>
+					<li>
+						students
 					</li>
 				</ul>
 				<p class="govuk-body">It allows the user to:</p>
@@ -39,40 +50,51 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 						find an awarding organization
 					</li>
 					<li>
-						compare up to 3 qualifications
+						compare qualifications
 					</li>			
 				</ul>
-				<p class="govuk-body">[add any other functionality offered by the prototype]</p>
 
-			<h2 class="govuk-heading-m">Background information</h2>
+			<!--h2 class="govuk-heading-m">Background information</h2>
 
-				<p class="govuk-body">Some info about the context of the project.</p>
+				<p class="govuk-body">Some info about the context of the project.</p-->
 
 			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-			<h2 class="govuk-heading-m" id="subsection-title">Prototypes</h2>
+			<h2 class="govuk-heading-m" id="prototypes">Prototypes</h2>
 
-			<h2 class="govuk-heading-l" id="subsection-title">Alpha</h2>
+			<h3 class="govuk-heading-l" id="subsection-title">Alpha</h3>
 
-			<h2 class="govuk-heading-s">Prototype v1 - march 2023</h2>
-				<p class="govuk-body">Theme: user journeys - flat uniform service</p>
-				<p class="govuk-body"><a href="#" target="_blank" rel="noreferrer noopener">User Research findings</a></p>
-				<a class="govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" draggable="false" href="/v1/start">v1 start</a>
-			
-			<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+			<p class='govuk-body'>Theme: MVP presentation, basic search and compare functions</p>
+			<p class='govuk-body'><a href='https://miro.com/app/board/uXjVM_wXiMk=/?share_link_id=831766577427' target='_blank' rel='noreferrer noopener'>User Research findings</a></p>
+			<a class='govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8' draggable='false' href='/alpha01/start'>Open Alpha 01 prototype</a>
 
-			<h2 class="govuk-heading-s">Prototype v2 - march 2023</h2>
-				<p class="govuk-body">Theme: user journeys - based on user type</p>
-				<p class="govuk-body"><a href="#" target="_blank" rel="noreferrer noopener">User Research findings</a></p>
-				<a class="govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" draggable="false" href="/v2/start">v2 start</a>
-			
-			<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-			<h2 class="govuk-heading-s">Prototype v3 - march 2023</h2>			
-				<p class="govuk-body">Theme: user journeys - based on data needs</p>
-				<p class="govuk-body"><a href="#" target="_blank" rel="noreferrer noopener">User Research findings</a></p>
-				<a class="govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" draggable="false" href="/v3/start">v3 start</a>
+			<h3 class="govuk-heading-l" id="closed-alpha">Closed Alpha, pre August 2023</h3>
 
+			{{ govukAccordion({
+				id: "prototypes-pre-aug-2023",
+				items: [
+					{
+						heading: {text: "Prototype v1 – March 2023"},
+						content: {html: "<p class='govuk-body'>Theme: user journeys - flat uniform service</p>
+						<!--p class='govuk-body'><a href='#' target='_blank' rel='noreferrer noopener'>User Research findings</a></p-->
+						<a class='govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8' draggable='false' href='/v1/start'>v1 start</a>"}
+					},
+					{
+						heading: {text: "Prototype v2 – March 2023"},
+						content: {html: "<p class='govuk-body'>Theme: user journeys - based on user type</p>
+						<!--p class='govuk-body'><a href='#' target='_blank' rel='noreferrer noopener'>User Research findings</a></p-->
+						<a class='govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8' draggable='false' href='/v2/start'>v2 start</a>"}
+					},
+					{
+						heading: {text: "Prototype v3 – March 2023"},
+						content: {html: "<p class='govuk-body'>Theme: user journeys - based on data needs</p>
+						<!--p class='govuk-body'><a href='#' target='_blank' rel='noreferrer noopener'>User Research findings</a></p-->
+						<a class='govuk-button govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8' draggable='false' href='/v3/start'>v3 start</a>"}
+					}
+				]
+			})}}
 	</div>
 </div>
 
