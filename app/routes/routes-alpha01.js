@@ -1,5 +1,5 @@
 module.exports = function (router) {
-  const version = 'v3'
+  const version = 'alpha01'
 
    //---------------------- Error Messages --------------------------------//
   
