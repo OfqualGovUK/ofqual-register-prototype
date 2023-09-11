@@ -1,0 +1,173 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      <h1 class="govuk-heading-xl">
+        Pearson Education Ltd
+      </h1>
+
+      <form action="../search-qualifications/results-pearson" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Find all Pearson qualifications"
+        }) }}
+
+      </form>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Contact details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              html: "<a href='mailto:examsofficers@pearson.com'>examsofficers@pearson.com</a>"
+            }
+          },
+          {
+            key: {
+              text: "Website"
+            },
+            value: {
+              html: "<a href='https://qualifications.pearson.com/'>Pearson qualifications | Edexcel, BTEC, LCCI and EDI</a>"
+            }
+          },
+          {
+            key: {
+              text: "Pricing and fees"
+            },
+            value: {
+              html: "<a href='https://support.pearson.com/uk/s/article/Qualification-Fees-Prices'>Qualification fees and prices</a>"
+            }
+          }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Ofqual recognition"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: "<strong class='govuk-tag--green'>Recognised</strong>"
+            }
+          },
+          {
+            key: {
+              text: "Recognised from"
+            },
+            value: {
+              html: "1 April 2010"
+            }
+          },
+          {
+            key: {
+              text: "Recognition number"
+            },
+            value: {
+              html: "RN5133"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "CCEA recognition"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: "<strong class='govuk-tag--green'>Recognised</strong>"
+            }
+          },
+          {
+            key: {
+              text: "Recognised from"
+            },
+            value: {
+              html: "1 April 2010"
+            }
+          },
+          {
+            key: {
+              text: "Recognition number"
+            },
+            value: {
+              html: "RN5133"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Organisation details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Pearson Education Ltd"
+            }
+          },
+          {
+            key: {
+              text: "Legal name"
+            },
+            value: {
+              html: "Pearson Education Ltd"
+            }
+          },
+          {
+            key: {
+              text: "Known as"
+            },
+            value: {
+              html: "Pearson"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}
