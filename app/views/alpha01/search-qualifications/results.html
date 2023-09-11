@@ -1,0 +1,568 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "search-qualifications",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+{%- from "govuk/components/checkboxes/macro.njk" import govukCheckboxes -%}
+{%- from "govuk/components/input/macro.njk" import govukInput -%}
+{%- from "govuk/components/table/macro.njk" import govukTable -%}
+{%- from "moj/components/filter/macro.njk" import mojFilter -%}
+{%- from "moj/components/button-menu/macro.njk" import mojButtonMenu -%}
+
+{% set filterOptionsHtml %}
+
+  {{ govukInput({
+    id: 'search-qualification',
+    name: 'search-qualification',
+    label: {
+      text: 'Search for qualification',
+      classes: 'govuk-label--m'
+    },
+    value: data['search-qualification']
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'assessment-method',
+    name: 'assessment-method',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Assessment method',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [
+      {
+        value: 'portfolio',
+        text: 'Portfolio of evidence (3301)',
+        checked: true
+      },
+      {
+        value: 'exam',
+        text: 'Written exam (1386)'
+      },
+      {
+        value: 'practical-demo',
+        text: 'Practical demonstration or assignment (1316)',
+        checked: true
+      },
+      {
+        value: 'coursework',
+        text: 'Coursework (1078)'
+      },
+      {
+        value: 'controlled-assessment',
+        text: 'Task-based controlled assessment (810)'
+      },
+      {
+        value: 'oral',
+        text: 'Oral exam (653)'
+      },
+      {
+        value: 'multiple-choice',
+        text: 'Multiple choice exam (580)'
+      },
+      {
+        value: 'E-assessment',
+        text: 'E-assessment (550)'
+      },
+      {
+        value: 'practical-exam',
+        text: 'Practical exam (538)'
+      },
+      {
+        value: 'aural',
+        text: 'Aural exam (492)'
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'status',
+    name: 'status',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Status',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [
+      {
+        value: 'available',
+        text: 'Available (936)',
+        checked: true
+      },
+      {
+        value: 'unavailable',
+        text: 'Unavailable to new learners (251)'
+      },
+      {
+        value: 'not-awarded',
+        text: 'No longer awarded (3877)'
+      },
+      {
+        value: 'not-yet-available',
+        text: 'Not available yet (42)'
+      }
+    ]
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: 'ssa',
+    name: 'ssa',
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: 'Sector subject area',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [ 
+      {
+        value: '1',
+        text: 'Building and construction (402)'
+      },
+      {
+        value: '2',
+        text: 'Foundations for learning and life (346)'
+      },
+      {
+        value: '3',
+        text: 'Engineering (332)'
+      },
+      {
+        value: '4',
+        text: 'Crafts, creative arts and design (320)'
+      },
+      {
+        value: '5',
+        text: 'Health and social care (291)'
+      },
+      {
+        value: '6',
+        text: 'Other languages, literature and culture (268)'
+      },
+      {
+        value: '7',
+        text: 'Business management (241)'
+      },
+      {
+        value: '8',
+        text: 'Public services (220)'
+      },
+      {
+        value: '9',
+        text: 'Sport, leisure and recreation (201)'
+      },
+      {
+        value: '10',
+        text: 'Hospitality and catering (191)'
+      },
+      {
+        value: '11',
+        text: 'Performing arts (182)'
+      },
+      {
+        value: '12',
+        text: 'ICT practitioners (167)'
+      },
+      {
+        value: '13',
+        text: 'Science (155)'
+      },
+      {
+        value: '14',
+        text: 'Transportation operations and maintenance (141)'
+      },
+      {
+        value: '15',
+        text: 'Administration (131)'
+      },
+      {
+        value: '16',
+        text: 'Service enterprises (131)'
+      },
+      {
+        value: '17',
+        text: 'Preparation for work (111)'
+      },
+      {
+        value: '18',
+        text: 'Media and communication (106)'
+      },
+      {
+        value: '19',
+        text: 'Manufacturing technologies (96)'
+      },
+      {
+        value: '20',
+        text: 'Child development and well-being (86)'
+      },
+      {
+        value: '21',
+        text: 'Retailing and wholesaling (85)'
+      },
+      {
+        value: '22',
+        text: 'Travel and tourism (85)'
+      },
+      {
+        value: '23',
+        text: 'Agriculture (83)'
+      },
+      {
+        value: '24',
+        text: 'Animal care and veterinary science (73)'
+      },
+      {
+        value: '25',
+        text: 'Horticulture and forestry (70)'
+      },
+      {
+        value: '26',
+        text: 'Accounting and finance (62)'
+      },
+      {
+        value: '27',
+        text: 'Languages, literature and culture of the British Isles (60)'
+      },
+      {
+        value: '28',
+        text: 'Teaching and lecturing (60)'
+      },
+      {
+        value: '29',
+        text: 'Direct learning support (59)'
+      },
+      {
+        value: '30',
+        text: 'ICT for users (59)'
+      },
+      {
+        value: '31',
+        text: 'Mathematics and statistics (59)'
+      },
+      {
+        value: '32',
+        text: 'Warehousing and distribution (45)'
+      },
+      {
+        value: '33',
+        text: 'Marketing and sales (35)'
+      },
+      {
+        value: '34',
+        text: 'Environmental conservation (29)'
+      },
+      {
+        value: '35',
+        text: 'History (23)'
+      },
+      {
+        value: '36',
+        text: 'Geography (22)'
+      },
+      {
+        value: '37',
+        text: 'Theology and religious studies (19)'
+      },
+      {
+        value: '38',
+        text: 'Nursing and subjects and vocations allied to medicine (17)'
+      },
+      {
+        value: '39',
+        text: 'Economics (12)'
+      },
+      {
+        value: '40',
+        text: 'Law and legal services (11)'
+      },
+      {
+        value: '41',
+        text: 'Medicine and Dentistry (7)'
+      },
+      {
+        value: '42',
+        text: 'Politics (6)'
+      },
+      {
+        value: '43',
+        text: 'Publishing and information services (2)'
+      },
+      {
+        value: '44',
+        text: 'Sociology and social policy (2)'
+      },
+      {
+        value: '45',
+        text: 'Archaeology and archaeological sciences (1)'
+      },
+      {
+        value: '46',
+        text: 'Architecture (1)'
+      },
+      {
+        value: '47',
+        text: 'Urban, rural and regional planning (1)'
+      }
+    ]
+  }) }}
+
+{% endset %}
+
+
+<div class="moj-filter-layout">
+
+  <div class="moj-filter-layout__filter">
+
+    {{ mojFilter({
+      heading: {
+      text: 'Filter results'
+      },
+      selectedFilters: {
+
+      heading: {
+        text: 'Selected filters'
+      },
+
+      clearLink: {
+        text: 'Clear filters'
+      },
+
+      categories: [
+        {
+          heading: {
+            text: 'Assessment method'
+          },
+          items: [{
+            href: '#',
+            text: 'Portfolio of evidence'
+          }, {
+            href: '#',
+            text: 'Practical demonstration or assignment'
+          }]
+        },
+        {
+          heading: {
+            text: 'Status'
+          },
+          items: [{
+            href: '#',
+            text: 'Available'
+          }]
+        }
+      ]
+    },
+      optionsHtml: filterOptionsHtml
+    }) }}
+
+  </div>
+
+  <div class="moj-filter-layout__content">
+
+  <div class="moj-action-bar">
+
+    <div class="moj-action-bar__filter"></div>
+
+    {{ 
+      mojButtonMenu({
+      items: [
+      {
+        text: 'Action 1',
+        classes: 'govuk-button--secondary'
+      }, {
+        text: 'Action 2',
+        classes: 'govuk-button--secondary'
+      }]
+    }) }}
+
+  </div>
+
+  <div class="moj-scrollable-pane">
+    <table class="govuk-table" data-module="moj-multi-select" data-multi-select-checkbox="#select-all">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" id="select-all"></th>
+          <th class="govuk-table__header" scope="col">Title</th>
+          <th class="govuk-table__header" scope="col">Awarding organisation</th>
+          <th class="govuk-table__header" scope="col">Level</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Italian</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Italian</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 1/Level 2</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 1/Level 2 First Extended Certificate in Information and Creative Technology</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 1/Level 2 First Extended Certificate in Information and Creative Technology</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 1/Level 2</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 5 Higher National Diploma in Aeronautical Engineering</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 5 Higher National Diploma in Aeronautical Engineering</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 5</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 3 National Extended Diploma in Equine Management</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 3 National Extended Diploma in Equine Management</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 3</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 2 Technical Diploma in Children's Play  Learning and Development (Early Years Practitioner)</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 2 Technical Diploma in Children's Play  Learning and Development (Early Years Practitioner)</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 2</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 4 Higher National Certificate in Art and Design</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 4 Higher National Certificate in Art and Design</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 4</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 3 National Extended Diploma in Building Services Engineering</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 3 National Extended Diploma in Building Services Engineering</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 3</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 3 National Foundation Diploma in Performing Arts</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 3 National Foundation Diploma in Performing Arts</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 3</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 3 National Foundation Diploma in Sport and Exercise Science</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 3 National Foundation Diploma in Sport and Exercise Science</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 3</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+				<tr class="govuk-table__row govuk-table__row--selected">
+					<td class="govuk-table__cell">
+						<div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+							<input type="checkbox" class="govuk-checkboxes__input" id="X1">
+								<label class="govuk-label govuk-checkboxes__label" for="X1">
+									<span class="govuk-visually-hidden">Select Pearson BTEC Level 4 Higher National Certificate in Electrical Systems Engineering</span>
+								</label>
+							</div>
+						</td>
+						
+						<td class="govuk-table__cell">Pearson BTEC Level 4 Higher National Certificate in Electrical Systems Engineering</td>
+						<td class="govuk-table__cell">Pearson</td>
+						<td class="govuk-table__cell">Level 4</td>
+						<td class="govuk-table__cell govuk-table__cell--numeric">Available to learners</td>
+					</tr>
+      </tbody>
+    </table>
+
+	</div>
+</div>
+
+{% endblock %}
