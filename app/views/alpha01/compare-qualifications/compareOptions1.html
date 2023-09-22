@@ -1,0 +1,248 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Compare qualifications – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% from "govuk/components/select/macro.njk" import govukSelect %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">Qualifications data structure</h1>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="comp1">
+          First qualification to compare
+        </label>
+        <select class="govuk-select" id="comp1" name="comp1">
+          {% set qualification = {} %}
+          {% for key, qualification in qualsData %}
+            <option value="{{ key }}" {% if loop.index0 == 0 %} selected="selected"{% endif %}{% if loop.index0 == 1 %} disabled="disabled"{% endif %}>{{ qualification.QualificationTitle }} ({{ qualification.OwnerOrganisationAcronym }})</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="comp2">
+          Second qualification to compare
+        </label>
+        <select class="govuk-select" id="comp2" name="comp2">
+          {% set qualification = {} %}
+          {% for key, qualification in qualsData %}
+            <option value="{{ key }}" {% if loop.index0 == 1 %} selected="selected"{% endif %}{% if loop.index0 == 0 %} disabled="disabled"{% endif %}>{{ qualification.QualificationTitle }} ({{ qualification.OwnerOrganisationAcronym }})</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {#  Get first 2 keys from the dictionary to set up the initial table #}
+      {% set dictKeys = [] %}
+      {% for key, qualification in qualsData %}
+
+        {# Limit to just 2 loop iterations #}
+        {% if loop.index0 < 2 %}
+          {% set dictKeys = (dictKeys.push(key),dictKeys) %}
+        {% endif %}
+      {% endfor %}
+
+      {# Note: The table cells below use a custom filter (difference) to decide if the contents of the cell should be highlighted. #}
+      {# It is used by passing a 2 element array to the filter. The first elements is the value that will be highlighted or not. #}
+      {# The second element is the value to compare it to. It wiull always return the first element of the array, highlighted or not.#}
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Comparing qualifications</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Title</th>
+            <th scope="col" class="govuk-table__header ofq-qual-table-cell-l ofq-qual-table-title" id="ofq-qual-table-cell-l-title">{{ qualsData[dictKeys[0]]['QualificationTitle'] }}</th>
+            <th scope="col" class="govuk-table__header ofq-qual-table-cell-r ofq-qual-table-title" id="ofq-qual-table-cell-r-title">{{ qualsData[dictKeys[1]]['QualificationTitle'] }}</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-qan">Qualification accreditation number</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-qan" id="ofq-qual-table-cell-l-qan">{{ [dictKeys[0],dictKeys[1]] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-qan" id="ofq-qual-table-cell-r-qan">{{ [dictKeys[1],dictKeys[0]] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-org_full">Organisation</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-org_full" id="ofq-qual-table-cell-l-org_full">{{ [qualsData[dictKeys[0]]['OwnerOrganisationName'],qualsData[dictKeys[1]]['OwnerOrganisationName']] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-org_full" id="ofq-qual-table-cell-r-org_full">{{ [qualsData[dictKeys[1]]['OwnerOrganisationName'],qualsData[dictKeys[0]]['OwnerOrganisationName']] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-org_acro">Organisation (acronym)</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-org_acro" id="ofq-qual-table-cell-l-org_acro">{{ [qualsData[dictKeys[0]]['OwnerOrganisationAcronym'],qualsData[dictKeys[1]]['OwnerOrganisationAcronym']] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-org_acro" id="ofq-qual-table-cell-r-org_acro">{{ [qualsData[dictKeys[1]]['OwnerOrganisationAcronym'],qualsData[dictKeys[0]]['OwnerOrganisationAcronym']] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-level">Qualification level</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-level" id="ofq-qual-table-cell-l-level">{{ [qualsData[dictKeys[0]]['QualificationLevel'],qualsData[dictKeys[1]]['QualificationLevel']] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-level" id="ofq-qual-table-cell-r-level">{{ [qualsData[dictKeys[1]]['QualificationLevel'],qualsData[dictKeys[0]]['QualificationLevel']] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-sub_level">Qualification sub-level</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-sub_level" id="ofq-qual-table-cell-l-sub_level">{{ [qualsData[dictKeys[0]]['QualificationSubLevel'],qualsData[dictKeys[1]]['QualificationSubLevel']] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-sub_level" id="ofq-qual-table-cell-r-sub_level">{{ [qualsData[dictKeys[1]]['QualificationSubLevel'],qualsData[dictKeys[0]]['QualificationSubLevel']] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-eqf">EQF level</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-eqf" id="ofq-qual-table-cell-l-eqf">{{ [ qualsData[dictKeys[0]]['EQFLevel'],qualsData[dictKeys[1]]['EQFLevel'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-eqf" id="ofq-qual-table-cell-r-eqf">{{ [ qualsData[dictKeys[1]]['EQFLevel'],qualsData[dictKeys[0]]['EQFLevel'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-type">Qualification type</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-type" id="ofq-qual-table-cell-l-type">{{ [ qualsData[dictKeys[0]]['QualificationType'],qualsData[dictKeys[1]]['QualificationType'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-type" id="ofq-qual-table-cell-r-type">{{ [ qualsData[dictKeys[1]]['QualificationType'],qualsData[dictKeys[0]]['QualificationType'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-fees">Fees</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-fees" id="ofq-qual-table-cell-l-fees">£{{ [ qualsData[dictKeys[0]]['Fees'],qualsData[dictKeys[1]]['Fees'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-fees" id="ofq-qual-table-cell-r-fees">£{{ [ qualsData[dictKeys[1]]['Fees'],qualsData[dictKeys[0]]['Fees'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-credits">Total credits</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-credits" id="ofq-qual-table-cell-l-credits">{{ [ qualsData[dictKeys[0]]['TotalCredits'],qualsData[dictKeys[1]]['TotalCredits'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-credits" id="ofq-qual-table-cell-r-credits">{{ [ qualsData[dictKeys[1]]['TotalCredits'],qualsData[dictKeys[0]]['TotalCredits'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ssa">Sector subject area</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-ssa" id="ofq-qual-table-cell-l-ssa">{{ [ qualsData[dictKeys[0]]['QualificationSSA'],qualsData[dictKeys[1]]['QualificationSSA'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-ssa" id="ofq-qual-table-cell-r-ssa">{{ [ qualsData[dictKeys[1]]['QualificationSSA'],qualsData[dictKeys[0]]['QualificationSSA'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-status">Status</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-status" id="ofq-qual-table-cell-l-status">{{ [ qualsData[dictKeys[0]]['QualificationStatus'],qualsData[dictKeys[1]]['QualificationStatus'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-status" id="ofq-qual-table-cell-r-status">{{ [ qualsData[dictKeys[1]]['QualificationStatus'],qualsData[dictKeys[0]]['QualificationStatus'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-reg_start">Regulaton start date</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-reg_start" id="ofq-qual-table-cell-l-reg_start">{{ [ qualsData[dictKeys[0]]['RegulationStartDate'],qualsData[dictKeys[1]]['RegulationStartDate'],'date' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-reg_start" id="ofq-qual-table-cell-r-reg_start">{{ [ qualsData[dictKeys[1]]['RegulationStartDate'],qualsData[dictKeys[0]]['RegulationStartDate'],'date' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-start">Operational start date</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-start" id="ofq-qual-table-cell-l-start">{{ [ qualsData[dictKeys[0]]['OperationalStartDate'],qualsData[dictKeys[1]]['OperationalStartDate'],'date' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-start" id="ofq-qual-table-cell-r-start">{{ [ qualsData[dictKeys[1]]['OperationalStartDate'],qualsData[dictKeys[0]]['OperationalStartDate'],'date' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-end">Operational end date</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-end" id="ofq-qual-table-cell-l-end">{{ [ qualsData[dictKeys[0]]['OperationalEndDate'],qualsData[dictKeys[1]]['OperationalEndDate'],'date' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-end" id="ofq-qual-table-cell-r-end">{{ [ qualsData[dictKeys[1]]['OperationalEndDate'],qualsData[dictKeys[0]]['OperationalEndDate'],'date' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-end_cert">Certification end date</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-end_cert" id="ofq-qual-table-cell-l-end_cert">{{ [ qualsData[dictKeys[0]]['CertificationEndDate'],qualsData[dictKeys[1]]['CertificationEndDate'],'date' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-end_cert" id="ofq-qual-table-cell-r-end_cert">{{ [ qualsData[dictKeys[1]]['CertificationEndDate'],qualsData[dictKeys[0]]['CertificationEndDate'],'date' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh_min">Minimum guided learning hours</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh_min" id="ofq-qual-table-cell-l-glh_min">{{ [ qualsData[dictKeys[0]]['MinimumGuidedLearningHours'],qualsData[dictKeys[1]]['MinimumGuidedLearningHours'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-glh_min" id="ofq-qual-table-cell-r-glh_min">{{ [ qualsData[dictKeys[1]]['MinimumGuidedLearningHours'],qualsData[dictKeys[0]]['MinimumGuidedLearningHours'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh_max">Maximum guided learning hours</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh_max" id="ofq-qual-table-cell-l-glh_max">{{ [ qualsData[dictKeys[0]]['MaximumGuidedLearningHours'],qualsData[dictKeys[1]]['MaximumGuidedLearningHours'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-glh_max" id="ofq-qual-table-cell-r-glh_max">{{ [ qualsData[dictKeys[1]]['MaximumGuidedLearningHours'],qualsData[dictKeys[0]]['MaximumGuidedLearningHours'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh">Guided learning hours</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh" id="ofq-qual-table-cell-l-glh"><{{ [ qualsData[dictKeys[0]]['GuidedLearningHours'],qualsData[dictKeys[1]]['GuidedLearningHours'] ] | difference }}/td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-glh" id="ofq-qual-table-cell-r-glh">{{ [ qualsData[dictKeys[1]]['GuidedLearningHours'],qualsData[dictKeys[0]]['GuidedLearningHours'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-tqt">Total qualification time</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-tqt" id="ofq-qual-table-cell-l-tqt">{{ [ qualsData[dictKeys[0]]['TotalQualificationTime'],qualsData[dictKeys[1]]['TotalQualificationTime'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-tqt" id="ofq-qual-table-cell-r-tqt">{{ [ qualsData[dictKeys[1]]['TotalQualificationTime'],qualsData[dictKeys[0]]['TotalQualificationTime'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-availability_nations">National availability</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-nations" id="ofq-qual-table-cell-l-availability_nations">{{ [ qualsData[dictKeys[0]]['OfferedIn'],qualsData[dictKeys[1]]['OfferedIn'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-nations" id="ofq-qual-table-cell-r-availability_nations">{{ [ qualsData[dictKeys[1]]['OfferedIn'],qualsData[dictKeys[0]]['OfferedIn'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-grading">Grading type</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-grading" id="ofq-qual-table-cell-l-grading">{{ [ qualsData[dictKeys[0]]['OverallGradingType'],qualsData[dictKeys[1]]['OverallGradingType'], 'pipes' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-grading" id="ofq-qual-table-cell-r-grading">{{ [ qualsData[dictKeys[1]]['OverallGradingType'],qualsData[dictKeys[0]]['OverallGradingType'], 'pipes' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-assessment_method">Assessment methods</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-assessment_method" id="ofq-qual-table-cell-l-assessment_method">{{ [ qualsData[dictKeys[0]]['AssessmentMethods'],qualsData[dictKeys[1]]['AssessmentMethods'], 'pipes' ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-assessment_method" id="ofq-qual-table-cell-r-assessment_method">{{ [ qualsData[dictKeys[1]]['AssessmentMethods'],qualsData[dictKeys[0]]['AssessmentMethods'], 'pipes' ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ni_discount_code">Northern Ireland discount code</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-discount" id="ofq-qual-table-cell-l-ni_discount_code">{{ [ qualsData[dictKeys[0]]['NIDiscountCode'],qualsData[dictKeys[1]]['NIDiscountCode'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-discount" id="ofq-qual-table-cell-r-ni_discount_code">{{ [ qualsData[dictKeys[1]]['NIDiscountCode'],qualsData[dictKeys[0]]['NIDiscountCode'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-size_gce">Equivalent A level (GCE) size</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-size_gce" id="ofq-qual-table-cell-l-size_gce">{{ [ qualsData[dictKeys[0]]['GCESizeEquivalence'],qualsData[dictKeys[1]]['GCESizeEquivalence'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-size_gce" id="ofq-qual-table-cell-r-size_gce">{{ [ qualsData[dictKeys[1]]['GCESizeEquivalence'],qualsData[dictKeys[0]]['GCESizeEquivalence'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-size_gcse">Equivalent GCSE size</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-size_gcse" id="ofq-qual-table-cell-l-size_gcse">{{ [ qualsData[dictKeys[0]]['GCSESizeEquivalence'],qualsData[dictKeys[1]]['GCSESizeEquivalence'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-size_gcse" id="ofq-qual-table-cell-r-size_gcse">{{ [ qualsData[dictKeys[1]]['GCSESizeEquivalence'],qualsData[dictKeys[0]]['GCSESizeEquivalence'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-efd">Entitlement framework designation</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-efd" id="ofq-qual-table-cell-l-efd">{{ [ qualsData[dictKeys[0]]['EntitlementFrameworkDesignation'],qualsData[dictKeys[1]]['EntitlementFrameworkDesignation'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-efd" id="ofq-qual-table-cell-r-efd">{{ [ qualsData[dictKeys[1]]['EntitlementFrameworkDesignation'],qualsData[dictKeys[0]]['EntitlementFrameworkDesignation'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-grading_scale">Grading scale</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-scale" id="ofq-qual-table-cell-l-grading_scale">{{ [ qualsData[dictKeys[0]]['GradingScale'],qualsData[dictKeys[1]]['GradingScale'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-scale" id="ofq-qual-table-cell-r-grading_scale">{{ [ qualsData[dictKeys[1]]['GradingScale'],qualsData[dictKeys[0]]['GradingScale'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-specialisms">Specialisms</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-specialisms" id="ofq-qual-table-cell-l-specialisms">{{ [ qualsData[dictKeys[0]]['Specialisms'],qualsData[dictKeys[1]]['Specialisms'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-specialisms" id="ofq-qual-table-cell-r-specialisms">{{ [ qualsData[dictKeys[1]]['Specialisms'],qualsData[dictKeys[0]]['Specialisms'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-pathways">Pathways</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-pathways" id="ofq-qual-table-cell-l-pathways">{{ [ qualsData[dictKeys[0]]['Pathways'],qualsData[dictKeys[1]]['Pathways'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-pathways" id="ofq-qual-table-cell-r-pathways">{{ [ qualsData[dictKeys[1]]['Pathways'],qualsData[dictKeys[0]]['Pathways'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-del_funded">DEL funded</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-del_funded" id="ofq-qual-table-cell-l-del_funded">{{ [ qualsData[dictKeys[0]]['ApprovedForDELFundedProgramme'],qualsData[dictKeys[1]]['ApprovedForDELFundedProgramme'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-del_funded" id="ofq-qual-table-cell-r-del_funded">{{ [ qualsData[dictKeys[1]]['ApprovedForDELFundedProgramme'],qualsData[dictKeys[0]]['ApprovedForDELFundedProgramme'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-spec_link">Link to specification</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-spec" id="ofq-qual-table-cell-l-spec_link">{{ [ qualsData[dictKeys[0]]['LinkToSpecification'],qualsData[dictKeys[1]]['LinkToSpecification'] ] | difference }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-spec" id="ofq-qual-table-cell-r-spec_link">{{ [ qualsData[dictKeys[1]]['LinkToSpecification'],qualsData[dictKeys[0]]['LinkToSpecification'] ] | difference }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ccea_reg">CCEA regulated</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-ccea_reg" id="ofq-qual-table-cell-l-ccea_reg">{{ [ qualsData[dictKeys[0]]['CCEARegulation'],qualsData[dictKeys[1]]['CCEARegulation'] ] | difference | truefalse }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-ccea_reg" id="ofq-qual-table-cell-r-ccea_reg">{{ [ qualsData[dictKeys[1]]['CCEARegulation'],qualsData[dictKeys[0]]['CCEARegulation'] ] | difference | truefalse }}</td>
+          </tr>
+          <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+            <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-intl">Available internationally</th>
+            <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-intl" id="ofq-qual-table-cell-l-intl">{{ [ qualsData[dictKeys[0]]['OfferedInternationally'],qualsData[dictKeys[1]]['OfferedInternationally']] | difference | truefalse }}</td>
+            <td class="govuk-table__cell ofq-qual-table-cell-r ofq-qual-table-intl" id="ofq-qual-table-cell-r-intl">{{ [ qualsData[dictKeys[1]]['OfferedInternationally'],qualsData[dictKeys[0]]['OfferedInternationally']] | difference | truefalse }}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/compare-selector.js"></script>
+  <script>
+    document.write("<pre>");
+    document.write(JSON.stringify(qualsJSON,' ',2));
+    document.write("</pre>");
+  </script>
+{% endblock %}
