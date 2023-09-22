@@ -1,3 +1,7 @@
+const govukPrototypeKit = require("govuk-prototype-kit")
+const qualsData = require('../data/quals-data-keyed-with-nulls.json')
+const protoVer = 'alpha01'
+
 module.exports = function (router) {
   const version = 'alpha01'
 
@@ -221,6 +225,14 @@ module.exports = function (router) {
   
    //---------------------- End Error Messages ----------------------------//
    
+   //---------------------- Async Data Start ------------------------------//
+
+  router.all('/getData/quals', function(req,res){
+    res.json(qualsData)
+  })
+
+   //---------------------- Async Data End --------------------------------//
+
    //---------------------- Routing Start ---------------------------------//
    
   router.get('/' + version + '/start', function (req, res) {
@@ -229,7 +241,24 @@ module.exports = function (router) {
    
    //---------------------- Routing Qualifications ------------------------//
   
- 
+  router.all('/' + version + '/routing/compare-quals-route', function (req,res)
+  {
+    if (req.session.data.ixVariant == 'compareQuals1')
+    {
+      //const qualsData = require('../data/quals-data-keyed-with-nulls.json');
+      res.render('/' + version + '/compare-qualifications/compareOptions1', {'version': version, 'qualsData': qualsData});
+    }
+    else
+    {
+      res.render('/' + version + '/compare-qualifications/compareOptions2', {'version': version})
+    }
+  })
+
+  router.post('/' + version + '/compare-qualifications/search-results', function (req,res)
+  {
+    res.render(version + '/compare-qualifications/search-results', { 'version': version })
+  })
+
   router.get('/' + version + '/search-qualifications/start', function (req, res) {
     res.render(version + '/search-qualifications/start', { 'version': version })
   })
