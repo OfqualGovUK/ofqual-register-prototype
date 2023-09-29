@@ -33,13 +33,10 @@ To create a new prototype version:
 1. In the file ```app/routes/routes-delta.js```, include the following text:
 
 
-    require('./routes/routes-alpha01.js')(router)
-
+    require('./routes/routes-alpha01.js')(router);
     module.exports = function (router) {
       const version = 'delta';
-
       // Place your routing rules here
-
       router.all('/' + version + '/start', function (req, res) {
         res.render('/' + version + '/start', { 'version': version });
       })
