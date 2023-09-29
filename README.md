@@ -32,6 +32,7 @@ To create a new prototype version:
 1. Edit ```app/routes.js``` to add a line at the end of the file, ```require('./routes/routes-delta.js')(router)```
 1. In the file ```app/routes/routes-delta.js```, include the following text:
 
+
     require('./routes/routes-alpha01.js')(router)
 
     module.exports = function (router) {
@@ -39,9 +40,9 @@ To create a new prototype version:
 
       // Place your routing rules here
 
-        router.all('/' + version + '/start', function (req, res) {
-          res.render('/' + version + '/start', { 'version': version });
-        })
+      router.all('/' + version + '/start', function (req, res) {
+        res.render('/' + version + '/start', { 'version': version });
+      })
     }
 
 ### Changes to make to account for versioning
