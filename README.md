@@ -30,8 +30,10 @@ To create a new prototype version:
 1. Create a folder, ```app/views/delta```
 1. Create a new file, ```app/routes/routes-delta.js```
 1. Edit ```app/routes.js``` to add a line at the end of the file, ```require('./routes/routes-delta.js')(router)```
-1. In the file ```app/routes/routes-delta.js```, include the following text:
 
+### Edit your new routing file
+
+Edit your new routing file, in the example above it is ```app/routes/routes-delta.js```, and add the following code:
 
     require('./routes/routes-alpha01.js')(router);
     module.exports = function (router) {
