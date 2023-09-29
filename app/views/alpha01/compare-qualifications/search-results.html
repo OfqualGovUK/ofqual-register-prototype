@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@
     html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
   }) }}
   {{ govukBackLink({
-    href: "start",
+    href: "search-page",
     text: "Back"
   }) }}
 {% endblock %}
@@ -428,23 +428,30 @@
 
   <div class="moj-filter-layout__content">
 
-  <div class="moj-action-bar">
-    <form action="/{{ version }}/routing/compare-quals-route" method="post" novalidate>
+    <div class="moj-action-bar">
+    
+      <div class="moj-action-bar__filter"></div>
+      {% set compareURL = "/" + version + "/routing/compare-quals-route?ixVariant=" + data.ixVariant %}
       {{ 
         mojButtonMenu({
         items: [
         {
           text: 'Compare selected',
-          classes: 'govuk-button--primary'
+          classes: 'govuk-button--primary',
+          href: compareURL
         },
         {
           text: 'Save selected',
           classes: 'govuk-button--secondary'
+        },
+        {
+          text: 'Download results',
+          classes: 'govuk-button--secondary',
+          href: '/download/download-compare'
         }]
       }) }}
 
-      <input type="hidden" name="ixVariant" value="{{ data.ixVariant }}" />
-    </form>
+  </div>
 
   </div>
 
@@ -556,4 +563,35 @@
 	</div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script defer>
+
+    var anchor = document.createElement("a");
+    anchor.innerHTML = "Show filter";
+    anchor.className = "govuk-button moj-button-menu__item govuk-button--secondary ofq-hide-underline";
+    anchor.setAttribute("data-module", "govuk-button");
+    anchor.setAttribute("role", "button");
+
+    var container = document.querySelector(".moj-action-bar__filter");
+    if (container) {
+      container.appendChild(anchor);
+
+      var filterDiv = document.querySelector(".moj-filter-layout__filter");
+
+      // Hide the filter div initially
+      filterDiv.style.display = "none";
+
+      anchor.addEventListener("click", function() {
+        if (anchor.innerHTML === "Show filter") {
+          anchor.innerHTML = "Hide filter";
+          filterDiv.style.display = "block";
+        } else {
+          anchor.innerHTML = "Show filter";
+          filterDiv.style.display = "none";
+        }
+      });
+    }
+  </script>
 {% endblock %}

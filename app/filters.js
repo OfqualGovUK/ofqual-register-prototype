@@ -14,8 +14,8 @@ addFilter('difference', function(content)
         {
             let output = []
 
-            console.log('[FILTER: difference]');
-            console.log('Additional filtering: ' + content[2]);
+            //console.log('[FILTER: difference]');
+            //console.log('Additional filtering: ' + content[2]);
 
             if (content[2] == 'date')
             {
@@ -68,8 +68,8 @@ addFilter('difference', function(content)
 
 addFilter('truefalse',function (input)
     {
-        console.log('[FILTER: truefalse]');
-        console.log('Input: '+input);
+        //console.log('[FILTER: truefalse]');
+        //console.log('Input: '+input);
         var output = '';
 
         if (input == 'true'){
@@ -79,7 +79,49 @@ addFilter('truefalse',function (input)
         }
 
         
-        console.log('Output: '+output);
+        //console.log('Output: '+output);
         return output;
     }, { renderAsHtml: true }
 )
+
+addFilter('removeslash',function (input)
+    {
+        let elements = String(input).split('/');
+        return elements.join('');
+    }
+)
+
+addFilter('removepipes',function (input)
+    {
+        let elements = String(input).split('|');
+        return elements.join(', ');
+    }
+)
+
+addFilter('formatDate',function (input) {
+    const monthsArr = ['','January','February','March','April','May','June','July','August','September','October','November','December']
+    if (isDefined(input))
+    {
+        const dateObj = new Date(input)
+        const actualYear = 1900 + dateObj.getYear()
+        return dateObj.getDate() + ' ' + monthsArr[dateObj.getMonth()] + ' ' + actualYear
+    } else {
+        return null
+    }
+})
+
+addFilter('stripnonalpha',function (input) {
+    return input.replace(/[^0-9a-z_-]/gi, '');
+})
+
+// 'isEmpty' tests a variable and returns true if it undefined, null or empty, otherwise returns null
+function isEmpty(value)
+{
+  return (value == null || (typeof value === "string" && value.trim().length === 0));
+}
+
+// 'isDefined' tests a variable and returns true if it is defined, not null and not empty, otherwise returns null
+function isDefined(value)
+{
+  return !isEmpty(value);
+}

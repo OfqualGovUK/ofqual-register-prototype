@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+  Organisation details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -167,6 +167,16 @@
           }
         ]
       }) }}
+
+      <!-- Display scope of recognition -->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Scope of recognition</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          {% include "/" + version + "/components/scope-of-recognition.html" %}
+        </div>
+      </div>
 
     </div>
   </div>

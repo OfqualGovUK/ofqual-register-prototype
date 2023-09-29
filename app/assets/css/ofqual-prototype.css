@@ -4,3 +4,12 @@
 	border-top: 1px solid #b1b4b6;
 	list-style: none;
 }
+
+.ofq-hide-underline {
+	text-decoration: none;
+}
+
+.ofq-highlight {
+	background-color: #fdedde;
+  border-bottom: 2px solid #ffbf80;
+}
