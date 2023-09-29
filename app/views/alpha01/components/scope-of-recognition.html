@@ -1,0 +1,25 @@
+      <ul class="ofq-tree">
+        {% for qualType, qualTypeData in scopeData %}
+          <li>
+            <details>
+              <summary class="govuk-body">{{ qualType }}</summary>
+              <ul>
+                {% for qualLevel, qualLevelData in qualTypeData %}
+                  <li>
+                    <details>
+                      <summary class="govuk-body">{{ qualLevel }}</summary>
+                      <ul>
+                        {% for qualDetail, qualDetailData in qualLevelData %}
+                          {% for qualDetailItem in qualDetailData %}
+                            <li class="govuk-body">{{ qualDetailItem }}</li>
+                          {% endfor %}
+                        {% endfor %}
+                      </ul>
+                    </details>
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </li>
+        {% endfor %}
+      </ul>

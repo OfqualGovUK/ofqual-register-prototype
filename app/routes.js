@@ -15,7 +15,7 @@ router.use((req, res, next) => {
       url: req.originalUrl,
       data: req.session.data
     }
-    console.log(JSON.stringify(log, null, 2))
+    //console.log(JSON.stringify(log, null, 2))
 
   next()
 })

@@ -1,0 +1,241 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Compare qualifications – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {% from "govuk/components/select/macro.njk" import govukSelect %}
+  {%- from "govuk/components/table/macro.njk" import govukTable -%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">Compare qualifications</h1>
+      <div class="moj-scrollable-pane">
+        <table class="govuk-table" aria-atomic="true" aria-relevant="all">
+          <caption class="govuk-table__caption govuk-table__caption--m">Comparing qualifications</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Title</th>
+              {% for key, qualification in qualsData %}
+                <th scope="col" class="govuk-table__header ofq-qual-table-title" id="ofq-qual-table-cell-{{ key | removeslash }}-title">{{ qualsData[key]['QualificationTitle'] }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-qan">Qualification accreditation number</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-qan" id="ofq-qual-table-cell-{{ key | removeslash }}-qan">{{ key }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-org_full">Organisation</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-org_full" id="ofq-qual-table-cell-{{ key | removeslash }}-org_full">{{ qualsData[key]['OwnerOrganisationName'] }}</td>
+              {% endfor %}
+            </tr>
+
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-org_acro">Organisation (acronym)</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-org_acro" id="ofq-qual-table-cell-{{ key | removeslash }}-org_acro">{{ qualsData[key]['OwnerOrganisationAcronym'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-level">Qualification level</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-level" id="ofq-qual-table-cell{{ key | removeslash }}-level">{{ qualsData[key]['QualificationLevel'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-sub_level">Qualification sub-level</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-sub_level" id="ofq-qual-table-cell{{ key | removeslash }}-sub_level">{{ qualsData[key]['QualificationSubLevel'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-eqf">EQF level</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-eqf" id="ofq-qual-table-cell{{ key | removeslash }}-eqf">{{ qualsData[key]['EQFLevel'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-type">Qualification type</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-type" id="ofq-qual-table-cell{{ key | removeslash }}-type">{{  qualsData[key]['QualificationType'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-fees">Fees</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-fees" id="ofq-qual-table-cell{{ key | removeslash }}-fees">£{{ qualsData[key]['Fees'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-credits">Total credits</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-credits" id="ofq-qual-table-cell{{ key | removeslash }}-credits">{{ qualsData[key]['TotalCredits'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ssa">Sector subject area</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-ssa" id="ofq-qual-table-cell{{ key | removeslash }}-ssa">{{ qualsData[key]['QualificationSSA'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-status">Status</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-status" id="ofq-qual-table-cell{{ key | removeslash }}-status">{{ qualsData[key]['QualificationStatus'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-reg_start">Regulaton start date</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-reg_start" id="ofq-qual-table-cell{{ key | removeslash }}-reg_start">{{ qualsData[key]['RegulationStartDate'] | formatDate }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-start">Operational start date</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-start" id="ofq-qual-table-cell{{ key | removeslash }}-start">{{ qualsData[key]['OperationalStartDate'] | formatDate }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-end">Operational end date</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-end" id="ofq-qual-table-cell{{ key | removeslash }}-end">{{ qualsData[key]['OperationalEndDate'] | formatDate }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-end_cert">Certification end date</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-end_cert" id="ofq-qual-table-cell{{ key | removeslash }}-end_cert">{{ qualsData[key]['CertificationEndDate'] | formatDate }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh_min">Minimum guided learning hours</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh_min" id="ofq-qual-table-cell{{ key | removeslash }}-glh_min">{{ qualsData[key]['MinimumGuidedLearningHours'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh_max">Maximum guided learning hours</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh_max" id="ofq-qual-table-cell{{ key | removeslash }}-glh_max">{{ qualsData[key]['MaximumGuidedLearningHours'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-glh">Guided learning hours</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-glh" id="ofq-qual-table-cell{{ key | removeslash }}-glh">{{ qualsData[key]['GuidedLearningHours'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-tqt">Total qualification time</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-tqt" id="ofq-qual-table-cell{{ key | removeslash }}-tqt">{{ qualsData[key]['TotalQualificationTime'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-availability_nations">National availability</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-nations" id="ofq-qual-table-cell{{ key | removeslash }}-availability_nations">{{ qualsData[key]['OfferedIn'] | removepipes }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-grading">Grading type</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-grading" id="ofq-qual-table-cell{{ key | removeslash }}-grading">{{ qualsData[key]['OverallGradingType'] | removepipes }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-assessment_method">Assessment methods</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-assessment_method" id="ofq-qual-table-cell{{ key | removeslash }}-assessment_method">{{ qualsData[key]['AssessmentMethods'] | removepipes }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ni_discount_code">Northern Ireland discount code</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-discount" id="ofq-qual-table-cell{{ key | removeslash }}-ni_discount_code">{{ qualsData[key]['NIDiscountCode'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-size_gce">Equivalent A level (GCE) size</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-size_gce" id="ofq-qual-table-cell{{ key | removeslash }}-size_gce">{{ qualsData[key]['GCESizeEquivalence'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-size_gcse">Equivalent GCSE size</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-size_gcse" id="ofq-qual-table-cell{{ key | removeslash }}-size_gcse">{{ qualsData[key]['GCSESizeEquivalence'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-efd">Entitlement framework designation</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-efd" id="ofq-qual-table-cell{{ key | removeslash }}-efd">{{ qualsData[key]['EntitlementFrameworkDesignation'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-grading_scale">Grading scale</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-scale" id="ofq-qual-table-cell{{ key | removeslash }}-grading_scale">{{ qualsData[key]['GradingScale'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-specialisms">Specialisms</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-specialisms" id="ofq-qual-table-cell{{ key | removeslash }}-specialisms">{{ qualsData[key]['Specialisms'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-pathways">Pathways</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-pathways" id="ofq-qual-table-cell{{ key | removeslash }}-pathways">{{ qualsData[key]['Pathways'] }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-del_funded">DEL funded</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-del_funded" id="ofq-qual-table-cell{{ key | removeslash }}-del_funded">{{ qualsData[key]['ApprovedForDELFundedProgramme'] | truefalse }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-spec_link">Link to specification</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-spec" id="ofq-qual-table-cell{{ key | removeslash }}-spec_link">{{ qualsData[key]['LinkToSpecification'] | truefalse }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-ccea_reg">CCEA regulated</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-ccea_reg" id="ofq-qual-table-cell{{ key | removeslash }}-ccea_reg">{{ qualsData[key]['CCEARegulation'] | truefalse }}</td>
+              {% endfor %}
+            </tr>
+            <tr class="govuk-table-row ofq-qual-table-row" id="ofq-qual-table-row">
+              <th class="govuk-table__header ofq-qual-table-header" scope="row" id="ofq-qual-table-header-intl">Available internationally</th>
+              {% for key, qualification in qualsData %}
+                <td class="govuk-table__cell ofq-qual-table-cell-l ofq-qual-table-intl" id="ofq-qual-table-cell{{ key | removeslash }}-intl">{{ qualsData[key]['OfferedInternationally'] | truefalse }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <!--script src="/public/javascripts/compare-selector.js"></script-->
+{% endblock %}

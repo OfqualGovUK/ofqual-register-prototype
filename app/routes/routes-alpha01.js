@@ -1,229 +1,15 @@
-const govukPrototypeKit = require("govuk-prototype-kit")
-const qualsData = require('../data/quals-data-keyed-with-nulls.json')
-const protoVer = 'alpha01'
+const govukPrototypeKit = require("govuk-prototype-kit");
+
+// Load JSON data sources
+const qualsData = require('../data/quals-data-keyed-with-nulls.json');
+const scopeData = require('../data/pearson_sor.json');
+const qualsAutoComplete = require('../data/quals_autocomplete.json');
+const qualsSearchResults = require('../data/quals_search_results.json');
+
+const protoVer = 'alpha01';
 
 module.exports = function (router) {
   const version = 'alpha01'
-
-   //---------------------- Error Messages --------------------------------//
-  
-   //---------------------- Error Messages Qualifications -----------------//
-  
-  router.post('/' + version + '/search-qualifications/search-qualifications-form', function (req, res) {
-	req.session.data.errorsQualificationSearch = {}
-    let hasError = false
-    let qualificationSearchTerm = req.session.data['qualification-search-term']
-
-	
-
-    if (qualificationSearchTerm === '') {
-		hasError = true
-		req.session.data.errorsQualificationSearch['qualification-search-term-empty'] = 'Enter a search term'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications')
-    } else {
-		req.session.data.errorsQualificationSearchResults = {}
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-results')
-    }
-  })
-  
-  router.post('/' + version + '/search-qualifications/search-qualifications-results-form', function (req, res) {
-	req.session.data.errorsQualificationSearchResults = {}
-    let hasError = false
-    let qualificationSearchTermResults = req.session.data['qualification-search-term-results']
-
-	
-
-    if (qualificationSearchTermResults === '') {
-		hasError = true
-		req.session.data['qualification-search-term'] = ''
-		req.session.data.errorsQualificationSearchResults['qualification-search-term-results-empty'] = 'Enter a search term'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-results')
-    } else {
-		req.session.data['qualification-search-term'] = qualificationSearchTermResults
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-results')
-    }
-  })
-  
-  router.post('/' + version + '/search-qualifications/search-qualifications-results-download-form', function (req, res) {
-	req.session.data.errorsQualificationDownload = {}
-    let hasError = false
-    let downloadFileFormat = req.session.data['format']
-
-	
-
-    if (downloadFileFormat === undefined) {
-		hasError = true
-		req.session.data.errorsQualificationDownload['qualification-download-format-empty'] = 'Select a file format'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-results-download')
-    } else {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-results-download-link')
-    }
-  })
-  
-  router.post('/' + version + '/search-qualifications/search-qualifications-data-form', function (req, res) {
-	req.session.data.errorsQualificationdata = {}
-    let hasError = false
-    let dataType = req.session.data['data']
-
-	
-
-    if (dataType === undefined) {
-		hasError = true
-		req.session.data.errorsQualificationData['qualification-data'] = 'Select a dataset'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications-data')
-    } else {
-		res.redirect('/' + version + '/search-qualifications/search-qualifications')
-    }
-  })
- 
-   //---------------------- Error Messages Organization -------------------//
- 
-   router.post('/' + version + '/search-organizations/search-organizations-form', function (req, res) {
-	req.session.data.errorsOrganizationSearch = {}
-    let hasError = false
-    let organizationSearchTerm = req.session.data['organization-search-term']
-
-	
-
-    if (organizationSearchTerm === '') {
-		hasError = true
-		req.session.data.errorsOrganizationSearch['organization-search-term-empty'] = 'Enter a search term'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-organizations/search-organizations')
-    } else {
-		req.session.data.errorsOrganizationSearchResults = {}
-		res.redirect('/' + version + '/search-organizations/search-organizations-results')
-    }
-  })
-  
-  router.post('/' + version + '/search-organizations/search-organizations-results-form', function (req, res) {
-	req.session.data.errorsOrganizationSearchResults = {}
-    let hasError = false
-    let organizationSearchTermResults = req.session.data['organization-search-term-results']
-
-	
-
-    if (organizationSearchTermResults === '') {
-		hasError = true
-		req.session.data['organization-search-term'] = ''
-		req.session.data.errorsOrganizationSearchResults['organization-search-term-results-empty'] = 'Enter a search term'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-organizations/search-organizations-results')
-    } else {
-		req.session.data['organization-search-term'] = organizationSearchTermResults
-		res.redirect('/' + version + '/search-organizations/search-organizations-results')
-    }
-  })
-  
-  router.post('/' + version + '/search-organizations/search-organizations-data-form', function (req, res) {
-	req.session.data.errorsOrganizationData = {}
-    let hasError = false
-    let dataType = req.session.data['data']
-
-	
-
-    if (dataType === undefined) {
-		hasError = true
-		req.session.data.errorsOrganizationData['organization-data'] = 'Select a dataset'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/search-organizations/search-organizations-data')
-    } else {
-		res.redirect('/' + version + '/search-organizations/search-organizations')
-    }
-  })
-
-   //---------------------- Error Messages Compare Qualification ----------//
-   
-  router.post('/' + version + '/compare-qualifications/compare-search-qualifications-form', function (req, res) {
-	req.session.data.errorsCompareQualificationSearch = {}
-    let hasError = false
-    let qualificationCompareSearchTerm = req.session.data['compare-qualification-search-term']
-
-	
-
-    if (qualificationCompareSearchTerm === '') {
-		hasError = true
-		req.session.data.errorsCompareQualificationSearch['compare-qualification-search-term-empty'] = 'Enter a search term'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/compare-qualifications/compare-search-qualifications')
-    } else {
-		req.session.data.errorsQualificationSearchResults = {}
-		res.redirect('/' + version + '/compare-qualifications/compare-search-qualifications-results')
-    }
-  })
-  
-  router.post('/' + version + '/compare-qualifications/compare-search-qualifications-results-form', function (req, res) {
-	req.session.data.errorsCompareQualificationSearchResults = {}
-    let hasError = false
-    let qualificationCompareSearchTermResults = req.session.data['qualification']
-
-	
-
-    if (qualificationCompareSearchTermResults === undefined) {
-		hasError = true
-		req.session.data.errorsCompareQualificationSearchResults['compare-qualification-none'] = 'Select at least 2 qualifications to compare'
-    } else {
-		
-    let qualificationCompareSearchTermResultsLength = qualificationCompareSearchTermResults.length
-	
-    if (qualificationCompareSearchTermResultsLength > 3) {
-		hasError = true
-		req.session.data.errorsCompareQualificationSearchResults['compare-qualification-too-many'] = 'Select up to 3 qualifications to compare'
-    } else if(qualificationCompareSearchTermResultsLength === 1) {
-		hasError = true
-		req.session.data.errorsCompareQualificationSearchResults['compare-qualification-too-many'] = 'Select more than 1 qualification to compare'	
-	}
-	}
-
-
-    if (hasError) {
-		res.redirect('/' + version + '/compare-qualifications/compare-search-qualifications-results')
-    } else {
-		req.session.data.errorsCompareQualificationSearchResults = {}
-		res.redirect('/' + version + '/compare-qualifications/compare-qualifications-results-table')
-    }
-  })
-  
-  router.post('/' + version + '/compare-qualifications/compare-qualifications-data-form', function (req, res) {
-	req.session.data.errorsComparecompareQualificationsData = {}
-    let hasError = false
-    let dataType = req.session.data['data']
-
-	
-
-    if (dataType === undefined) {
-		hasError = true
-		req.session.data.errorsComparecompareQualificationsData['compare-qualification-data'] = 'Select a dataset'
-    }
-
-    if (hasError) {
-		res.redirect('/' + version + '/compare-qualifications/compare-qualifications-data')
-    } else {
-		res.redirect('/' + version + '/compare-qualifications/compare-search-qualifications')
-    }
-  })
-  
-   //---------------------- End Error Messages ----------------------------//
    
    //---------------------- Async Data Start ------------------------------//
 
@@ -231,6 +17,9 @@ module.exports = function (router) {
     res.json(qualsData)
   })
 
+  router.all('/getData/scope', function(req,res){
+    res.json(qualsData)
+  })
    //---------------------- Async Data End --------------------------------//
 
    //---------------------- Routing Start ---------------------------------//
@@ -239,7 +28,7 @@ module.exports = function (router) {
     res.render(version + '/start', { 'version': version })
   })
    
-   //---------------------- Routing Qualifications ------------------------//
+   //---------------------- Routing Compare Qualifications ------------------------//
   
   router.all('/' + version + '/routing/compare-quals-route', function (req,res)
   {
@@ -248,146 +37,78 @@ module.exports = function (router) {
       //const qualsData = require('../data/quals-data-keyed-with-nulls.json');
       res.render('/' + version + '/compare-qualifications/compareOptions1', {'version': version, 'qualsData': qualsData});
     }
+    else if ( req.session.data.ixVariant == 'compareQuals1a')
+    {
+      res.render('/' + version + '/compare-qualifications/compareOptions1a', {'version': version, 'qualsData': qualsData})
+    }
+    else if ( req.session.data.ixVariant == 'compareQuals2')
+    {
+      res.render('/' + version + '/compare-qualifications/compareOptions2', {'version': version, 'qualsData': qualsData})
+    }
     else
     {
-      res.render('/' + version + '/compare-qualifications/compareOptions2', {'version': version})
+      res.render('/' + version + '/compare-qualifications/start', {'version': version})
     }
   })
 
-  router.post('/' + version + '/compare-qualifications/search-results', function (req,res)
-  {
-    res.render(version + '/compare-qualifications/search-results', { 'version': version })
-  })
-
-  router.get('/' + version + '/search-qualifications/start', function (req, res) {
-    res.render(version + '/search-qualifications/start', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-data', function (req, res) {
-	req.session.data.errorsQualificationData = {}
-	req.session.data['data'] = undefined 
-    res.render(version + '/search-qualifications/search-qualifications-data', { 'version': version })
-  })
-
-  router.get('/' + version + '/search-qualifications/search-qualifications', function (req, res) {
-	req.session.data.errorsQualificationSearch = {}
-    res.render(version + '/search-qualifications/search-qualifications', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-1', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-1', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-2', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-2', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-3', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-3', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-4', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-4', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-5', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-5', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-details-6', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-details-6', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-download', function (req, res) {
-	req.session.data.errorsQualificationDownload = {}
-	req.session.data['format'] = undefined 
-    res.render(version + '/search-qualifications/search-qualifications-results-download', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-qualifications/search-qualifications-results-download-link', function (req, res) {
-    res.render(version + '/search-qualifications/search-qualifications-results-download-link', { 'version': version })
-  })
-  
-   //---------------------- Routing Organizations -------------------------//  
-  
-  router.get('/' + version + '/search-organizations/start', function (req, res) {
-    res.render(version + '/search-organizations/start', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-organizations/search-organizations-data', function (req, res) {
-	req.session.data.errorsOrganizationData = {}
-	req.session.data['data'] = undefined 
-    res.render(version + '/search-organizations/search-organizations-data', { 'version': version })
-  })
-
-  
-  router.get('/' + version + '/search-organizations/search-organizations', function (req, res) {
-	req.session.data.errorsOrganizationSearch = {}
-    res.render(version + '/search-organizations/search-organizations', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results-details-1', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details-1', { 'version': version })
-  })
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results-details-2', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details-2', { 'version': version })
-  })  
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results-details-3', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details-3', { 'version': version })
-  })  
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results-details-4', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details-4', { 'version': version })
-  })  
-  
-  router.get('/' + version + '/search-organizations/search-organizations-results-details-5', function (req, res) {
-    res.render(version + '/search-organizations/search-organizations-results-details-5', { 'version': version })
-  })   
-  
-   //---------------------- Routing Compare -------------------------------//
-  
-  
-  router.get('/' + version + '/compare-qualifications/start', function (req, res) {
+  router.all('/' + version + '/compare-qualifications/start', function (req, res) {
     res.render(version + '/compare-qualifications/start', { 'version': version })
   })
-  
-  router.get('/' + version + '/compare-qualifications/compare-qualifications-data', function (req, res) {
-	req.session.data.errorsComparecompareQualificationsData = {}
-	req.session.data['data'] = undefined 
-    res.render(version + '/compare-qualifications/compare-qualifications-data', { 'version': version })
+
+  router.all('/' + version + '/compare-qualifications/search-results', function (req,res)
+  {
+    res.render('/' + version + '/compare-qualifications/search-results', { 'version': version })
   })
 
-  
-  router.get('/' + version + '/compare-qualifications/compare-search-qualifications', function (req, res) {
-	req.session.data.errorsCompareQualificationSearch = {}
-	req.session.data['qualification'] = undefined 
-    res.render(version + '/compare-qualifications/compare-search-qualifications', { 'version': version })
+     //---------------------- Routing Search Qualifications ------------------------//
+
+  router.all('/' + version + '/search-qualifications/search-results', function (req,res)
+  {
+    res.render('/' + version + '/search-qualifications/search-results', { 'version': version, 'qualsSearchResults': qualsSearchResults })
+  })
+
+  router.all('/' + version + '/search-qualifications/start', function (req, res) {
+    res.render('/' + version + '/search-qualifications/start', { 'version': version })
+  })
+
+  router.all('/' + version + '/search-qualifications/results-pearson', function (req, res) {
+    res.render('/' + version + '/search-qualifications/results-pearson', { 'version': version })
+  })
+
+  router.all('/' + version + '/search-qualifications/results', function (req, res) {
+    res.render('/' + version + '/search-qualifications/results', { 'version': version })
+  })
+
+  router.all('/' + version + 'search-qualifications/search', function (req,res)
+  {
+    res.render('/' + version + '/search-qualifications/search', { 'version': version, 'qualsAutoComplete': qualsAutoComplete })
+  })
+
+  router.all('/' + version + 'search-qualifications/qualification-details', function (req,res)
+  {
+    res.render('/' + version + '/search-qualifications/qualification-details', { 'version': version })
   })
   
-  router.get('/' + version + '/compare-qualifications/compare-search-qualifications-results', function (req, res) {
-	req.session.data.errorsCompareQualificationSearchResults = {}
-	req.session.data['qualification'] = undefined 
-    res.render(version + '/compare-qualifications/compare-search-qualifications-results', { 'version': version })
-  })
- 
+ //---------------------- Routing Search Organisaions -------------------------------//
   
-  router.get('/' + version + '/compare-qualifications/compare-qualifications-results-table', function (req, res) {
-    res.render(version + '/compare-qualifications/compare-qualifications-results-table', { 'version': version })
+  router.all('/' + version + '/search-organisations/organisation-details', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/organisation-details', { 'version': version, 'scopeData': scopeData })
   })
-  
-   router.get('/' + version + '/compare-qualifications/compare-qualifications-results-details', function (req, res) {
-    res.render(version + '/compare-qualifications/compare-qualifications-results-details', { 'version': version })
+
+  router.all('/' + version + '/search-organisations/scope-of-recognition', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/scope-of-recognition', { 'version': version, 'scopeData': scopeData })
   })
   
-   
+  router.all('/' + version + '/search-organisations/search-results', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/search-results', { 'version': version })
+  })
+
+  router.all('/' + version + '/search-organisations/search', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/search', { 'version': version })
+  })
+
 }

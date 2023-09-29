@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Search for a qualification – {{ serviceName }} – GOV.UK Prototype Kit
+  Search qualifications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,16 +15,26 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="/alpha01/search-qualifications/results" method="post">
-
-        {{ govukInput({
-          label: {
-            text: "Search for a qualification",
-            classes: "govuk-label--l",
-            isPageHeading: true
+      <form action="/alpha01/search-qualifications/search-results" method="post">
+        {{ xGovukAutocomplete({
+          id: "selected-qualification",
+          name: "selected-qualification",
+          allowEmpty: false,
+          showAllValues: true,
+          minLength: 3,
+          hint: {
+            text: "Start typing to show a list of matching qualifications"
           },
-          id: "search-qualification",
-          name: "search-qualification"
+          label: {
+            classes: "govuk-label--l",
+            isPageHeading: true,
+            text: "Search for a qualification"
+          },
+          items: qualsAutoComplete
+        }) }}
+
+        {{ govukButton({
+          text: "Search qualifications"
         }) }}
 
       </form>

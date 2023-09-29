@@ -86,7 +86,7 @@ const jsonMap = {
 };
 
 async function getJSON(url){
-  console.log('[[getJSON]]');
+  //console.log('[[getJSON]]');
   const response = await fetch(url);
   const data = await response.json();
   //console.log('Look! JSON! %o', data);
@@ -94,7 +94,7 @@ async function getJSON(url){
 }
 
 function loadJSON(data){
-  console.log('[[loadJSON]]');
+  //console.log('[[loadJSON]]');
   qualsJSON = data;
   //console.log("JSON: %o", qualsJSON);
 }
@@ -108,10 +108,10 @@ function loadJSON(data){
 //}
 
 function changeComp1(){
-  console.log('[[changeComp1]]');
+  //console.log('[[changeComp1]]');
   // This is the new selected value
   var value = this.value;
-  console.log('Comp1 value: ' + value);
+  //console.log('Comp1 value: ' + value);
 
   // Disable the option in the other list
   ofqDisableList('l',value);
@@ -120,10 +120,10 @@ function changeComp1(){
 }
 
 function changeComp2(){
-  console.log('[[changeComp2]]');
+  //console.log('[[changeComp2]]');
   // This is the new selected value
   var value = this.value;
-  console.log('Comp2 value: ' + value);
+  //console.log('Comp2 value: ' + value);
 
   // Disable the option in the other list
   ofqDisableList('r',value);
@@ -134,7 +134,7 @@ function changeComp2(){
 
 function ofqDisableList(column,value)
 {
-  console.log('[[ofqDisableList]]');
+  //console.log('[[ofqDisableList]]');
   var selectQuery = '';
   
   if (column === 'l')
@@ -160,7 +160,7 @@ function ofqDisableList(column,value)
 // key: ''      // String containing the value of the selected option for which we use as a key to the data
 function ofqUpdateColumn(opts)
 {
-  console.log('[[ofqUpdateColumn]]');
+  //console.log('[[ofqUpdateColumn]]');
   const cols = opts['cols'];
   const column = opts['column'];
   const key = opts['key'];
@@ -171,23 +171,23 @@ function ofqUpdateColumn(opts)
 
   for (let i = 0; i < cols.length; i++)
   {
-    console.log('Property: ' + cols[i]);
+    //console.log('Property: ' + cols[i]);
     ofqUpdateCell(column,key,cols[i]);
   }
 }
 
 function ofqUpdateCell(column,key,cell)
 {
-  console.log('[[ofqUpdateCell]]');
+  //console.log('[[ofqUpdateCell]]');
   // Gather all the cells for our side of the table and the opposite
   var selectQuery = '';
   var oppositeQuery = '';
   let jsonValue = '';
 
-  console.log('Column: '+column);
-  console.log('Key: '+key);
-  console.log('Cell: '+cell);
-  console.log('JSON for key: %o',qualsJSON[key]);
+  //console.log('Column: '+column);
+  //console.log('Key: '+key);
+  //console.log('Cell: '+cell);
+  //console.log('JSON for key: %o',qualsJSON[key]);
 
   if (isDefined(qualsJSON[key][jsonMap[cell]])){
     // Values for some cells require special treatment and processing
@@ -245,9 +245,9 @@ function ofqUpdateCell(column,key,cell)
   selectCell = document.querySelector(selectQuery);
   oppositeCell = document.querySelector(oppositeQuery);
 
-  console.log('Selected from JSON, '+key+': %o',jsonValue);
-  console.log("Selected: %o",selectCell);
-  console.log("Opposite: %o",oppositeCell);
+  //console.log('Selected from JSON, '+key+': %o',jsonValue);
+  //console.log("Selected: %o",selectCell);
+  //console.log("Opposite: %o",oppositeCell);
 
   if (ofqHighlightDifference(jsonValue,selectCell,oppositeCell)){
     selectCell.innerHTML = '<mark class="ofq-highlight">'+jsonValue+'</mark>';
@@ -267,7 +267,7 @@ function ofqUpdateCell(column,key,cell)
 
 function ofqUpdateQan(column,value)
 {
-  console.log('[[ofqUpdateQan]]');
+  //console.log('[[ofqUpdateQan]]');
   // Gather all the cells for our side of the table and the opposite
   var selectQuery = '';
   var oppositeQuery = '';
@@ -285,8 +285,8 @@ function ofqUpdateQan(column,value)
   selectCell = document.querySelector(selectQuery);
   oppositeCell = document.querySelector(oppositeQuery);
 
-  console.log("Selected: %o",selectCell);
-  console.log("Opposite: %o",oppositeCell);
+  //console.log("Selected: %o",selectCell);
+  //console.log("Opposite: %o",oppositeCell);
 
   output = ofqHighlightDifference(value,oppositeCell.innerText);
 
@@ -299,7 +299,7 @@ function ofqUpdateQan(column,value)
 // ofqHighlightDifference checks if the text for both inputs match, if not then highlight
 function ofqHighlightDifference(jsonData,thisCell,oppositeCell)
 {
-  console.log('[[ofqHighlightDifference]]');
+  //console.log('[[ofqHighlightDifference]]');
   // If jsonData is defined, compare it's value with the value in the opposite cell
   if (isDefined(jsonData))
   {
@@ -323,14 +323,14 @@ function ofqHighlightDifference(jsonData,thisCell,oppositeCell)
 // It returns a corrected list using commas.
 function ofqRemovePipe(input)
 {
-  console.log('[[ofqRemovePipe]]');
+  //console.log('[[ofqRemovePipe]]');
     elements = String(input).split('|');
     return elements.join(', ');
 }
 
 // 'ofqTrueFalse' renders instances of the text 'true' as 'Yes' and 'false' as 'No'
 function ofqTrueFalse(input) {
-  console.log('[[ofqTrueFalse]]');
+  //console.log('[[ofqTrueFalse]]');
   if (input == 'true' || input == true) {
       //console.log(input + '== true')
       return 'Yes'
@@ -345,14 +345,14 @@ function ofqTrueFalse(input) {
 
 // Parses a date string and returns GOV.UK date formatted string
 function ofqDateParse(input) {
-  console.log('[[ofqDateParse]]');
+  //console.log('[[ofqDateParse]]');
   const monthsArr = ['','January','February','March','April','May','June','July','August','September','October','November','December']
   const dateObj = new Date(input)
   const actualYear = 1900 + dateObj.getYear()
   return dateObj.getDate() + ' ' + monthsArr[dateObj.getMonth()] + ' ' + actualYear
 }
 
-// 'isDefined' tests a variable and returns true if it is defined, not null and not empty, otherwise returns null
+// 'isEmpty' tests a variable and returns true if it undefined, null or empty, otherwise returns null
 function isEmpty(value)
 {
   return (value == null || (typeof value === "string" && value.trim().length === 0));
