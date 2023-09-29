@@ -51,8 +51,7 @@
     items: [
       {
         value: 'portfolio',
-        text: 'Portfolio of evidence (3301)',
-        checked: true
+        text: 'Portfolio of evidence (3301)'
       },
       {
         value: 'exam',
@@ -60,8 +59,7 @@
       },
       {
         value: 'practical-demo',
-        text: 'Practical demonstration or assignment (1316)',
-        checked: true
+        text: 'Practical demonstration or assignment (1316)'
       },
       {
         value: 'coursework',
@@ -138,8 +136,7 @@
     items: [
       {
         value: 'available',
-        text: 'Available (936)',
-        checked: true
+        text: 'Available (936)'
       },
       {
         value: 'unavailable',
@@ -382,27 +379,6 @@
       categories: [
         {
           heading: {
-            text: 'Assessment method'
-          },
-          items: [{
-            href: '#',
-            text: 'Portfolio of evidence'
-          }, {
-            href: '#',
-            text: 'Practical demonstration or assignment'
-          }]
-        },
-        {
-          heading: {
-            text: 'Status'
-          },
-          items: [{
-            href: '#',
-            text: 'Available'
-          }]
-        },
-        {
-          heading: {
             text: 'Awarding organisation'
           },
           items: [{
@@ -422,18 +398,26 @@
   <div class="moj-action-bar">
 
     <div class="moj-action-bar__filter"></div>
-
+    {% set compareURL = "/" + version + "/routing/compare-quals-route?ixVariant=compareQuals1" %}
     {{ 
       mojButtonMenu({
       items: [
       {
-        text: 'Action 1',
+        text: 'Compare selected',
+        classes: 'govuk-button--primary',
+        href: compareURL
+      },
+      {
+        text: 'Save selected',
         classes: 'govuk-button--secondary'
-      }, {
-        text: 'Action 2',
-        classes: 'govuk-button--secondary'
+      },
+      {
+        text: 'Download results',
+        classes: 'govuk-button--secondary',
+        href: '/download/download-pearson'
       }]
     }) }}
+
 
   </div>
 
@@ -602,7 +586,47 @@
       </tbody>
     </table>
 
+    {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+    
+    {{ govukPagination({
+       next: {
+        labelText: "1 of 2",
+        href: "#"
+      }
+    }) }}
+
 	</div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script defer>
+
+    var anchor = document.createElement("a");
+    anchor.innerHTML = "Show filter";
+    anchor.className = "govuk-button moj-button-menu__item govuk-button--secondary ofq-hide-underline";
+    anchor.setAttribute("data-module", "govuk-button");
+    anchor.setAttribute("role", "button");
+
+    var container = document.querySelector(".moj-action-bar__filter");
+    if (container) {
+      container.appendChild(anchor);
+
+      var filterDiv = document.querySelector(".moj-filter-layout__filter");
+
+      // Hide the filter div initially
+      filterDiv.style.display = "none";
+
+      anchor.addEventListener("click", function() {
+        if (anchor.innerHTML === "Show filter") {
+          anchor.innerHTML = "Hide filter";
+          filterDiv.style.display = "block";
+        } else {
+          anchor.innerHTML = "Show filter";
+          filterDiv.style.display = "none";
+        }
+      });
+    }
+  </script>
 {% endblock %}

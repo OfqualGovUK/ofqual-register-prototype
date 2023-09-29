@@ -16,13 +16,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h1 class="govuk-heading-l">Qualifications data structure</h1>
+      <h1 class="govuk-heading-l">Compare qualifications</h1>
 
       <div class="govuk-form-group">
         <label class="govuk-label" for="comp1">
           First qualification to compare
         </label>
-        <select class="govuk-select" id="comp1" name="comp1">
+        <select class="govuk-select" id="comp1" name="comp1" aria-controls="comparisonTable">
           {% set qualification = {} %}
           {% for key, qualification in qualsData %}
             <option value="{{ key }}" {% if loop.index0 == 0 %} selected="selected"{% endif %}{% if loop.index0 == 1 %} disabled="disabled"{% endif %}>{{ qualification.QualificationTitle }} ({{ qualification.OwnerOrganisationAcronym }})</option>
@@ -34,7 +34,7 @@
         <label class="govuk-label" for="comp2">
           Second qualification to compare
         </label>
-        <select class="govuk-select" id="comp2" name="comp2">
+        <select class="govuk-select" id="comp2" name="comp2" aria-controls="comparisonTable">
           {% set qualification = {} %}
           {% for key, qualification in qualsData %}
             <option value="{{ key }}" {% if loop.index0 == 1 %} selected="selected"{% endif %}{% if loop.index0 == 0 %} disabled="disabled"{% endif %}>{{ qualification.QualificationTitle }} ({{ qualification.OwnerOrganisationAcronym }})</option>
@@ -56,7 +56,7 @@
       {# It is used by passing a 2 element array to the filter. The first elements is the value that will be highlighted or not. #}
       {# The second element is the value to compare it to. It wiull always return the first element of the array, highlighted or not.#}
 
-      <table class="govuk-table">
+      <table class="govuk-table" id="comparisonTable" aria-relevant="all" aria-live="polite">
         <caption class="govuk-table__caption govuk-table__caption--m">Comparing qualifications</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">

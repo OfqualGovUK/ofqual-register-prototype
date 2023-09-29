@@ -50,8 +50,7 @@
     items: [
       {
         value: 'portfolio',
-        text: 'Portfolio of evidence (3301)',
-        checked: true
+        text: 'Portfolio of evidence (3301)'
       },
       {
         value: 'exam',
@@ -59,8 +58,7 @@
       },
       {
         value: 'practical-demo',
-        text: 'Practical demonstration or assignment (1316)',
-        checked: true
+        text: 'Practical demonstration or assignment (1316)'
       },
       {
         value: 'coursework',
@@ -114,8 +112,7 @@
       },
       {
         value: 'pearson',
-        text: 'Pearson (3877)',
-        checked: true
+        text: 'Pearson (3877)'
       },
       {
         value: 'wjec',
@@ -137,8 +134,7 @@
     items: [
       {
         value: 'available',
-        text: 'Available (936)',
-        checked: true
+        text: 'Available (936)'
       },
       {
         value: 'unavailable',
@@ -292,8 +288,7 @@
       },
       {
         value: '32',
-        text: 'Warehousing and distribution (45)',
-        checked: true
+        text: 'Warehousing and distribution (45)'
       },
       {
         value: '33',
@@ -370,57 +365,10 @@
       text: 'Filter results'
       },
       selectedFilters: {
-
-      heading: {
-        text: 'Selected filters'
       },
-
       clearLink: {
         text: 'Clear filters'
       },
-
-      categories: [
-        {
-          heading: {
-            text: 'Assessment method'
-          },
-          items: [{
-            href: '#',
-            text: 'Portfolio of evidence'
-          }, {
-            href: '#',
-            text: 'Practical demonstration or assignment'
-          }]
-        },
-        {
-          heading: {
-            text: 'Status'
-          },
-          items: [{
-            href: '#',
-            text: 'Available'
-          }]
-        },
-        {
-          heading: {
-            text: 'Awarding organisation'
-          },
-          items: [{
-            href: '#',
-            text: 'Pearson'
-          }]
-        },
-        {
-          heading: {
-            text: 'Sector subject area'
-          },
-          items: [{
-            href: '#',
-            text: 'Warehousing and distribution'
-          }]
-        }
-      ]
-    },
       optionsHtml: filterOptionsHtml
     }) }}
 
@@ -429,21 +377,27 @@
   <div class="moj-filter-layout__content">
 
   <div class="moj-action-bar">
-    <div class="moj-action-bar__filter"></div>
-    <form action="/{{ version }}/routing/compare-quals-route" method="post" novalidate>
+    
+      <div class="moj-action-bar__filter"></div>
+      {% set compareURL = "/" + version + "/routing/compare-quals-route?ixVariant=compareQuals1" %}
       {{ 
         mojButtonMenu({
         items: [
         {
           text: 'Compare selected',
-          classes: 'govuk-button--primary'
+          classes: 'govuk-button--primary',
+          href: compareURL
         },
         {
           text: 'Save selected',
           classes: 'govuk-button--secondary'
+        },
+        {
+          text: 'Download results',
+          classes: 'govuk-button--secondary',
+          href: '/download/download-results'
         }]
       }) }}
-    </form>
 
   </div>
 
@@ -495,27 +449,32 @@
 {% endblock %}
 
 {% block pageScripts %}
+  <script defer>
 
-<script>
+    var anchor = document.createElement("a");
+    anchor.innerHTML = "Show filter";
+    anchor.className = "govuk-button moj-button-menu__item govuk-button--secondary ofq-hide-underline";
+    anchor.setAttribute("data-module", "govuk-button");
+    anchor.setAttribute("role", "button");
 
-    MOJFrontend.initAll();
+    var container = document.querySelector(".moj-action-bar__filter");
+    if (container) {
+      container.appendChild(anchor);
 
-    new MOJFrontend.FilterToggleButton({
-      bigModeMediaQuery: "(min-width: 48.063em)",
-      startHidden: true,
-      toggleButton: {
-        container: $(".moj-action-bar__filter"),
-        showText: "Show filter",
-        hideText: "Hide filter",
-        classes: "govuk-button--secondary",
-      },
-      closeButton: {
-        container: $(".moj-filter__header-action"),
-        text: "Close",
-      },
-      filter: {
-        container: $(".moj-filter"),
-      },
-    });
+      var filterDiv = document.querySelector(".moj-filter-layout__filter");
+
+      // Hide the filter div initially
+      filterDiv.style.display = "none";
+
+      anchor.addEventListener("click", function() {
+        if (anchor.innerHTML === "Show filter") {
+          anchor.innerHTML = "Hide filter";
+          filterDiv.style.display = "block";
+        } else {
+          anchor.innerHTML = "Show filter";
+          filterDiv.style.display = "none";
+        }
+      });
+    }
   </script>
 {% endblock %}

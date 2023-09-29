@@ -22,6 +22,56 @@ module.exports = function (router) {
   })
    //---------------------- Async Data End --------------------------------//
 
+   //---------------------- File Downloads Start --------------------------//
+
+   // Download button on the search-qualifications/search-results page triggers this
+   router.get('/download/download-results', (req, res) => {
+    // Path to the file you want to download
+    const filePath = 'app/data/search-results-download.csv';
+  
+    // Trigger the file download
+    res.download(filePath, 'results.csv', (err) => {
+      if (err) {
+        // Handle any error that occurred during the download
+        console.log('Error downloading file:', err);
+        res.status(500).send('Error downloading file');
+      }
+    });
+  });
+
+   // Download button on the search-qualifications/results-pearson page triggers this
+   router.get('/download/download-pearson', (req, res) => {
+    // Path to the file you want to download
+    const filePath = 'app/data/pearson-qualifications-download.csv';
+  
+    // Trigger the file download
+    res.download(filePath, 'results-organisation_pearson.csv', (err) => {
+      if (err) {
+        // Handle any error that occurred during the download
+        console.log('Error downloading file:', err);
+        res.status(500).send('Error downloading file');
+      }
+    });
+  });
+
+  // Download button on the compare-qualifications/search-results page triggers this
+  router.get('/download/download-compare', (req, res) => {
+    // Path to the file you want to download
+    const filePath = 'compare-qualifications-download.csv';
+  
+    // Trigger the file download
+    res.download(filePath, 'results-search_2023_09_29_1125.csv', (err) => {
+      if (err) {
+        // Handle any error that occurred during the download
+        console.log('Error downloading file:', err);
+        res.status(500).send('Error downloading file');
+      }
+    });
+  });
+  
+
+   //---------------------- File Downloads End ----------------------------//
+
    //---------------------- Routing Start ---------------------------------//
    
   router.get('/' + version + '/start', function (req, res) {
