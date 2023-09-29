@@ -6,8 +6,6 @@ const scopeData = require('../data/pearson_sor.json');
 const qualsAutoComplete = require('../data/quals_autocomplete.json');
 const qualsSearchResults = require('../data/quals_search_results.json');
 
-const protoVer = 'alpha01';
-
 module.exports = function (router) {
   const version = 'alpha01'
    
