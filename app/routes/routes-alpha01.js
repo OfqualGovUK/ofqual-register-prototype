@@ -127,12 +127,12 @@ module.exports = function (router) {
     res.render('/' + version + '/search-qualifications/results', { 'version': version })
   })
 
-  router.all('/' + version + 'search-qualifications/search', function (req,res)
+  router.all('/' + version + '/search-qualifications/search', function (req,res)
   {
     res.render('/' + version + '/search-qualifications/search', { 'version': version, 'qualsAutoComplete': qualsAutoComplete })
   })
 
-  router.all('/' + version + 'search-qualifications/qualification-details', function (req,res)
+  router.all('/' + version + '/search-qualifications/qualification-details', function (req,res)
   {
     res.render('/' + version + '/search-qualifications/qualification-details', { 'version': version })
   })
