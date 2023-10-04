@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Choose comparison version – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "../start",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+			<h1 class="govuk-heading-l">Compare qualifications - September 2023</h1>
+        
+        <form action="search-page" method="post" novalidate>
+          <h2 class="govuk-heading-m">Option 1 – two-column</h2>
+
+          {{ govukButton({
+            text: "Start Option 1"
+          })}}
+
+          <input type="hidden" name="ixVariant" value="compareQuals1" />
+
+        </form>
+        <!--
+        <form action="search-page" method="post" novalidate>
+          <h2 class="govuk-heading-m">Option 1a – two-column (alternate)</h2>
+        
+
+          {{ govukButton({
+            text: "Start Option 1a"
+          }) }}
+
+          <input type="hidden" name="ixVariant" value="compareQuals1a"/>
+
+        </form>
+        -->
+        
+        <form action="search-page" method="post" novalidate>
+          <h2 class="govuk-heading-m">Option 2 – multi-column</h2>
+          
+          {{ govukButton({
+            text: "Start Option 2"
+          }) }}
+
+          <input type="hidden" name="ixVariant" value="compareQuals2"/>
+
+        </form>
+        
+	</div>
+</div>
+
+
+{% endblock %}

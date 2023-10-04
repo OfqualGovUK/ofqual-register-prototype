@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
   {{ govukBackLink({
   text: "Back",
   href: "javascript:window.history.back()"
@@ -13,15 +19,18 @@
 
 {% block content %}
 
+  {% set formaction = "/" + version + "/search-qualifications/search-results" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/alpha01/search-qualifications/search-results" method="post">
+      <form action="{{ formaction }}" method="post">
+
         {{ xGovukAutocomplete({
           id: "selected-qualification",
           name: "selected-qualification",
           allowEmpty: false,
           showAllValues: true,
-          minLength: 3,
+          minLength: 2,
           hint: {
             text: "Start typing to show a list of matching qualifications"
           },
