@@ -4,6 +4,8 @@
   Search qualifications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+{% set backLink = "/" + version + "/start" %}
+
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: {
@@ -13,7 +15,7 @@
   }) }}
   {{ govukBackLink({
   text: "Back",
-  href: "javascript:window.history.back()"
+  href: backLink
 }) }}
 {% endblock %}
 
