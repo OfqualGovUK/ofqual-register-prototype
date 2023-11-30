@@ -21,17 +21,14 @@ text: "Back"
 <div class="govuk-grid-row">
   <div class="govuk-width-container">
     <div class="govuk-grid-column-two-thirds"></div>
-    
     <h1 class="govuk-heading-l">Qualification search</h1>
-
-    <p>Select all the qualifications you want to compare.</p>
 
     <div class="app-search govuk-!-margin-bottom-4">
       <form action="/applications" method="get" novalidate="">
 
 
         <div class="govuk-form-group">
-          <label class="govuk-label app-search__label govuk-label--s" for="keywords">
+          <label class="govuk-label app-search__label govuk-label--m" for="keywords">
             Search for a qualification
           </label>
 
@@ -519,7 +516,7 @@ text: "Back"
     {
     text: 'Compare selected',
     classes: 'govuk-button--primary',
-    href: 'compare-results'
+    href: compareURL
     },
     {
     text: 'Save selected',
@@ -537,221 +534,9 @@ text: "Back"
 
     <div class="app-application-cards">
 
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification" name="organisation" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles
-            </div>
-          </div>
+    <h3 class="govuk-heading-m">No results found</h3>
 
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 2
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-2" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-2">
-                Pearson Edexcel Level 2 Award in Forklift Truck Operations
-            </div>
-          </div>
-
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 2
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-3" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-3">
-                Pearson Edexcel Level 2 Certificate in Warehousing and Storage
-            </div>
-          </div>
-
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 2
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-4" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-4">
-                Pearson Edexcel Level 1 Award in Warehousing and Storage
-            </div>
-          </div>
-
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 1
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-5" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-5">
-                Pearson Edexcel Level 1 Certificate in Warehousing and Storage
-            </div>
-          </div>
-
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 1
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section class="app-application-card">
-        <header class="app-application-card__header">
-          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-6" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-6">
-                Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles
-            </div>
-          </div>
-
-        </header>
-
-        <div class="govuk-grid-row app-grid-row--flex">
-          <div class="govuk-grid-column-two-thirds">
-
-            <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
-                Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
-              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
-              <dt class="govuk-visually-hidden">Level</dt>
-              <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 1
-              </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
-            </dl>
-          </div>
+      
         </div>
       </section>
 
