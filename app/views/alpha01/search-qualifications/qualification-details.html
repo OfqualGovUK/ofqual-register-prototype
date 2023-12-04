@@ -12,10 +12,12 @@
     html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
   }) }}
 
+  <nav>
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
+  </nav>
 {% endblock %}
 
 {% block content %}
@@ -26,7 +28,6 @@
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
       <h1 class="govuk-heading-m">
-
         Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2)
       </h1>
 
@@ -44,6 +45,9 @@
         card: {
           title: {
             text: "Qualification summary"
+          },
+          attributes: {
+            id: "qual-summary"
           }
         },
         rows: [
@@ -86,6 +90,9 @@
         card: {
           title: {
             text: "Organisation"
+          },
+          attributes: {
+            id: "org"
           }
         },
         rows: [
@@ -104,6 +111,9 @@
         card: {
           title: {
             text: "Qualification details"
+          },
+          attributes: {
+            id: "qual-details"
           }
         },
         rows: [
@@ -149,6 +159,22 @@
           },
           {
             key: {
+              text: "Fees"
+            },
+            value: {
+              text: "£245"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#info-fees",
+                  text: "information on fees"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Assessment methods"
             },
             value: {
@@ -170,6 +196,9 @@
         card: {
           title: {
             text: "Regulatory details"
+          },
+          attributes: {
+            id: "reg-details"
           }
         },
         rows: [
@@ -204,6 +233,9 @@
         card: {
           title: {
             text: "Funding details"
+          },
+          attributes: {
+            id: "funding-details"
           }
         },
         rows: [
@@ -212,11 +244,35 @@
               text: "Funding in England"
             },
             value: {
-              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=610%2F3185%2F9&Status=All">Check if this qualification is funded in England</a>'
+              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=61031859&Status=All">Check if this qualification is funded in England</a>'
             }
           }
         ]
       }) }}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+      <div class="app-application-cards">
+
+        <section class="app-application-card">
+          <header class="app-application-card__header">
+            <h2 class="govuk-heading-s">
+                  Information about fees
+            </h2>
+          </header>
+
+          <div class="govuk-grid-row app-grid-row--flex">
+            <div class="govuk-grid-column-full">
+              <div class="govuk-body-s" id="info-fees">
+                The fee listed is the standard quoted fee from the awarding organisation.
+                It does not necessarily mean that this is the fee you will pay as
+                awarding organisations may offer discount schemes or other pricing models.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
     </div>
   </div>

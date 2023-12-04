@@ -8,7 +8,7 @@ This prototype is to test user-centred design solutions relating to the redevelo
 
 ## Installation
 
-This is a NodeJS Express app. Run the prototype by:
+This is a NodeJS Express app based on the GOV.UK Prototype Kit. Install and run the prototype with the following commands:
 
 1. Clone the repository, ```git clone https://github.com/OfqualGovUK/ofqual-register-prototype.git``` or create a fork on Github
 1. In the cloned folder, run the command ```npm install``` to install any missing dependencies
@@ -17,7 +17,7 @@ This is a NodeJS Express app. Run the prototype by:
 
 ## Hosted prototype
 
-There is a password-protected [prototype available on Heroku](https://ofqual-register.herokuapp.com/). For access, please contact anyone in the User-Centred Design Team within DDAT.
+There is a password-protected [prototype available on Heroku](https://ofqual-register.herokuapp.com/). For access, please contact anyone in Ofqual's User Centred Design team.
 
 ## Developing the prototype
 
@@ -48,7 +48,7 @@ Edit your new routing file, in the example above it is ```app/routes/routes-delt
 
 You will now develop your prototype inside the folder ```app/views/delta``` and add your routing rules and conditional code to ```app/routes/delta.js```.
 
-For every page you create you need to add an entry to your routing Javascript file (```/app/routes/delta.js``` in the example above). This is essential so that you can pass the prototype version string through to the page that is being rendered. If you did not do this, you would need to hard-code the version string into any form actions or links within your prototype.
+For **every page you create you need to add an entry to your routing Javascript file** (```/app/routes/delta.js``` in the example above). This is essential so that you can pass the prototype version string through to the page that is being rendered. If you did not do this, you would need to hard-code the version string into any form actions or links within your prototype.
 
 In the previous section, you can see an example of the modified routing rule that will capture requests for the page ```/delta/start```. The essential changes are that the matching URL that is caught by the router uses the variable ```version```, set earlier in the file, rather than hard-coding the version string into the URL. The page being rendered also uses the ```version``` variable, but it also passes the variable through to the page being rendered. The variable can be accessed in the page by using the code ```{{ version }}```.
 

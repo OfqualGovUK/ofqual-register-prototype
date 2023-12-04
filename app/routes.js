@@ -15,6 +15,8 @@ router.use((req, res, next) => {
       url: req.originalUrl,
       data: req.session.data
     }
+    // Uncomment the line below to log the request and associated data to the console
+    // Re-comment before committing back to Github
     //console.log(JSON.stringify(log, null, 2))
 
   next()
@@ -27,3 +29,4 @@ require('./routes/routes-v1.js')(router)
 require('./routes/routes-v2.js')(router)
 require('./routes/routes-v3.js')(router)
 require('./routes/routes-alpha01.js')(router)
+require('./routes/routes-beta.js')(router)

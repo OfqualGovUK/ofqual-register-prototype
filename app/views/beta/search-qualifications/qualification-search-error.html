@@ -1,0 +1,2377 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName = "Find a regulated qualification" %}
+
+{% block pageTitle %}
+Search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  <nav>
+  {{ govukBackLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+  </nav>
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% set searchTerm = "Search results – 'secret treasure'" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-column-two-thirds"></div>
+
+    {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "There are no results for this search query – you should adjust your search query or filters",
+          href: "#keywords-error"
+        }
+      ]
+    }) }}
+
+    <h1 class="govuk-heading-l">Qualification search</h1>
+
+    <search class="app-search govuk-!-margin-bottom-4">
+      <form action="/applications" method="get" novalidate="" role="search">
+
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label app-search__label govuk-label--m" for="keywords">
+            Search for a qualification
+          </label>
+          <p id="keywords-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error: </span>There are no results for this search query
+          </p>
+          <input class="govuk-input app-search__input govuk-input--error" id="keywords" name="keywords" type="search" value="secret treasure" autocomplete="on">
+
+        </div>
+
+        <button class="govuk-button app-search__button" data-module="govuk-button">
+          Search
+        </button>
+
+
+      </form>
+    </search>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break">
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <div class="app-filter__header">
+      <div class="app-filter__header-title">
+        <h2 class="govuk-heading-m">Filter</h2>
+      </div>
+      <div class="app-filter__header-action">
+
+      </div>
+    </div>
+
+    <div class="app-filter__selected">
+      <div class="app-filter__selected-heading">
+        <div class="app-filter__heading-title">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
+          <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state"
+              href="/applications/remove-all-filters">Clear filters</a></p>
+        </div>
+      </div>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Availability</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/available"><span
+              class="govuk-visually-hidden">Remove this filter</span> Available</a></li>
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Assessment method</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Portfolio of evidence</a></li>
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/_unchecked"><span
+              class="govuk-visually-hidden">Remove this filter</span> Practical demonstration or<br> assignment</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Awarding organisation</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Pearson</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Sector subject area</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Warehousing and distribution</a></li>
+
+      </ul>
+
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+        <h3 class="accordionTitle" id="availability">
+          <span class="govuk-visually-hidden">Select filters for </span>
+          <button class="accordionItem__button" type="button">Availability</button>
+          <div class="selected-counter"><span id="selected">1</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-availability',
+            name: 'filter-availability',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+                value: 'available',
+                text: 'Available (936)',
+                checked: true
+              },
+              {
+                value: 'not-available',
+                text: 'Not available to new learners (3,877)'
+              },
+              {
+                value: 'not-awarded',
+                text: 'No longer awarded (3,610)'
+              },
+              {
+                value: 'not-available-yet',
+                text: 'Not yet available (42)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+        <h3 class="accordionTitle" id="qual-type">
+          <span class="govuk-visually-hidden">Select filters for </span>
+          <button class="accordionItem__button" type="button">Qualification type</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-qual-type',
+            name: 'filter-qual-type',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+              value: 'aea',
+              text: 'Advanced extension award (3)'
+              },
+              {
+              value: 'a level',
+              text: 'A level (5)'
+              },
+              {
+              value: 'as level',
+              text: 'AS level (5)'
+              },
+              {
+              value: 'basic skills',
+              text: 'Basic skills (1)'
+              },
+              {
+              value: 'digital functional skills',
+              text: 'Digital functional skills (2)'
+              },
+              {
+              value: 'epa',
+              text: 'Apprenticeship end-point assessment (132)'
+              },
+              {
+              value: 'esol',
+              text: 'ESOL (English for speakers of other languages) (1)'
+              },
+              {
+              value: 'entry',
+              text: 'Entry level (2)'
+              },
+              {
+              value: 'essential skills',
+              text: 'Essential skills (3)'
+              },
+              {
+              value: 'essential digital skills',
+              text: 'Essential digital skills (2)'
+              },
+              {
+              value: 'free standing maths',
+              text: 'Free-standing mathematics (1)'
+              },
+              {
+              value: 'functional skills',
+              text: 'Functional skills (2)'
+              },
+              {
+              value: 'functional skills QCF',
+              text: 'Functional skills (QCF) (4)'
+              },
+              {
+              value: 'gcse 9-1',
+              text: 'GCSE (9 to 1) (7)'
+              },
+              {
+              value: 'gcse a-g',
+              text: 'GCSE (A* to G) (4)'
+              },
+              {
+              value: 'gnvq',
+              text: 'GNVQ (14)'
+              },
+              {
+              value: 'higher level',
+              text: 'Higher level (12)'
+              },
+              {
+              value: 'key skills',
+              text: 'Key skills (2)'
+              },
+              {
+              value: 'nvq',
+              text: 'NVQ (national vocational qualification) (10)'
+              },
+              {
+              value: 'occupational',
+              text: 'Occupational Qualification (32)'
+              },
+              {
+              value: 'other',
+              text: 'Other (3)'
+              },
+              {
+              value: 'other general',
+              text: 'Other general qualification (4)'
+              },
+              {
+              value: 'life skills',
+              text: 'Other life skills (1)'
+              },
+              {
+              value: 'other vocational',
+              text: 'Other vocational (27)'
+              },
+              {
+              value: 'performing arts',
+              text: 'Performing arts graded exam (1)'
+              },
+              {
+              value: 'principal learning',
+              text: 'Principal learning (4)'
+              },
+              {
+              value: 'project',
+              text: 'Project (5)'
+              },
+              {
+              value: 'qcf',
+              text: 'QCF (6)'
+              },
+              {
+              value: 'technical',
+              text: 'Technical qualification (T Levels) (7)'
+              },
+              {
+              value: 'vce',
+              text: 'Vocational certificate of education (6)'
+              },
+              {
+              value: 'vrq',
+              text: 'Vocationally-related qualification (9)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+        <h3 class="accordionTitle" id="qualification-level">
+          <span class="govuk-visually-hidden">Select filters for </span>
+          <button class="accordionItem__button" type="button">Qualification level</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-qual-level',
+            name: 'filter-qual-level',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+                value: 'entry',
+                text: 'Entry (4,368)'
+              },
+              {
+                value: 'Level 1',
+                text: 'Level 1 (6,012)'
+              },
+              {
+                value: 'Level 1/2',
+                text: 'Level 1/2 (1,550)'
+              },
+              {
+                value: 'Level 2',
+                text: 'Level 2 (14,152)'
+              },
+              {
+                value: 'Level 3',
+                text: 'Level 3 (15,309)'
+              },
+              {
+                value: 'Level 4',
+                text: 'Level 4 (3,708)'
+              },
+              {
+                value: 'Level 5',
+                text: 'Level 5 (1,846)'
+              },
+              {
+                value: 'Level 6',
+                text: 'Level 6 (678)'
+              },
+              {
+                value: 'Level 7',
+                text: 'Level 7 (528)'
+              },
+              {
+                value: 'Level 8',
+                text: 'Level 8 (12)'
+              }
+      ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="qual-sub-level">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Qualification sub-level</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-qual-sub-level',
+            name: 'filter-qual-sub-level',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+                value: 'entry 1',
+                text: 'Entry 1 (21)'
+              },
+              {
+                value: 'entry 2',
+                text: 'Entry 2 (873)'
+              },
+              {
+                value: 'entry 3',
+                text: 'Entry 3 (121)'
+              },
+              {
+                value: 'entry 23',
+                text: 'Entry 2,3 (12)'
+              },
+              {
+                value: 'entry 123',
+                text: 'Entry 1,2,3 (3)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="organisation">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Organisation</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-org',
+            name: 'filter-org',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+              value: '1st Awards Ltd',
+              text: '1st Awards Ltd (1,856)'
+              },
+              {
+              value: '1st for EPA',
+              text: '1st for EPA (1,186)'
+              },
+              {
+              value: '1st4sport',
+              text: '1st4sport (1,432)'
+              },
+              {
+              value: 'A2A Training Ltd',
+              text: 'A2A Training Ltd (1,075)'
+              },
+              {
+              value: 'AABPS',
+              text: 'AABPS (537)'
+              },
+              {
+              value: 'ABMA Education Ltd',
+              text: 'ABMA Education Ltd (1,583)'
+              },
+              {
+              value: 'Academy for Project Management LTD',
+              text: 'Academy for Project Management LTD (945)'
+              },
+              {
+              value: 'Accelerate People Limited',
+              text: 'Accelerate People Limited (1,997)'
+              },
+              {
+              value: 'Accountants Institute',
+              text: 'Accountants Institute (1,034)'
+              },
+              {
+              value: 'Accounting Technicians Ireland',
+              text: 'Accounting Technicians Ireland (1,809)'
+              },
+              {
+              value: 'Accredited Skills for Industry',
+              text: 'Accredited Skills for Industry (1,768)'
+              },
+              {
+              value: 'Achieve and Partners Limited',
+              text: 'Achieve and Partners Limited (1,134)'
+              },
+              {
+              value: 'Active IQ',
+              text: 'Active IQ (875)'
+              },
+              {
+              value: 'Advance Assessments',
+              text: 'Advance Assessments (1,212)'
+              },
+              {
+              value: 'Advance HE',
+              text: 'Advance HE (532)'
+              },
+              {
+              value: 'Advanced Analytics Solutions',
+              text: 'Advanced Analytics Solutions (1,691)'
+              },
+              {
+              value: 'Agored Cymru',
+              text: 'Agored Cymru (144)'
+              },
+              {
+              value: 'AIM Qualifications',
+              text: 'AIM Qualifications (1,769)'
+              },
+              {
+              value: 'Alzheimer\'s Society',
+              text: 'Alzheimer\'s Society (1,218)'
+              },
+              {
+              value: 'AptEd',
+              text: 'AptEd (1,906)'
+              },
+              {
+              value: 'AQA - City & Guilds',
+              text: 'AQA - City & Guilds (447)'
+              },
+              {
+              value: 'AQA Education',
+              text: 'AQA Education (1,332)'
+              },
+              {
+              value: 'Ascentis',
+              text: 'Ascentis (1,986)'
+              },
+              {
+              value: 'ASET',
+              text: 'ASET (1,498)'
+              },
+              {
+              value: 'Assessu',
+              text: 'Assessu (1,077)'
+              },
+              {
+              value: 'Associated Board of the Royal Schools of Music',
+              text: 'Associated Board of the Royal Schools of Music (1,623)'
+              },
+              {
+              value: 'Associated Sports Qualifications',
+              text: 'Associated Sports Qualifications (1,127)'
+              },
+              {
+              value: 'Association of Accounting Technicians',
+              text: 'Association of Accounting Technicians (1,663)'
+              },
+              {
+              value: 'Association of British Dispensing Opticians',
+              text: 'Association of British Dispensing Opticians (1,495)'
+              },
+              {
+              value: 'Association of Chartered Certified Accountants',
+              text: 'Association of Chartered Certified Accountants (1,176)'
+              },
+              {
+              value: 'Association of International Accountants',
+              text: 'Association of International Accountants (1,790)'
+              },
+              {
+              value: 'ATHE Ltd',
+              text: 'ATHE Ltd (1,293)'
+              },
+              {
+              value: 'Autoexel Ltd',
+              text: 'Autoexel Ltd (1,866)'
+              },
+              {
+              value: 'Award Scheme Development and Accreditation Network',
+              text: 'Award Scheme Development and Accreditation Network (1,411)'
+              },
+              {
+              value: 'Awarding Body for the Built Environment',
+              text: 'Awarding Body for the Built Environment (1,099)'
+              },
+              {
+              value: 'Awarding Body for Vocational Achievement (AVA) Ltd',
+              text: 'Awarding Body for Vocational Achievement (AVA) Ltd (1,788)'
+              },
+              {
+              value: 'Awarding UK (Part of Bishop Grosseteste University)',
+              text: 'Awarding UK (Part of Bishop Grosseteste University) (1,272)'
+              },
+              {
+              value: 'BCS, The Chartered Institute for IT',
+              text: 'BCS, The Chartered Institute for IT (1,623)'
+              },
+              {
+              value: 'Besafe Training Limited',
+              text: 'Besafe Training Limited (1,991)'
+              },
+              {
+              value: 'Bespoke Professional Development and Training Ltd',
+              text: 'Bespoke Professional Development and Training Ltd (1,537)'
+              },
+              {
+              value: 'Best Practice Network',
+              text: 'Best Practice Network (1,254)'
+              },
+              {
+              value: 'BHS Qualifications',
+              text: 'BHS Qualifications (1,854)'
+              },
+              {
+              value: 'BIIAB',
+              text: 'BIIAB (1,561)'
+              },
+              {
+              value: 'BPEC Certification Ltd',
+              text: 'BPEC Certification Ltd (1,679)'
+              },
+              {
+              value: 'BPS Assessments and Awards Limited',
+              text: 'BPS Assessments and Awards Limited (1,421)'
+              },
+              {
+              value: 'British Allied Trades Federation',
+              text: 'British Allied Trades Federation (1,760)'
+              },
+              {
+              value: 'British Ballet Organisation',
+              text: 'British Ballet Organisation (1,190)'
+              },
+              {
+              value: 'British Canoeing Awarding Body',
+              text: 'British Canoeing Awarding Body (1,604)'
+              },
+              {
+              value: 'British Driving Society',
+              text: 'British Driving Society (1,503)'
+              },
+              {
+              value: 'British Gymnastics',
+              text: 'British Gymnastics (1,409)'
+              },
+              {
+              value: 'British Horseracing Education and Standards Trust',
+              text: 'British Horseracing Education and Standards Trust (1,850)'
+              },
+              {
+              value: 'British Institute of Cleaning Science',
+              text: 'British Institute of Cleaning Science (1,569)'
+              },
+              {
+              value: 'British Marine',
+              text: 'British Marine (1,943)'
+              },
+              {
+              value: 'British Safety Council',
+              text: 'British Safety Council (1,409)'
+              },
+              {
+              value: 'British Wheel of Yoga Qualifications',
+              text: 'British Wheel of Yoga Qualifications (1,796)'
+              },
+              {
+              value: 'CABWI Awarding Body',
+              text: 'CABWI Awarding Body (1,398)'
+              },
+              {
+              value: 'Cambridge Assessment International Education',
+              text: 'Cambridge Assessment International Education (1,498)'
+              },
+              {
+              value: 'Cambridge English',
+              text: 'Cambridge English (1,078)'
+              },
+              {
+              value: 'Central Qualifications',
+              text: 'Central Qualifications (1,822)'
+              },
+              {
+              value: 'CFA Society of UK',
+              text: 'CFA Society of UK (1,673)'
+              },
+              {
+              value: 'Chartered Institute for Archaeologists',
+              text: 'Chartered Institute for Archaeologists (1,192)'
+              },
+              {
+              value: 'Chartered Institute for Securities & Investment',
+              text: 'Chartered Institute for Securities & Investment (1,523)'
+              },
+              {
+              value: 'Chartered Institute of Building',
+              text: 'Chartered Institute of Building (1,467)'
+              },
+              {
+              value: 'Chartered Institute of Building and Chartered Institute of Housing Joint Awarding Body',
+              text: 'Chartered Institute of Building and Chartered Institute of Housing Joint Awarding Body (1,810)'
+              },
+              {
+              value: 'Chartered Institute of Credit Management',
+              text: 'Chartered Institute of Credit Management (1,815)'
+              },
+              {
+              value: 'Chartered Institute of Ecology and Environmental Management',
+              text: 'Chartered Institute of Ecology and Environmental Management (1,467)'
+              },
+              {
+              value: 'Chartered Institute of Environmental Health',
+              text: 'Chartered Institute of Environmental Health (1,769)'
+              },
+              {
+              value: 'Chartered Institute of Housing',
+              text: 'Chartered Institute of Housing (1,239)'
+              },
+              {
+              value: 'Chartered Institute of Internal Auditors',
+              text: 'Chartered Institute of Internal Auditors (1,828)'
+              },
+              {
+              value: 'Chartered Institute of Legal Executives',
+              text: 'Chartered Institute of Legal Executives (1,055)'
+              },
+              {
+              value: 'Chartered Institute of Management Accountants',
+              text: 'Chartered Institute of Management Accountants (1,861)'
+              },
+              {
+              value: 'Chartered Institute of Marketing',
+              text: 'Chartered Institute of Marketing (1,127)'
+              },
+              {
+              value: 'Chartered Institute of Personnel and Development',
+              text: 'Chartered Institute of Personnel and Development (1,346)'
+              },
+              {
+              value: 'Chartered Institute of Procurement and Supply',
+              text: 'Chartered Institute of Procurement and Supply (1,698)'
+              },
+              {
+              value: 'Chartered Institution of Highways and Transportation',
+              text: 'Chartered Institution of Highways and Transportation (1,689)'
+              },
+              {
+              value: 'Chartered Institution of Railway Operators',
+              text: 'Chartered Institution of Railway Operators (1,033)'
+              },
+              {
+              value: 'Chartered Insurance Institute',
+              text: 'Chartered Insurance Institute (1,910)'
+              },
+              {
+              value: 'Chartered Management Institute',
+              text: 'Chartered Management Institute (1,226)'
+              },
+              {
+              value: 'Chartered Quality Institute',
+              text: 'Chartered Quality Institute (1,781)'
+              },
+              {
+              value: 'Chief Assessments Limited',
+              text: 'Chief Assessments Limited (1,632)'
+              },
+              {
+              value: 'Childrens Workforce Development Council (note: not an awarding body)',
+              text: 'Childrens Workforce Development Council (note: not an awarding body) (1,339)'
+              },
+              {
+              value: 'CILIP Pathways',
+              text: 'CILIP Pathways (1,629)'
+              },
+              {
+              value: 'CIOL Qualifications',
+              text: 'CIOL Qualifications (1,027)'
+              },
+              {
+              value: 'CIPFA',
+              text: 'CIPFA (1,259)'
+              },
+              {
+              value: 'CITB-Construction Skills',
+              text: 'CITB-Construction Skills (1,332)'
+              },
+              {
+              value: 'City and Guilds of London Institute',
+              text: 'City and Guilds of London Institute (1,483)'
+              },
+              {
+              value: 'City College Norwich Qualifications',
+              text: 'City College Norwich Qualifications (1,437)'
+              },
+              {
+              value: 'CIWM',
+              text: 'CIWM (1,102)'
+              },
+              {
+              value: 'Confederation of International Beauty Therapy and Cosmetology',
+              text: 'Confederation of International Beauty Therapy and Cosmetology (1,124)'
+              },
+              {
+              value: 'Confederation of Tourism and Hospitality',
+              text: 'Confederation of Tourism and Hospitality (1,462)'
+              },
+              {
+              value: 'Constructing Excellence in Learning Limited',
+              text: 'Constructing Excellence in Learning Limited (1,301)'
+              },
+              {
+              value: 'Construction EPA Company',
+              text: 'Construction EPA Company (1,074)'
+              },
+              {
+              value: 'Contaminated Land: Applications in Real Environments',
+              text: 'Contaminated Land: Applications in Real Environments (1,238)'
+              },
+              {
+              value: 'Cornwall Council (Cornwall Fire and Rescue Service)',
+              text: 'Cornwall Council (Cornwall Fire and Rescue Service) (1,392)'
+              },
+              {
+              value: 'Council for Awards in Care, Health and Education',
+              text: 'Council for Awards in Care, Health and Education (1,485)'
+              },
+              {
+              value: 'Council for the Curriculum, Examinations and Assessment',
+              text: 'Council for the Curriculum, Examinations and Assessment (1,073)'
+              },
+              {
+              value: 'Counselling and Psychotherapy Central Awarding Body',
+              text: 'Counselling and Psychotherapy Central Awarding Body (1,047)'
+              },
+              {
+              value: 'Crossfields Institute',
+              text: 'Crossfields Institute (1,183)'
+              },
+              {
+              value: 'Cskills Awards, part of the NOCN Group',
+              text: 'Cskills Awards, part of the NOCN Group (1,058)'
+              },
+              {
+              value: 'Defence Awarding Organisation',
+              text: 'Defence Awarding Organisation (1,069)'
+              },
+              {
+              value: 'Dental Team Qualifications',
+              text: 'Dental Team Qualifications (1,295)'
+              },
+              {
+              value: 'DNA Skills',
+              text: 'DNA Skills (1,373)'
+              },
+              {
+              value: 'DSA Qualification Awarding Board',
+              text: 'DSA Qualification Awarding Board (1,098)'
+              },
+              {
+              value: 'DSW Consulting',
+              text: 'DSW Consulting (1,156)'
+              },
+              {
+              value: 'Education & Media Services Ltd trading as ITEC',
+              text: 'Education & Media Services Ltd trading as ITEC (1,408)'
+              },
+              {
+              value: 'Education Qualifications and Awards',
+              text: 'Education Qualifications and Awards (1,205)'
+              },
+              {
+              value: 'Elite Awarding Limited',
+              text: 'Elite Awarding Limited (1,417)'
+              },
+              {
+              value: 'Energy & Utilities Independent Assessment Service',
+              text: 'Energy & Utilities Independent Assessment Service (1,090)'
+              },
+              {
+              value: 'EngEPA Ltd',
+              text: 'EngEPA Ltd (1,379)'
+              },
+              {
+              value: 'Engineering Construction Industry Training Board',
+              text: 'Engineering Construction Industry Training Board (1,366)'
+              },
+              {
+              value: 'English Speaking Board (International) Ltd',
+              text: 'English Speaking Board (International) Ltd (1,242)'
+              },
+              {
+              value: 'EPA 4 Health',
+              text: 'EPA 4 Health (1,297)'
+              },
+              {
+              value: 'ETC Awards Limited',
+              text: 'ETC Awards Limited (1,125)'
+              },
+              {
+              value: 'Excellence, Achievement & Learning Limited',
+              text: 'Excellence, Achievement & Learning Limited (1,213)'
+              },
+              {
+              value: 'Explosive Learning Solutions (ELS) Ltd',
+              text: 'Explosive Learning Solutions (ELS) Ltd (1,380)'
+              },
+              {
+              value: 'Extractives and Mineral Processing Industries Awards',
+              text: 'Extractives and Mineral Processing Industries Awards (1,432)'
+              },
+              {
+              value: 'Fashion and Retail Awards',
+              text: 'Fashion and Retail Awards (1,287)'
+              },
+              {
+              value: 'FDQ Limited',
+              text: 'FDQ Limited (1,499)'
+              },
+              {
+              value: 'Fire Industry Association Awarding Organisation',
+              text: 'Fire Industry Association Awarding Organisation (1,089)'
+              },
+              {
+              value: 'Fire Risk Management Limited',
+              text: 'Fire Risk Management Limited (1,465)'
+              },
+              {
+              value: 'FireQual',
+              text: 'FireQual (1,398)'
+              },
+              {
+              value: 'First Aid Awards Ltd',
+              text: 'First Aid Awards Ltd (1,213)'
+              },
+              {
+              value: 'Flybe Awards',
+              text: 'Flybe Awards (1,432)'
+              },
+              {
+              value: 'Focus Awards Limited',
+              text: 'Focus Awards Limited (1,283)'
+              },
+              {
+              value: 'FPSB UK Ltd',
+              text: 'FPSB UK Ltd (1,275)'
+              },
+              {
+              value: 'Future (Awards and Qualifications) Ltd',
+              text: 'Future (Awards and Qualifications) Ltd (1,142)'
+              },
+              {
+              value: 'FuturU',
+              text: 'FuturU (1,203)'
+              },
+              {
+              value: 'Gatehouse Awards Ltd',
+              text: 'Gatehouse Awards Ltd (1,237)'
+              },
+              {
+              value: 'Gateway Qualifications Limited',
+              text: 'Gateway Qualifications Limited (1,404)'
+              },
+              {
+              value: 'Good 2 Go',
+              text: 'Good 2 Go (1,384)'
+              },
+              {
+              value: 'GP Strategies Assessment Services Limited',
+              text: 'GP Strategies Assessment Services Limited (1,132)'
+              },
+              {
+              value: 'GQA Qualifications Limited',
+              text: 'GQA Qualifications Limited (1,067)'
+              },
+              {
+              value: 'Graded Qualifications Alliance',
+              text: 'Graded Qualifications Alliance (1,416)'
+              },
+              {
+              value: 'Highfield Qualifications',
+              text: 'Highfield Qualifications (1,350)'
+              },
+              {
+              value: 'Hospitality Awarding Body',
+              text: 'Hospitality Awarding Body (1,079)'
+              },
+              {
+              value: 'iCan Qualifications Limited',
+              text: 'iCan Qualifications Limited (1,348)'
+              },
+              {
+              value: 'ICAS',
+              text: 'ICAS (1,209)'
+              },
+              {
+              value: 'IMI Awards Ltd',
+              text: 'IMI Awards Ltd (1,493)'
+              },
+              {
+              value: 'Imperial Society of Teachers of Dancing',
+              text: 'Imperial Society of Teachers of Dancing (1,032)'
+              },
+              {
+              value: 'In2assessments',
+              text: 'In2assessments (1,482)'
+              },
+              {
+              value: 'Industry Qualifications',
+              text: 'Industry Qualifications (1,102)'
+              },
+              {
+              value: 'Innovate Awarding',
+              text: 'Innovate Awarding (1,255)'
+              },
+              {
+              value: 'Institute of Accountants and Bookkeepers',
+              text: 'Institute of Accountants and Bookkeepers (1,492)'
+              },
+              {
+              value: 'Institute of Administrative Management',
+              text: 'Institute of Administrative Management (1,224)'
+              },
+              {
+              value: 'Institute of Animal Technology',
+              text: 'Institute of Animal Technology (1,287)'
+              },
+              {
+              value: 'Institute of British Sign Language',
+              text: 'Institute of British Sign Language (1,378)'
+              },
+              {
+              value: 'Institute of Cast Metals Engineers',
+              text: 'Institute of Cast Metals Engineers (1,113)'
+              },
+              {
+              value: 'Institute of Chartered Accountants of England and Wales',
+              text: 'Institute of Chartered Accountants of England and Wales (1,089)'
+              },
+              {
+              value: 'Institute of Commercial Management',
+              text: 'Institute of Commercial Management (1,285)'
+              },
+              {
+              value: 'Institute of Conservation',
+              text: 'Institute of Conservation (1,124)'
+              },
+              {
+              value: 'Institute of Export & International Trade',
+              text: 'Institute of Export & International Trade (1,007)'
+              },
+              {
+              value: 'Institute of Hospitality',
+              text: 'Institute of Hospitality (1,339)'
+              },
+              {
+              value: 'Institute of Leadership & Management',
+              text: 'Institute of Leadership & Management (1,438)'
+              },
+              {
+              value: 'Institute of Operations Management',
+              text: 'Institute of Operations Management (1,394)'
+              },
+              {
+              value: 'Institute of Revenues Rating and Valuation',
+              text: 'Institute of Revenues Rating and Valuation (1,116)'
+              },
+              {
+              value: 'Institute of Risk Management',
+              text: 'Institute of Risk Management (1,038)'
+              },
+              {
+              value: 'Institute of Risk Standards & Qualifications',
+              text: 'Institute of Risk Standards & Qualifications (1,364)'
+              },
+              {
+              value: 'Institute of Sales Management',
+              text: 'Institute of Sales Management (1,113)'
+              },
+              {
+              value: 'Institute of Sales Professionals',
+              text: 'Institute of Sales Professionals (1,026)'
+              },
+              {
+              value: 'Institute of Workplace and Facilities Management',
+              text: 'Institute of Workplace and Facilities Management (1,423)'
+              },
+              {
+              value: 'Institution of Mechanical Engineers',
+              text: 'Institution of Mechanical Engineers (1,267)'
+              },
+              {
+              value: 'Insulation Environmental Training Trust Ltd',
+              text: 'Insulation Environmental Training Trust Ltd (1,237)'
+              },
+              {
+              value: 'Insurance Industry Training Council',
+              text: 'Insurance Industry Training Council (1,435)'
+              },
+              {
+              value: 'International Association of Maritime Institutions',
+              text: 'International Association of Maritime Institutions (1,058)'
+              },
+              {
+              value: 'International Baccalaureate Organisation',
+              text: 'International Baccalaureate Organisation (872)'
+              },
+              {
+              value: 'International Compliance Association',
+              text: 'International Compliance Association (142)'
+              },
+              {
+              value: 'International Curriculum and Assessment Agency (Examinations)',
+              text: 'International Curriculum and Assessment Agency (Examinations) (635)'
+              },
+              {
+              value: 'International Dance Teachers Association',
+              text: 'International Dance Teachers Association (497)'
+              },
+              {
+              value: 'Intqual-pro Limited',
+              text: 'Intqual-pro Limited (904)'
+              },
+              {
+              value: 'IOSH',
+              text: 'IOSH (219)'
+              },
+              {
+              value: 'iPET Network Limited',
+              text: 'iPET Network Limited (39)'
+              },
+              {
+              value: 'IPP Education',
+              text: 'IPP Education (573)'
+              },
+              {
+              value: 'ITC First',
+              text: 'ITC First (220)'
+              },
+              {
+              value: 'JMA Contract Services Ltd',
+              text: 'JMA Contract Services Ltd (936)'
+              },
+              {
+              value: 'Kaplan Professional Awards',
+              text: 'Kaplan Professional Awards (425)'
+              },
+              {
+              value: 'LAMDA',
+              text: 'LAMDA (712)'
+              },
+              {
+              value: 'LanguageCert',
+              text: 'LanguageCert (21)'
+              },
+              {
+              value: 'Lantra Awards',
+              text: 'Lantra Awards (632)'
+              },
+              {
+              value: 'Laser Learning Awards',
+              text: 'Laser Learning Awards (758)'
+              },
+              {
+              value: 'Leadership Skills Foundation',
+              text: 'Leadership Skills Foundation (407)'
+              },
+              {
+              value: 'Learning Resource Network',
+              text: 'Learning Resource Network (888)'
+              },
+              {
+              value: 'LifeSkills Solutions Ltd',
+              text: 'LifeSkills Solutions Ltd (282)'
+              },
+              {
+              value: 'LIFT AND ESCALATOR INDUSTRY ASSOCIATION (EPA0269)',
+              text: 'LIFT AND ESCALATOR INDUSTRY ASSOCIATION (EPA0269) (821)'
+              },
+              {
+              value: 'Logic Certification Limited',
+              text: 'Logic Certification Limited (919)'
+              },
+              {
+              value: 'London Centre of Marketing',
+              text: 'London Centre of Marketing (53)'
+              },
+              {
+              value: 'Manpower Services Limited',
+              text: 'Manpower Services Limited (7)'
+              },
+              {
+              value: 'Marshall Assessment Limited',
+              text: 'Marshall Assessment Limited (442)'
+              },
+              {
+              value: 'McDonalds',
+              text: 'McDonalds (875)'
+              },
+              {
+              value: 'Military Independent Assessment Authority (Royal Air Force)',
+              text: 'Military Independent Assessment Authority (Royal Air Force) (583)'
+              },
+              {
+              value: 'MILITARY INDEPENDENT ASSESSMENT AUTHORITY (ROYAL NAVY)',
+              text: 'MILITARY INDEPENDENT ASSESSMENT AUTHORITY (ROYAL NAVY) (287)'
+              },
+              {
+              value: 'MN Awards Ltd',
+              text: 'MN Awards Ltd (684)'
+              },
+              {
+              value: 'Mountain Training England',
+              text: 'Mountain Training England (828)'
+              },
+              {
+              value: 'MP Awards',
+              text: 'MP Awards (363)'
+              },
+              {
+              value: 'Music Teachers\' Board',
+              text: 'Music Teachers\' Board (955)'
+              },
+              {
+              value: 'N.I. Security Qualifications Ltd',
+              text: 'N.I. Security Qualifications Ltd (582)'
+              },
+              {
+              value: 'NALP',
+              text: 'NALP (440)'
+              },
+              {
+              value: 'National Association of Teachers of Dancing',
+              text: 'National Association of Teachers of Dancing (949)'
+              },
+              {
+              value: 'National Examining Board for Dental Nurses',
+              text: 'National Examining Board for Dental Nurses (206)'
+              },
+              {
+              value: 'National Inter Action Trust Awarding',
+              text: 'National Inter Action Trust Awarding (649)'
+              },
+              {
+              value: 'National Logistics Training Consortium',
+              text: 'National Logistics Training Consortium (476)'
+              },
+              {
+              value: 'National Plant Awards Limited',
+              text: 'National Plant Awards Limited (723)'
+              },
+              {
+              value: 'NCC Education Limited',
+              text: 'NCC Education Limited (186)'
+              },
+              {
+              value: 'NCFE',
+              text: 'NCFE (554)'
+              },
+              {
+              value: 'NCTJ Training',
+              text: 'NCTJ Training (931)'
+              },
+              {
+              value: 'NEBOSH',
+              text: 'NEBOSH (326)'
+              },
+              {
+              value: 'Network Rail',
+              text: 'Network Rail (751)'
+              },
+              {
+              value: 'New Era Academy of Drama and Music (London) Ltd',
+              text: 'New Era Academy of Drama and Music (London) Ltd (169)'
+              },
+              {
+              value: 'Newcross Healthcare Solutions',
+              text: 'Newcross Healthcare Solutions (489)'
+              },
+              {
+              value: 'NHS England National School of Healthcare Science',
+              text: 'NHS England National School of Healthcare Science (329)'
+              },
+              {
+              value: 'NICEIC Certification',
+              text: 'NICEIC Certification (891)'
+              },
+              {
+              value: 'NOCN',
+              text: 'NOCN (68)'
+              },
+              {
+              value: 'Notebook Assessment Services Ltd',
+              text: 'Notebook Assessment Services Ltd (495)'
+              },
+              {
+              value: 'NPTC',
+              text: 'NPTC (56)'
+              },
+              {
+              value: 'NQual',
+              text: 'NQual (255)'
+              },
+              {
+              value: 'NSAN',
+              text: 'NSAN (65)'
+              },
+              {
+              value: 'Occupational Awards Limited',
+              text: 'Occupational Awards Limited (826)'
+              },
+              {
+              value: 'OCN London',
+              text: 'OCN London (986)'
+              },
+              {
+              value: 'OCN North East Region',
+              text: 'OCN North East Region (278)'
+              },
+              {
+              value: 'OCR',
+              text: 'OCR (978)'
+              },
+              {
+              value: 'Offshore Petroleum Industry NTO',
+              text: 'Offshore Petroleum Industry NTO (524)'
+              },
+              {
+              value: 'Open Awards',
+              text: 'Open Awards (319)'
+              },
+              {
+              value: 'Open College Network Northern Ireland',
+              text: 'Open College Network Northern Ireland (472)'
+              },
+              {
+              value: 'Open College Network West Midlands',
+              text: 'Open College Network West Midlands (332)'
+              },
+              {
+              value: 'Open College Network Yorkshire and Humber Region trading as Certa',
+              text: 'Open College Network Yorkshire and Humber Region trading as Certa (1000)'
+              },
+              {
+              value: 'Open University Awarding Body',
+              text: 'Open University Awarding Body (438)'
+              },
+              {
+              value: 'OTHM Qualifications',
+              text: 'OTHM Qualifications (330)'
+              },
+              {
+              value: 'PAA\VQSET',
+              text: 'PAA\VQSET (300)'
+              },
+              {
+              value: 'PADI EMEA Limited',
+              text: 'PADI EMEA Limited (874)'
+              },
+              {
+              value: 'Pearson EDI',
+              text: 'Pearson EDI (491)'
+              },
+              {
+              value: 'Pearson Education Ltd',
+              text: 'Pearson Education Ltd (544)'
+              },
+              {
+              value: 'PIABC Ltd',
+              text: 'PIABC Ltd (188)'
+              },
+              {
+              value: 'Prince\'s Trust',
+              text: 'Prince\'s Trust (797)'
+              },
+              {
+              value: 'Professional Assessment Ltd',
+              text: 'Professional Assessment Ltd (131)'
+              },
+              {
+              value: 'Professional Association of Diving Instructors',
+              text: 'Professional Association of Diving Instructors (724)'
+              },
+              {
+              value: 'Professional Lighting and Sound Association',
+              text: 'Professional Lighting and Sound Association (64)'
+              },
+              {
+              value: 'Progress Minded',
+              text: 'Progress Minded (938)'
+              },
+              {
+              value: 'Propertymark Qualifications',
+              text: 'Propertymark Qualifications (860)'
+              },
+              {
+              value: 'ProQual Awarding Body',
+              text: 'ProQual Awarding Body (810)'
+              },
+              {
+              value: 'Prospect Awards CIC',
+              text: 'Prospect Awards CIC (102)'
+              },
+              {
+              value: 'Qualifi Ltd',
+              text: 'Qualifi Ltd (763)'
+              },
+              {
+              value: 'Qualifications and Curriculum Authority',
+              text: 'Qualifications and Curriculum Authority (428)'
+              },
+              {
+              value: 'Qualifications for Industry',
+              text: 'Qualifications for Industry (871)'
+              },
+              {
+              value: 'Qualifications Network',
+              text: 'Qualifications Network (555)'
+              },
+              {
+              value: 'Qualsafe Awards',
+              text: 'Qualsafe Awards (214)'
+              },
+              {
+              value: 'Quantum Awards Limited',
+              text: 'Quantum Awards Limited (903)'
+              },
+              {
+              value: 'Railway Competence Group',
+              text: 'Railway Competence Group (377)'
+              },
+              {
+              value: 'Rambert Creative Contemporary Dance Grades',
+              text: 'Rambert Creative Contemporary Dance Grades (415)'
+              },
+              {
+              value: 'Recruitment & Employment Confederation',
+              text: 'Recruitment & Employment Confederation (619)'
+              },
+              {
+              value: 'Register of Play Inspectors International',
+              text: 'Register of Play Inspectors International (712)'
+              },
+              {
+              value: 'RLSS UK Qualifications',
+              text: 'RLSS UK Qualifications (90)'
+              },
+              {
+              value: 'Royal Academy of Dance',
+              text: 'Royal Academy of Dance (836)'
+              },
+              {
+              value: 'Royal Aeronautical Society',
+              text: 'Royal Aeronautical Society (790)'
+              },
+              {
+              value: 'Royal College of Veterinary Surgeons',
+              text: 'Royal College of Veterinary Surgeons (276)'
+              },
+              {
+              value: 'Royal Horticultural Society',
+              text: 'Royal Horticultural Society (519)'
+              },
+              {
+              value: 'Royal Institute of Public Health',
+              text: 'Royal Institute of Public Health (67)'
+              },
+              {
+              value: 'Royal Society for Public Health',
+              text: 'Royal Society for Public Health (49)'
+              },
+              {
+              value: 'Royal Society for the Prevention of Accidents',
+              text: 'Royal Society for the Prevention of Accidents (502)'
+              },
+              {
+              value: 'RPD Ltd',
+              text: 'RPD Ltd (629)'
+              },
+              {
+              value: 'RSL Awards Ltd',
+              text: 'RSL Awards Ltd (825)'
+              },
+              {
+              value: 'RTITB',
+              text: 'RTITB (241)'
+              },
+              {
+              value: 'safeagent',
+              text: 'safeagent (17)'
+              },
+              {
+              value: 'SafeCert Awards',
+              text: 'SafeCert Awards (316)'
+              },
+              {
+              value: 'Science, Engineering and Manufacturing Technologies Alliance',
+              text: 'Science, Engineering and Manufacturing Technologies Alliance (682)'
+              },
+              {
+              value: 'Scottish Qualifications Authority trading as SQA',
+              text: 'Scottish Qualifications Authority trading as SQA (375)'
+              },
+              {
+              value: 'SFEDI Enterprises Ltd. T/A SFEDI Awards',
+              text: 'SFEDI Enterprises Ltd. T/A SFEDI Awards (749)'
+              },
+              {
+              value: 'SFJ Awards Ltd',
+              text: 'SFJ Awards Ltd (578)'
+              },
+              {
+              value: 'Sheldrake Training Limited',
+              text: 'Sheldrake Training Limited (913)'
+              },
+              {
+              value: 'SIAS',
+              text: 'SIAS (919)'
+              },
+              {
+              value: 'Signature',
+              text: 'Signature (172)'
+              },
+              {
+              value: 'Skills and Education Group Awards',
+              text: 'Skills and Education Group Awards (850)'
+              },
+              {
+              value: 'Skillsfirst Awards Ltd',
+              text: 'Skillsfirst Awards Ltd (598)'
+              },
+              {
+              value: 'Smart Awards Ltd',
+              text: 'Smart Awards Ltd (246)'
+              },
+              {
+              value: 'South West Councils',
+              text: 'South West Councils (537)'
+              },
+              {
+              value: 'SS Educational Services Ltd',
+              text: 'SS Educational Services Ltd (524)'
+              },
+              {
+              value: 'SSid Awarding',
+              text: 'SSid Awarding (729)'
+              },
+              {
+              value: 'Steadfast Training Ltd',
+              text: 'Steadfast Training Ltd (116)'
+              },
+              {
+              value: 'Suffolk County Council',
+              text: 'Suffolk County Council (399)'
+              },
+              {
+              value: 'Summit Qualifications UK',
+              text: 'Summit Qualifications UK (895)'
+              },
+              {
+              value: 'Swim England Qualifications',
+              text: 'Swim England Qualifications (443)'
+              },
+              {
+              value: 'Systems Practitioner Assessment Ltd',
+              text: 'Systems Practitioner Assessment Ltd (637)'
+              },
+              {
+              value: 'telc – language tests',
+              text: 'telc – language tests (662)'
+              },
+              {
+              value: 'The APM Group Limited',
+              text: 'The APM Group Limited (109)'
+              },
+              {
+              value: 'The Army Catering Training Trust',
+              text: 'The Army Catering Training Trust (67)'
+              },
+              {
+              value: 'The British Council',
+              text: 'The British Council (855)'
+              },
+              {
+              value: 'The British Institute of Non-Destructive Testing',
+              text: 'The British Institute of Non-Destructive Testing (521)'
+              },
+              {
+              value: 'The Chartered Institute of Logistics and Transport in the UK',
+              text: 'The Chartered Institute of Logistics and Transport in the UK (387)'
+              },
+              {
+              value: 'The Chartered Institution of Building Services Engineers',
+              text: 'The Chartered Institution of Building Services Engineers (751)'
+              },
+              {
+              value: 'The Engineering College',
+              text: 'The Engineering College (612)'
+              },
+              {
+              value: 'The Gemmological Association of Great Britain',
+              text: 'The Gemmological Association of Great Britain (425)'
+              },
+              {
+              value: 'The Institute of Certified Bookkeepers',
+              text: 'The Institute of Certified Bookkeepers (753)'
+              },
+              {
+              value: 'The Institute of Commercial Management',
+              text: 'The Institute of Commercial Management (244)'
+              },
+              {
+              value: 'The Institute of Financial Accountants',
+              text: 'The Institute of Financial Accountants (670)'
+              },
+              {
+              value: 'The Institute of the Motor Industry',
+              text: 'The Institute of the Motor Industry (753)'
+              },
+              {
+              value: 'The Institute of Tourist Guiding',
+              text: 'The Institute of Tourist Guiding (392)'
+              },
+              {
+              value: 'The Institution of Civil Engineers',
+              text: 'The Institution of Civil Engineers (667)'
+              },
+              {
+              value: 'The Institution of Engineering and Technology',
+              text: 'The Institution of Engineering and Technology (99)'
+              },
+              {
+              value: 'The Institution of Fire Engineers',
+              text: 'The Institution of Fire Engineers (301)'
+              },
+              {
+              value: 'The Learning Institute',
+              text: 'The Learning Institute (240)'
+              },
+              {
+              value: 'The Learning Machine',
+              text: 'The Learning Machine (697)'
+              },
+              {
+              value: 'The London Institute of Banking & Finance',
+              text: 'The London Institute of Banking & Finance (67)'
+              },
+              {
+              value: 'The Market Research Society',
+              text: 'The Market Research Society (57)'
+              },
+              {
+              value: 'The Pensions Management Institute',
+              text: 'The Pensions Management Institute (938)'
+              },
+              {
+              value: 'The Qualification Hub',
+              text: 'The Qualification Hub (486)'
+              },
+              {
+              value: 'The Rail Academy',
+              text: 'The Rail Academy (740)'
+              },
+              {
+              value: 'The Real Consultancy Company',
+              text: 'The Real Consultancy Company (146)'
+              },
+              {
+              value: 'The Society of Master Saddlers (UK) Ltd',
+              text: 'The Society of Master Saddlers (UK) Ltd (853)'
+              },
+              {
+              value: 'The Swimming Teachers Association Limited',
+              text: 'The Swimming Teachers Association Limited (95)'
+              },
+              {
+              value: 'The Transport Planning Society',
+              text: 'The Transport Planning Society (870)'
+              },
+              {
+              value: 'The University of Central Lancashire Examination Board',
+              text: 'The University of Central Lancashire Examination Board (258)'
+              },
+              {
+              value: 'Training and Development Agency for Schools (not an awarding body)',
+              text: 'Training and Development Agency for Schools (not an awarding body) (726)'
+              },
+              {
+              value: 'Training Qualifications UK Ltd',
+              text: 'Training Qualifications UK Ltd (312)'
+              },
+              {
+              value: 'Transcend Awards',
+              text: 'Transcend Awards (789)'
+              },
+              {
+              value: 'Trinity College London',
+              text: 'Trinity College London (577)'
+              },
+              {
+              value: 'United Centre of Excellence Limited',
+              text: 'United Centre of Excellence Limited (72)'
+              },
+              {
+              value: 'United Kingdom Co-ordinating Group',
+              text: 'United Kingdom Co-ordinating Group (986)'
+              },
+              {
+              value: 'University of East London Global Examinations Board',
+              text: 'University of East London Global Examinations Board (318)'
+              },
+              {
+              value: 'University of the Arts London',
+              text: 'University of the Arts London (235)'
+              },
+              {
+              value: 'University of West London',
+              text: 'University of West London (680)'
+              },
+              {
+              value: 'Verge EPA',
+              text: 'Verge EPA (986)'
+              },
+              {
+              value: 'VetSkill',
+              text: 'VetSkill (512)'
+              },
+              {
+              value: 'Vistar Qualifications Limited',
+              text: 'Vistar Qualifications Limited (217)'
+              },
+              {
+              value: 'VTCT',
+              text: 'VTCT (879)'
+              },
+              {
+              value: 'WAMITAB',
+              text: 'WAMITAB (625)'
+              },
+              {
+              value: 'WJEC-CBAC',
+              text: 'WJEC-CBAC (441)'
+              },
+              {
+              value: 'WJEC-EDEXCEL-CBAC',
+              text: 'WJEC-EDEXCEL-CBAC (789)'
+              },
+              {
+              value: 'Worshipful Company of Farriers',
+              text: 'Worshipful Company of Farriers (924)'
+              },
+              {
+              value: 'Worshipful Company of Spectacle Makers',
+              text: 'Worshipful Company of Spectacle Makers (145)'
+              },
+              {
+              value: 'WSET Awards',
+              text: 'WSET Awards (378)'
+              },
+              {
+              value: 'Xact Assessment',
+              text: 'Xact Assessment (616)'
+              },
+              {
+              value: 'YMCA Awards',
+              text: 'YMCA Awards (753)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="sector subject area">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Sector subject area</button>
+          <div class="selected-counter"><span id="selected">1</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-ssa',
+            name: 'filter-ssa',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+              value: 'Administration',
+              text: 'Administration (9)'
+              },
+              {
+              value: 'Agriculture',
+              text: 'Agriculture (11)'
+              },
+              {
+              value: 'Animal care and veterinary science',
+              text: 'Animal care and veterinary science (3)'
+              },
+              {
+              value: 'Anthropology',
+              text: 'Anthropology (17)'
+              },
+              {
+              value: 'Archaeology and archaeological sciences',
+              text: 'Archaeology and archaeological sciences (23)'
+              },
+              {
+              value: 'Architecture',
+              text: 'Architecture (99)'
+              },
+              {
+              value: 'Building and construction',
+              text: 'Building and construction (73)'
+              },
+              {
+              value: 'Business management',
+              text: 'Business management (82)'
+              },
+              {
+              value: 'Child development and well-being',
+              text: 'Child development and well-being (44)'
+              },
+              {
+              value: 'Crafts, creative arts and design',
+              text: 'Crafts, creative arts and design (70)'
+              },
+              {
+              value: 'Direct learning support',
+              text: 'Direct learning support (18)'
+              },
+              {
+              value: 'Economics',
+              text: 'Economics (92)'
+              },
+              {
+              value: 'Engineering',
+              text: 'Engineering (1)'
+              },
+              {
+              value: 'Environmental conservation',
+              text: 'Environmental conservation (1,032)'
+              },
+              {
+              value: 'Foundations for learning and life',
+              text: 'Foundations for learning and life (7)'
+              },
+              {
+              value: 'Geography',
+              text: 'Geography (3)'
+              },
+              {
+              value: 'Health and social care',
+              text: 'Health and social care (1)'
+              },
+              {
+              value: 'History',
+              text: 'History (93)'
+              },
+              {
+              value: 'Horticulture and forestry',
+              text: 'Horticulture and forestry (932)'
+              },
+              {
+              value: 'Hospitality and catering',
+              text: 'Hospitality and catering (786)'
+              },
+              {
+              value: 'ICT for users',
+              text: 'ICT for users (4)'
+              },
+              {
+              value: 'ICT practitioners',
+              text: 'ICT practitioners (456)'
+              },
+              {
+              value: 'Languages, literature and culture of the British Isles',
+              text: 'Languages, literature and culture of the British Isles (4)'
+              },
+              {
+              value: 'Law and legal services',
+              text: 'Law and legal services (666)'
+              },
+              {
+              value: 'Linguistics',
+              text: 'Linguistics (8,732)'
+              },
+              {
+              value: 'Manufacturing technologies',
+              text: 'Manufacturing technologies (673)'
+              },
+              {
+              value: 'Marketing and sales',
+              text: 'Marketing and sales (13)'
+              },
+              {
+              value: 'Mathematics and statistics',
+              text: 'Mathematics and statistics (77)'
+              },
+              {
+              value: 'Media and communication',
+              text: 'Media and communication (13)'
+              },
+              {
+              value: 'Medicine and Dentistry',
+              text: 'Medicine and Dentistry (230)'
+              },
+              {
+              value: 'Nursing and subjects and vocations allied to medicine',
+              text: 'Nursing and subjects and vocations allied to medicine (88)'
+              },
+              {
+              value: 'Other languages, literature and culture',
+              text: 'Other languages, literature and culture (9)'
+              },
+              {
+              value: 'Performing arts',
+              text: 'Performing arts (1,011)'
+              },
+              {
+              value: 'Philosophy',
+              text: 'Philosophy (281)'
+              },
+              {
+              value: 'Politics',
+              text: 'Politics (2)'
+              },
+              {
+              value: 'Preparation for work',
+              text: 'Preparation for work (43)'
+              },
+              {
+              value: 'Public services',
+              text: 'Public services (89)'
+              },
+              {
+              value: 'Publishing and information services',
+              text: 'Publishing and information services (82)'
+              },
+              {
+              value: 'Retailing and wholesaling',
+              text: 'Retailing and wholesaling (46)'
+              },
+              {
+              value: 'Science',
+              text: 'Science (12)'
+              },
+              {
+              value: 'Service enterprises',
+              text: 'Service enterprises (834)'
+              },
+              {
+              value: 'Sociology and social policy',
+              text: 'Sociology and social policy (454)'
+              },
+              {
+              value: 'Sport, leisure and recreation',
+              text: 'Sport, leisure and recreation (92)'
+              },
+              {
+              value: 'Teaching and lecturing',
+              text: 'Teaching and lecturing (91)'
+              },
+              {
+              value: 'Theology and religious studies',
+              text: 'Theology and religious studies (99)'
+              },
+              {
+              value: 'Transportation operations and maintenance',
+              text: 'Transportation operations and maintenance (34)'
+              },
+              {
+              value: 'Travel and tourism',
+              text: 'Travel and tourism (43)'
+              },
+              {
+              value: 'Urban, rural and regional planning',
+              text: 'Urban, rural and regional planning (1)'
+              },
+              {
+              value: 'Warehousing and distribution',
+              text: 'Warehousing and distribution (43)',
+              checked: true
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="grading">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Grading type</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-grading',
+            name: 'filter-grading',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+              value: 'passfail',
+              text: 'Pass or fail (3,042)'
+              },
+              {
+              value: 'graded',
+              text: 'Graded (15,551)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionContainer">
+      <div class="accordionExpander">
+        <div class="accordionItem">
+          <h3 class="accordionTitle" id="assessment-method">
+            <span class="govuk-visually-hidden">Select filters for </span>
+            <button class="accordionItem__button" type="button">Assessment method</button>
+            <div class="selected-counter"><span id="selected">0</span> selected</div>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+
+          <div class="accordionContent">
+            {{ govukCheckboxes({
+            idPrefix: 'filter-assessment-method',
+            name: 'filter-assessment-method',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+            {
+            value: 'portfolio',
+            text: 'Portfolio of evidence (3,301)'
+            },
+            {
+            value: 'exam',
+            text: 'Written exam (1,386)'
+            },
+            {
+            value: 'practical-demo',
+            text: 'Practical demonstration or assignment (1,316)'
+            },
+            {
+            value: 'coursework',
+            text: 'Coursework (1,078)'
+            },
+            {
+            value: 'controlled-assessment',
+            text: 'Task-based controlled assessment (810)'
+            },
+            {
+            value: 'oral',
+            text: 'Oral exam (653)'
+            },
+            {
+            value: 'multiple-choice',
+            text: 'Multiple choice exam (580)'
+            },
+            {
+            value: 'E-assessment',
+            text: 'E-assessment (550)'
+            },
+            {
+            value: 'practical-exam',
+            text: 'Practical exam (538)'
+            },
+            {
+            value: 'aural',
+            text: 'Aural exam (492)'
+            }
+            ]
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="national-availability">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">National availability</button>
+            <div class="selected-counter"><span id="selected">0</span> selected</div>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukCheckboxes({
+              idPrefix: 'filter-national-availability',
+              name: 'filter-national-availability',
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+              legend: {
+              }
+              },
+              items: [
+                {
+                value: 'england',
+                text: 'England (12,321)'
+                },
+                {
+                value: 'ni',
+                text: 'Northern Ireland (915)'
+                },
+                {
+                value: 'international',
+                text: 'International (155)'
+                }
+              ]
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="glh">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">Guided learning hours</button>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukInput({
+              label: {
+                text: "Minimum hours",
+                classes: "govuk-label--s"
+              },
+              id: "min-glh",
+              name: "min-glh",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "glh",
+              attributes: {
+                size: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+            {{ govukInput({
+              label: {
+                text: "Maximum hours",
+                classes: "govuk-label--s"
+              },
+              id: "max-glh",
+              name: "max-glh",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "glh",
+              attributes: {
+                size: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="tqt">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">Total qualification time</button>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukInput({
+              label: {
+                text: "Minimum hours",
+                classes: "govuk-label--s"
+              },
+              id: "min-tqt",
+              name: "min-tqt",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "tqt",
+              attributes: {
+                size: '3',
+                maxlength: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+            {{ govukInput({
+              label: {
+                text: "Maximum hours",
+                classes: "govuk-label--s"
+              },
+              id: "max-tqt",
+              name: "max-tqt",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "tqt",
+              attributes: {
+                size: '3',
+                maxlength: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    <div class="app-application-cards" aria-live="polite">
+      <h2 class="govuk-heading-l">No results found</h2>
+      <div class="govuk-body">There are no results for this search query. You should try adjusting your query or the filters selected.</div>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    const accordionTitles = document.querySelectorAll(".accordionTitle");
+
+    accordionTitles.forEach(accordionTitle => {
+      accordionTitle.addEventListener("click", () => {
+        accordionTitle.classList.toggle("is-open")
+      })
+    })
+
+    const accordionIcons = document.querySelectorAll(".accordionItem");
+
+    accordionIcons.forEach(accordionIcon => {
+      accordionIcon.addEventListener("click", () => {
+        accordionIcon.classList.toggle("is-open")
+      })
+    })
+
+
+    const selectedElm = document.getElementById('selected');
+
+    function showChecked() {
+      selectedElm.innerHTML = document.querySelectorAll('input[name=assessment-method]:checked').length;
+    }
+
+    document.querySelectorAll("input[name=assessment-method]").forEach(i => {
+      i.onclick = () => showChecked();
+    });
+
+
+  </script>
+
+
+  {% endblock %}

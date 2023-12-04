@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% set serviceName = "Find a regulated qualification" %}
+
 {% block pageTitle %}
   Search qualifications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -9,7 +11,7 @@
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: {
-      text: "alpha"
+      text: "beta"
     },
     html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
   }) }}
@@ -23,31 +25,23 @@
 
 {% block content %}
 
-  {% set formaction = "/" + version + "/search-qualifications/search-results" %}
+  {% set formaction = "/" + version + "/search-qualifications/qualification-search" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <search>
-        <form action="{{ formaction }}" method="post">
+        <form action="{{ formaction }}" method="post" role="search">
 
-          {{ xGovukAutocomplete({
-            id: "selected-qualification",
-            name: "selected-qualification",
-            allowEmpty: false,
-            showAllValues: true,
-            minLength: 2,
-            attributes: {
-              role: 'search'
-            },
-            hint: {
-              text: "Start typing to show a list of matching qualifications"
-            },
+          {{ govukInput({
             label: {
               classes: "govuk-label--l",
               isPageHeading: true,
-              text: "Search for a qualification"
+              text: "Find a regulated qualification"
             },
-            items: qualsAutoComplete
+            id: "selected-qualification",
+            name: "selected-qualification",
+            allowEmpty: false,
+            autocomplete: "search"
           }) }}
 
           {{ govukButton({
