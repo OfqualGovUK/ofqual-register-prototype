@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{{ govukBackLink({
+href: "search-page",
+text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+
+  <form class="form" method="post" action="compare-results-changed">
+    <div class="govuk-grid-column-three-quarters">
+
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      name: "changeQualification",
+      fieldset: {
+        legend: {
+          text: "Change qualification",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "Choose a qualification that you previously selected"
+      },
+      items: [
+        {
+          value: "Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Removals Operative (Level 2) (Pearson)",
+          text: "Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Removals Operative (Level 2) (Pearson)"
+        },
+        {
+          value: "Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Traffic Office (Level 2) (Pearson)",
+          text: "Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Traffic Office (Level 2) (Pearson)"
+        },
+        {
+          value: "Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2) (Pearson)",
+          text: "Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2) (Pearson)"
+        },
+        {
+          value: "Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles (Pearson)",
+          text: "Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles (Pearson)"
+        },
+        {
+          value: "Pearson Edexcel Level 1 Certificate in Warehousing and Storage (Pearson)",
+          text: "Pearson Edexcel Level 1 Certificate in Warehousing and Storage (Pearson)"
+        },
+        {
+          value: "Pearson Edexcel Level 2 Award in Forklift Truck Operations (Pearson)",
+          text: "Pearson Edexcel Level 2 Award in Forklift Truck Operations (Pearson)"
+        },
+        {
+          value: "Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles (Pearson)",
+          text: "Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles (Pearson)"
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+    <div class="govuk-inset-text">
+      If the qualification you want to compare isn't listed, <a href="qualification-search.html">search for more qualifications</a>.
+    </div>
+</form>
+</div>
+  {% endblock %}
