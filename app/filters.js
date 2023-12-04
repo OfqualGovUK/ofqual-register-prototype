@@ -114,6 +114,10 @@ addFilter('stripnonalpha',function (input) {
     return input.replace(/[^0-9a-z_-]/gi, '');
 })
 
+addFilter('stripSpace',function (input) {
+    return input.replace(/\s/g, '');
+})
+
 // 'isEmpty' tests a variable and returns true if it undefined, null or empty, otherwise returns null
 function isEmpty(value)
 {
