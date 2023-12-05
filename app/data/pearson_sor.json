@@ -9,8 +9,8 @@
         "qd": []
       }
     },
-    "Digital Functional Skills Qualification": {
-      "Entry Level-Entry 3": {
+    "Digital Functional Skills qualification": {
+      "Entry Level - Entry 3": {
         "ssa": [
           "14.1 Foundations for learning and life"
         ],
@@ -27,7 +27,7 @@
         "qd": []
       }
     },
-    "End-Point Assessment (Apprenticeships)": {
+    "End-point Assessment (Apprenticeship EPA)": {
       "Level 2": {
         "ssa": [],
         "asc": [
@@ -103,8 +103,8 @@
         "qd": []
       }
     },
-    "English For Speakers of Other Languages (ESOL)": {
-      "Entry Level-Entry 1,2,3": {
+    "English for Speakers of Other Languages (ESOL)": {
+      "Entry Level - Entry 1,2,3": {
         "ssa": [
           "01.1 Medicine and Dentistry",
           "01.2 Nursing and subjects and vocations allied to medicine",
@@ -334,7 +334,7 @@
       }
     },
     "Essential Digital Skills": {
-      "Entry Level-Entry 3": {
+      "Entry Level - Entry 3": {
         "ssa": [
           "06.2 ICT for users"
         ],
@@ -352,7 +352,7 @@
       }
     },
     "Functional Skills": {
-      "Entry Level-Entry 1,2,3": {
+      "Entry Level - Entry 1,2,3": {
         "ssa": [
           "01.1 Medicine and Dentistry",
           "01.2 Nursing and subjects and vocations allied to medicine",
@@ -524,7 +524,7 @@
         "qd": []
       }
     },
-    "GCE A Level": {
+    "A level (GCE)": {
       "Level 3": {
         "ssa": [
           "01.1 Medicine and Dentistry",
@@ -583,7 +583,7 @@
         "qd": []
       }
     },
-    "GCE AS Level": {
+    "AS level (GCE)": {
       "Level 3": {
         "ssa": [
           "01.1 Medicine and Dentistry",
@@ -900,7 +900,7 @@
         "qd": []
       }
     },
-    "Technical Qualification (T Levels)": {
+    "Technical Qualification (part of T Levels)": {
       "Level 3": {
         "ssa": [],
         "asc": [],
@@ -918,7 +918,7 @@
       }
     },
     "Other": {
-        "Entry Level-Entry 1,2,3": {
+        "Entry Level - Entry 1,2,3": {
           "ssa": [
             "01.1 Medicine and Dentistry",
             "01.2 Nursing and subjects and vocations allied to medicine",
