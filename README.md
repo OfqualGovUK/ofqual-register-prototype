@@ -1,4 +1,4 @@
-# Prototype for Ofqual's Register of Requlated Qualifications
+# Prototype for Ofqual's Register of Regulated Qualifications
 
 This prototype is to test user-centred design solutions relating to the redevelopment of Ofqual's Register of Regulated Qualifications. Key priorities are to:
 
