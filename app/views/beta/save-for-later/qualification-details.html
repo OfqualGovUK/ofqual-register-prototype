@@ -1,0 +1,223 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Qualification details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      <h1 class="govuk-heading-m">
+
+        Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2)
+      </h1>
+
+      <!--form action="../search-qualifications/results-pearson" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Find all Pearson qualifications"
+        }) }}
+
+      </form-->
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Qualification summary"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Qualification type"
+            },
+            value: {
+              text: "Apprenticeship end-point assessment"
+            }
+          },
+          {
+            key: {
+              text: "Sector subject area"
+            },
+            value: {
+              text: "Warehousing and distribution"
+            }
+          },
+          {
+            key: {
+              text: "Qualification level"
+            },
+            value: {
+              text: "Level 2"
+            }
+          },
+          {
+            key: {
+              text: "Availability"
+            },
+            value: {
+              html: '<div class="govuk-label__green">Available to learners</div>'
+            }
+          }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Organisation"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Awarding organisation"
+            },
+            value: {
+              html: '<a href="../search-organisations/organisation-details">Pearson Education Ltd</a>'
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Qualification details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Qualification number"
+            },
+            value: {
+              text: "610/3185/9"
+            }
+          },
+          {
+            key: {
+              text: "EPA standard code"
+            },
+            value: {
+              text: "ST0259"
+            }
+          },
+          {
+            key: {
+              text: "EPA standard title"
+            },
+            value: {
+              text: "Supply chain warehouse operative"
+            }
+          },
+          {
+            key: {
+              text: "Grading type"
+            },
+            value: {
+              text: "Graded"
+            }
+          },
+          {
+            key: {
+              text: "Grading scale"
+            },
+            value: {
+              text: "Pass/Distinction"
+            }
+          },
+          {
+            key: {
+              text: "Assessment methods"
+            },
+            value: {
+              text: "Oral examination, practical demonstration or assignment, written examination"
+            }
+          },
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Regulatory details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Regulation start date"
+            },
+            value: {
+              text: "30 August 2023"
+            }
+          },
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              html: "1 September 2023"
+            }
+          },
+          {
+            key: {
+              text: "National availability"
+            },
+            value: {
+              html: "England only"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Funding details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Funding in England"
+            },
+            value: {
+              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=610%2F3185%2F9&Status=All">Check if this qualification is funded in England</a>'
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

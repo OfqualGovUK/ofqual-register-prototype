@@ -26,7 +26,6 @@ text: "Back"
 
     <p>Select all the qualifications you want to compare.</p>
 
-
     <div class="app-search govuk-!-margin-bottom-4">
       <form action="/applications" method="get" novalidate="">
 
@@ -2037,6 +2036,282 @@ text: "Back"
       </div>
     </div>
 
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="grading">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Grading type</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-grading',
+            name: 'filter-grading',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+              value: 'passfail',
+              text: 'Pass or fail (3,042)'
+              },
+              {
+              value: 'graded',
+              text: 'Graded (15,551)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionContainer">
+      <div class="accordionExpander">
+        <div class="accordionItem">
+          <h3 class="accordionTitle" id="assessment-method">
+            <span class="govuk-visually-hidden">Select filters for </span>
+            <button class="accordionItem__button" type="button">Assessment method</button>
+            <div class="selected-counter"><span id="selected">0</span> selected</div>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+
+          <div class="accordionContent">
+            {{ govukCheckboxes({
+            idPrefix: 'filter-assessment-method',
+            name: 'filter-assessment-method',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+            {
+            value: 'portfolio',
+            text: 'Portfolio of evidence (3,301)'
+            },
+            {
+            value: 'exam',
+            text: 'Written exam (1,386)'
+            },
+            {
+            value: 'practical-demo',
+            text: 'Practical demonstration or assignment (1,316)'
+            },
+            {
+            value: 'coursework',
+            text: 'Coursework (1,078)'
+            },
+            {
+            value: 'controlled-assessment',
+            text: 'Task-based controlled assessment (810)'
+            },
+            {
+            value: 'oral',
+            text: 'Oral exam (653)'
+            },
+            {
+            value: 'multiple-choice',
+            text: 'Multiple choice exam (580)'
+            },
+            {
+            value: 'E-assessment',
+            text: 'E-assessment (550)'
+            },
+            {
+            value: 'practical-exam',
+            text: 'Practical exam (538)'
+            },
+            {
+            value: 'aural',
+            text: 'Aural exam (492)'
+            }
+            ]
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="national-availability">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">National availability</button>
+            <div class="selected-counter"><span id="selected">0</span> selected</div>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukCheckboxes({
+              idPrefix: 'filter-national-availability',
+              name: 'filter-national-availability',
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+              legend: {
+              }
+              },
+              items: [
+                {
+                value: 'england',
+                text: 'England (12,321)'
+                },
+                {
+                value: 'ni',
+                text: 'Northern Ireland (915)'
+                },
+                {
+                value: 'international',
+                text: 'International (155)'
+                }
+              ]
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="glh">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">Guided learning hours</button>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukInput({
+              label: {
+                text: "Minimum hours",
+                classes: "govuk-label--s"
+              },
+              id: "min-glh",
+              name: "min-glh",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "glh",
+              attributes: {
+                size: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+            {{ govukInput({
+              label: {
+                text: "Maximum hours",
+                classes: "govuk-label--s"
+              },
+              id: "max-glh",
+              name: "max-glh",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "glh",
+              attributes: {
+                size: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
+         <h3 class="accordionTitle" id="tqt">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">Total qualification time</button>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukInput({
+              label: {
+                text: "Minimum hours",
+                classes: "govuk-label--s"
+              },
+              id: "min-tqt",
+              name: "min-tqt",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "tqt",
+              attributes: {
+                size: '3',
+                maxlength: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+            {{ govukInput({
+              label: {
+                text: "Maximum hours",
+                classes: "govuk-label--s"
+              },
+              id: "max-tqt",
+              name: "max-tqt",
+              type: "number",
+              inputmode: "numeric",
+              describedby: "tqt",
+              attributes: {
+                size: '3',
+                maxlength: '3'
+              },
+              classes: "ofq-filters-small-input"
+            }) }}
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
 
   </div>
@@ -2050,21 +2325,26 @@ text: "Back"
     text: 'Compare selected',
     classes: 'govuk-button--primary',
     href: 'compare-results'
-    }
+    },
+    {
+      text: 'Download results as CSV',
+      classes: 'govuk-button--secondary',
+      href: 'compare-results'
+      }
     ]
     }) }}
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 
-    <div class="app-application-cards">
+    <div class="app-application-cards" aria-live="polite">
 
       <section class="app-application-card">
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification" name="organisation" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <input class="govuk-checkboxes__input" id="organisation2" name="organisation" type="checkbox" value="2">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation2">
                 Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles
             </div>
           </div>
@@ -2072,23 +2352,22 @@ text: "Back"
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="qualification-details.html">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 2
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
+              <dt class="govuk-visually-hidden">Level</dt>
             </dl>
           </div>
         </div>
@@ -2099,34 +2378,30 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-
-              <input class="govuk-checkboxes__input" id="qualification-2" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-2">
+              <input class="govuk-checkboxes__input" id="organisation2" name="organisation" type="checkbox" value="2">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation2">
                 Pearson Edexcel Level 2 Award in Forklift Truck Operations
             </div>
           </div>
-
         </header>
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 2
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
             </dl>
           </div>
         </div>
@@ -2137,34 +2412,30 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-
-              <input class="govuk-checkboxes__input" id="qualification-3" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-3">
+              <input class="govuk-checkboxes__input" id="organisation3" name="organisation" type="checkbox" value="3">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation3">
                 Pearson Edexcel Level 2 Certificate in Warehousing and Storage
             </div>
           </div>
-
         </header>
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 2
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
             </dl>
           </div>
         </div>
@@ -2174,33 +2445,30 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-4" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-4">
+              <input class="govuk-checkboxes__input" id="organisation4" name="organisation" type="checkbox" value="4">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation4">
                 Pearson Edexcel Level 1 Award in Warehousing and Storage
             </div>
           </div>
-
         </header>
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 1
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
             </dl>
           </div>
         </div>
@@ -2210,33 +2478,30 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-5" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-5">
+              <input class="govuk-checkboxes__input" id="organisation5" name="organisation" type="checkbox" value="5">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation5">
                 Pearson Edexcel Level 1 Certificate in Warehousing and Storage
             </div>
           </div>
-
         </header>
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 1
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
             </dl>
           </div>
         </div>
@@ -2246,41 +2511,194 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="qualification-6" name="qualification" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="qualification-6">
+              <input class="govuk-checkboxes__input" id="organisation6" name="organisation" type="checkbox" value="6">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation6">
                 Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles
             </div>
           </div>
-
         </header>
 
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
-
             <dl class="app-application-card__list">
-              <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
-              </strong>
-              <dt class="govuk-visually-hidden">Course</dt>
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
               <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
               <dt class="govuk-visually-hidden">Level</dt>
               <dd class="govuk-body-s govuk-!-font-size-16">
-                Level 1
+                Level 2
               </dd>
-
-            </dl>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <dl class="app-application-card__list app-application-card__list--secondary">
-
             </dl>
           </div>
         </div>
       </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation7" name="organisation" type="checkbox" value="6">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation7">
+                Pearson Edexcel Level 3 Diploma in Warehouse Operations Management
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 3
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation8" name="organisation" type="checkbox" value="6">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation8">
+                Pearson Edexcel Level 2 Certificate in Manual Handling Operations
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Not yet available
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation9" name="organisation" type="checkbox" value="6">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation9">
+                Pearson Edexcel Level 1/2 Award in Driving Goods Vehicles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Not available to new learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1/2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation10" name="organisation" type="checkbox" value="6">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation10">
+                Pearson Edexcel Level 1/2 Certificate in Driving Heavy Goods Vehicles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                No longer awarded
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1/2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+      {{ govukPagination({
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            current: true,
+            href: "#"
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            number: 3,
+            href: "#"
+          }
+        ]
+      }) }}
 
       </form>
     </div>
   </div>
+
 
 
   <script>
