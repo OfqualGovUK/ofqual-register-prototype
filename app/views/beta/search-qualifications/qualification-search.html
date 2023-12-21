@@ -1,48 +1,41 @@
 {% extends "layouts/main.html" %}
 
-{% set serviceName = "Find a regulated qualification" %}
-
 {% block pageTitle %}
 Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "beta"
-    },
-    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-  }) }}
-
-  <nav>
-  {{ govukBackLink({
-    href: "javascript:window.history.back()",
-    text: "Back"
-  }) }}
-  </nav>
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{{ govukBackLink({
+href: "search-page",
+text: "Back"
+}) }}
 {% endblock %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% set searchQuery = data['selected-qualification'] if data['selected-qualification']| length else 'warehouse'%}
-{% set searchTerm = "Search results – '" + searchQuery + "'" %}
-
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-width-container">
     <div class="govuk-grid-column-two-thirds"></div>
-    <h1 class="govuk-heading-l">{{ searchTerm }}</h1>
+    
+    <h1 class="govuk-heading-l">Qualification search</h1>
 
-    <search class="app-search govuk-!-margin-bottom-4">
-      <form action="/applications" method="get" novalidate="" role="search">
+    <p>Select all the qualifications you want to compare.</p>
+
+    <div class="app-search govuk-!-margin-bottom-4">
+      <form action="/applications" method="get" novalidate="">
 
 
         <div class="govuk-form-group">
-          <label class="govuk-label app-search__label govuk-label--m" for="keywords">
+          <label class="govuk-label app-search__label govuk-label--s" for="keywords">
             Search for a qualification
           </label>
 
-          <input class="govuk-input app-search__input " id="keywords" name="keywords" type="search" value="{{ searchQuery }}" autocomplete="on">
+          <input class="govuk-input app-search__input " id="keywords" name="keywords" type="search">
 
         </div>
 
@@ -52,7 +45,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 
 
       </form>
-    </search>
+    </div>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break">
 
@@ -79,13 +72,6 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
       </div>
 
-      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Availability</h3>
-      <ul class="app-filter-tags">
-
-        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/available"><span
-              class="govuk-visually-hidden">Remove this filter</span> Available</a></li>
-      </ul>
-
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Assessment method</h3>
       <ul class="app-filter-tags">
 
@@ -94,6 +80,14 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 
         <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/_unchecked"><span
               class="govuk-visually-hidden">Remove this filter</span> Practical demonstration or<br> assignment</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Status</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Available</a></li>
 
       </ul>
 
@@ -114,6 +108,8 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
       </ul>
 
     </div>
+
+
 
     <div class="accordionExpander">
       <div class="accordionItem">
@@ -2322,15 +2318,20 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/applications" method="get" novalidate="">
     {{
     mojButtonMenu({
     items: [
     {
-    text: 'Download results as CSV',
-    classes: 'govuk-button--secondary',
-    href: '/download/download-compare'
-    }]
+    text: 'Compare selected',
+    classes: 'govuk-button--primary',
+    href: '../compare-results'
+    },
+    {
+      text: 'Download results as CSV',
+      classes: 'govuk-button--secondary',
+      href: '/download/download-results'
+      }
+    ]
     }) }}
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
@@ -2342,8 +2343,8 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation1" name="organisation" type="checkbox" value="1">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation1">
+              <input class="govuk-checkboxes__input" id="organisation2" name="organisation" type="checkbox" value="2">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation2">
                 Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles
             </div>
           </div>
@@ -2352,6 +2353,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details.html">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2362,6 +2367,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 2
               </dd>
+              <dt class="govuk-visually-hidden">Level</dt>
             </dl>
           </div>
         </div>
@@ -2382,6 +2388,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2412,6 +2422,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2441,6 +2455,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2470,6 +2488,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2499,6 +2521,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2528,6 +2554,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Available to learners
@@ -2557,6 +2587,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Not yet available
@@ -2586,6 +2620,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 Not available to new learners
@@ -2615,6 +2653,10 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
         <div class="govuk-grid-row app-grid-row--flex">
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="">View qualification details</a>
+              </dd>
+              <br>
               <dt class="govuk-visually-hidden">Availability</dt>
               <dd class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-1 govuk-!-font-size-14">
                 No longer awarded
@@ -2656,6 +2698,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
       </form>
     </div>
   </div>
+
 
 
   <script>

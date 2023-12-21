@@ -1,0 +1,279 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Qualification details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+  <nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      <h1 class="govuk-heading-m">
+        Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2)
+      </h1>
+
+      <!--form action="../search-qualifications/results-pearson" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Find all Pearson qualifications"
+        }) }}
+
+      </form-->
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Qualification summary"
+          },
+          attributes: {
+            id: "qual-summary"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Qualification type"
+            },
+            value: {
+              text: "Apprenticeship end-point assessment"
+            }
+          },
+          {
+            key: {
+              text: "Sector subject area"
+            },
+            value: {
+              text: "Warehousing and distribution"
+            }
+          },
+          {
+            key: {
+              text: "Qualification level"
+            },
+            value: {
+              text: "Level 2"
+            }
+          },
+          {
+            key: {
+              text: "Availability"
+            },
+            value: {
+              html: '<div class="govuk-label__green">Available to learners</div>'
+            }
+          }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Organisation"
+          },
+          attributes: {
+            id: "org"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Awarding organisation"
+            },
+            value: {
+              html: '<a href="../search-organisations/organisation-details">Pearson Education Ltd</a>'
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Qualification details"
+          },
+          attributes: {
+            id: "qual-details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Qualification number"
+            },
+            value: {
+              text: "610/3185/9"
+            }
+          },
+          {
+            key: {
+              text: "EPA standard code"
+            },
+            value: {
+              text: "ST0259"
+            }
+          },
+          {
+            key: {
+              text: "EPA standard title"
+            },
+            value: {
+              text: "Supply chain warehouse operative"
+            }
+          },
+          {
+            key: {
+              text: "Grading type"
+            },
+            value: {
+              text: "Graded"
+            }
+          },
+          {
+            key: {
+              text: "Grading scale"
+            },
+            value: {
+              text: "Pass/Distinction"
+            }
+          },
+          {
+            key: {
+              text: "Fees"
+            },
+            value: {
+              text: "£245"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#info-fees",
+                  text: "information on fees"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Assessment methods"
+            },
+            value: {
+              text: "Oral examination, practical demonstration or assignment, written examination"
+            }
+          },
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Regulatory details"
+          },
+          attributes: {
+            id: "reg-details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Regulation start date"
+            },
+            value: {
+              text: "30 August 2023"
+            }
+          },
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              html: "1 September 2023"
+            }
+          },
+          {
+            key: {
+              text: "National availability"
+            },
+            value: {
+              html: "England only"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Funding details"
+          },
+          attributes: {
+            id: "funding-details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Funding in England"
+            },
+            value: {
+              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=61031859&Status=All">Check if this qualification is funded in England</a>'
+            }
+          }
+        ]
+      }) }}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+      <div class="app-application-cards">
+
+        <section class="app-application-card">
+          <header class="app-application-card__header">
+            <h2 class="govuk-heading-s">
+                  Information about fees
+            </h2>
+          </header>
+
+          <div class="govuk-grid-row app-grid-row--flex">
+            <div class="govuk-grid-column-full">
+              <div class="govuk-body-s" id="info-fees">
+                The fee listed is the standard quoted fee from the awarding organisation.
+                It does not necessarily mean that this is the fee you will pay as
+                awarding organisations may offer discount schemes or other pricing models.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
