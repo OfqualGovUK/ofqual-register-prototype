@@ -93,4 +93,16 @@ module.exports = function (router) {
    res.render('/' + version + '/search-qualifications/search', { 'version': version })
  })
 
+//---------------------- Application error pages -------------------------------//
+
+router.all('/' + version + '/page-not-found-error', function (req,res)
+ {
+   res.render('/' + version + '/page-not-found-error', { 'version': version })
+ })
+
+ router.all('/' + version + '/application-error', function (req,res)
+ {
+   res.render('/' + version + '/application-error', { 'version': version })
+ })
+
 } // End module.exports
