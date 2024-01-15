@@ -17,7 +17,7 @@ router.use((req, res, next) => {
     }
     // Uncomment the line below to log the request and associated data to the console
     // Re-comment before committing back to Github
-    //console.log(JSON.stringify(log, null, 2))
+    console.log(JSON.stringify(log, null, 2))
 
   next()
 })

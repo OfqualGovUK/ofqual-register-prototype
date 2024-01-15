@@ -42,10 +42,12 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
       ]
     }) }}
 
+    {% set formaction = "/" + version + "/search-qualifications/qualification-search" %}
+
     <h1 class="govuk-heading-l">Qualification search</h1>
 
     <search class="app-search govuk-!-margin-bottom-4">
-      <form action="/applications" method="get" novalidate="" role="search">
+      <form action="{{ formaction }}" method="get" novalidate="" role="search">
 
 
         <div class="govuk-form-group govuk-form-group--error">
@@ -55,7 +57,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
           <p id="keywords-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error: </span>There are no results for this search query
           </p>
-          <input class="govuk-input app-search__input govuk-input--error" id="keywords" name="keywords" type="search" value="secret treasure" autocomplete="on">
+          <input class="govuk-input app-search__input govuk-input--error" id="selected-qualification" name="selected-qualification" type="search" value="secret treasure" autocomplete="on">
 
         </div>
 
@@ -122,7 +124,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
       <ul class="app-filter-tags">
 
         <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
-              class="govuk-visually-hidden">Remove this filter</span> Warehousing and distribution</a></li>
+              class="govuk-visually-hidden">Remove this filter</span> 7.2 – Warehousing and distribution</a></li>
 
       </ul>
 
@@ -163,12 +165,12 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
                 checked: true
               },
               {
-                value: 'not-available',
-                text: 'Not available to new learners (3,877)'
-              },
-              {
                 value: 'not-awarded',
                 text: 'No longer awarded (3,610)'
+              },
+              {
+                value: 'not-available',
+                text: 'Not available to new learners (3,877)'
               },
               {
                 value: 'not-available-yet',
@@ -210,128 +212,128 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
             },
             items: [
               {
-              value: 'aea',
-              text: 'Advanced extension award (3)'
+                value: 'aea',
+                text: 'Advanced extension award (3)'
               },
               {
-              value: 'a level',
-              text: 'A level (5)'
+                value: 'a level',
+                text: 'A level (5)'
               },
               {
-              value: 'as level',
-              text: 'AS level (5)'
+                value: 'as level',
+                text: 'AS level (5)'
               },
               {
-              value: 'basic skills',
-              text: 'Basic skills (1)'
+                value: 'apprenticeship',
+                text: 'Apprenticeship end-point assessment (132)'
               },
               {
-              value: 'digital functional skills',
-              text: 'Digital functional skills (2)'
+                value: 'basic skills',
+                text: 'Basic skills (1)'
               },
               {
-              value: 'epa',
-              text: 'Apprenticeship end-point assessment (132)'
+                value: 'digital functional skills',
+                text: 'Digital functional skills (2)'
               },
               {
-              value: 'esol',
-              text: 'ESOL (English for speakers of other languages) (1)'
+                value: 'entry',
+                text: 'Entry level (2)'
               },
               {
-              value: 'entry',
-              text: 'Entry level (2)'
+                value: 'esol',
+                text: 'ESOL (English for speakers of other languages) (1)'
               },
               {
-              value: 'essential skills',
-              text: 'Essential skills (3)'
+                value: 'essential digital skills',
+                text: 'Essential digital skills (2)'
               },
               {
-              value: 'essential digital skills',
-              text: 'Essential digital skills (2)'
+                value: 'essential skills',
+                text: 'Essential skills (3)'
               },
               {
-              value: 'free standing maths',
-              text: 'Free-standing mathematics (1)'
+                value: 'free standing maths',
+                text: 'Free-standing mathematics (1)'
               },
               {
-              value: 'functional skills',
-              text: 'Functional skills (2)'
+                value: 'functional skills',
+                text: 'Functional skills (2)'
               },
               {
-              value: 'functional skills QCF',
-              text: 'Functional skills (QCF) (4)'
+                value: 'functional skills QCF',
+                text: 'Functional skills (QCF) (4)'
               },
               {
-              value: 'gcse 9-1',
-              text: 'GCSE (9 to 1) (7)'
+                value: 'gcse 9-1',
+                text: 'GCSE (9 to 1) (7)'
               },
               {
-              value: 'gcse a-g',
-              text: 'GCSE (A* to G) (4)'
+                value: 'gcse a-g',
+                text: 'GCSE (A* to G) (4)'
               },
               {
-              value: 'gnvq',
-              text: 'GNVQ (14)'
+                value: 'gnvq',
+                text: 'GNVQ (14)'
               },
               {
-              value: 'higher level',
-              text: 'Higher level (12)'
+                value: 'higher level',
+                text: 'Higher level (12)'
               },
               {
-              value: 'key skills',
-              text: 'Key skills (2)'
+                value: 'key skills',
+                text: 'Key skills (2)'
               },
               {
-              value: 'nvq',
-              text: 'NVQ (national vocational qualification) (10)'
+                value: 'nvq',
+                text: 'NVQ (national vocational qualification) (10)'
               },
               {
-              value: 'occupational',
-              text: 'Occupational Qualification (32)'
+                value: 'occupational',
+                text: 'Occupational Qualification (32)'
               },
               {
-              value: 'other',
-              text: 'Other (3)'
+                value: 'other general',
+                text: 'Other general qualification (4)'
               },
               {
-              value: 'other general',
-              text: 'Other general qualification (4)'
+                value: 'life skills',
+                text: 'Other life skills (1)'
               },
               {
-              value: 'life skills',
-              text: 'Other life skills (1)'
+                value: 'other vocational',
+                text: 'Other vocational (27)'
               },
               {
-              value: 'other vocational',
-              text: 'Other vocational (27)'
+                value: 'performing arts',
+                text: 'Performing arts graded exam (1)'
               },
               {
-              value: 'performing arts',
-              text: 'Performing arts graded exam (1)'
+                value: 'principal learning',
+                text: 'Principal learning (4)'
               },
               {
-              value: 'principal learning',
-              text: 'Principal learning (4)'
+                value: 'project',
+                text: 'Project (5)'
               },
               {
-              value: 'project',
-              text: 'Project (5)'
+                value: 'qcf',
+                text: 'QCF (6)'
               },
               {
-              value: 'qcf',
-              text: 'QCF (6)'
+                value: 'technical',
+                text: 'Technical qualification (T Levels) (7)'
               },
               {
-              value: 'technical',
-              text: 'Technical qualification (T Levels) (7)'
+                value: 'vce',
+                text: 'Vocational certificate of education (6)'
               },
               {
-              value: 'vce',
-              text: 'Vocational certificate of education (6)'
+                value: 'vrq',
+                text: 'Vocationally-related qualification (9)'
               },
               {
-              value: 'vrq',
-              text: 'Vocationally-related qualification (9)'
+                value: 'other',
+                text: 'Other (3)'
               }
             ]
           }) }}
@@ -1851,201 +1853,273 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
             },
             items: [
               {
-              value: 'Administration',
-              text: 'Administration (9)'
+                text: '1 - Health, Public Services and Care',
+                value: '1'
               },
               {
-              value: 'Agriculture',
-              text: 'Agriculture (11)'
+                text: '1.1 - Medicine and dentistry',
+                value: '1.1'
               },
               {
-              value: 'Animal care and veterinary science',
-              text: 'Animal care and veterinary science (3)'
+                text: '1.2 - Nursing, and subjects and vocations allied to medicine',
+                value: '1.2'
               },
               {
-              value: 'Anthropology',
-              text: 'Anthropology (17)'
+                text: '1.3 - Health and social care',
+                value: '1.3'
               },
               {
-              value: 'Archaeology and archaeological sciences',
-              text: 'Archaeology and archaeological sciences (23)'
+                text: '1.4 - Public services',
+                value: '1.4'
               },
               {
-              value: 'Architecture',
-              text: 'Architecture (99)'
+                text: '1.5 - Child development and well being',
+                value: '1.5'
               },
               {
-              value: 'Building and construction',
-              text: 'Building and construction (73)'
+                text: '2 - Science and Mathematics',
+                value: '2'
               },
               {
-              value: 'Business management',
-              text: 'Business management (82)'
+                text: '2.1 - Science',
+                value: '2.1'
               },
               {
-              value: 'Child development and well-being',
-              text: 'Child development and well-being (44)'
+                text: '2.2 - Mathematics and statistics',
+                value: '2.2'
               },
               {
-              value: 'Crafts, creative arts and design',
-              text: 'Crafts, creative arts and design (70)'
+                text: '3 - Agriculture, Horticulture and Animal Care',
+                value: '3'
               },
               {
-              value: 'Direct learning support',
-              text: 'Direct learning support (18)'
+                text: '3.1 - Agriculture',
+                value: '3.1'
               },
               {
-              value: 'Economics',
-              text: 'Economics (92)'
+                text: '3.2 - Horticulture and forestry',
+                value: '3.2'
               },
               {
-              value: 'Engineering',
-              text: 'Engineering (1)'
+                text: '3.3 - Animal care and veterinary science',
+                value: '3.3'
               },
               {
-              value: 'Environmental conservation',
-              text: 'Environmental conservation (1,032)'
+                text: '3.4 - Environmental conservation',
+                value: '3.4'
               },
               {
-              value: 'Foundations for learning and life',
-              text: 'Foundations for learning and life (7)'
+                text: '4 - Engineering and Manufacturing Technologies',
+                value: '4'
               },
               {
-              value: 'Geography',
-              text: 'Geography (3)'
+                text: '4.1 - Engineering',
+                value: '4.1'
               },
               {
-              value: 'Health and social care',
-              text: 'Health and social care (1)'
+                text: '4.2 - Manufacturing technologies',
+                value: '4.2'
               },
               {
-              value: 'History',
-              text: 'History (93)'
+                text: '4.3 - Transportation operations and maintenance',
+                value: '4.3'
               },
               {
-              value: 'Horticulture and forestry',
-              text: 'Horticulture and forestry (932)'
+                text: '5 - Construction, Planning and the Built Environment',
+                value: '5'
               },
               {
-              value: 'Hospitality and catering',
-              text: 'Hospitality and catering (786)'
+                text: '5.1 - Architecture',
+                value: '5.1'
               },
               {
-              value: 'ICT for users',
-              text: 'ICT for users (4)'
+                text: '5.2 - Building and construction',
+                value: '5.2'
               },
               {
-              value: 'ICT practitioners',
-              text: 'ICT practitioners (456)'
+                text: '5.3 - Urban, rural and regional planning',
+                value: '5.3'
               },
               {
-              value: 'Languages, literature and culture of the British Isles',
-              text: 'Languages, literature and culture of the British Isles (4)'
+                text: '6 - Information and Communication Technology (ICT)',
+                value: '6'
               },
               {
-              value: 'Law and legal services',
-              text: 'Law and legal services (666)'
+                text: '6.1 - ICT practitioners',
+                value: '6.1'
               },
               {
-              value: 'Linguistics',
-              text: 'Linguistics (8,732)'
+                text: '6.2 - ICT for users',
+                value: '6.2'
               },
               {
-              value: 'Manufacturing technologies',
-              text: 'Manufacturing technologies (673)'
+                text: '7 - Retail and Commercial Enterprise',
+                value: '7'
               },
               {
-              value: 'Marketing and sales',
-              text: 'Marketing and sales (13)'
+                text: '7.1 - Retailing and wholesaling',
+                value: '7.1'
               },
               {
-              value: 'Mathematics and statistics',
-              text: 'Mathematics and statistics (77)'
+                text: '7.2 - Warehousing and distribution',
+                value: '7.2',
+                checked: true
               },
               {
-              value: 'Media and communication',
-              text: 'Media and communication (13)'
+                text: '7.3 - Service enterprises',
+                value: '7.3'
               },
               {
-              value: 'Medicine and Dentistry',
-              text: 'Medicine and Dentistry (230)'
+                text: '7.4 - Hospitality and catering',
+                value: '7.4'
               },
               {
-              value: 'Nursing and subjects and vocations allied to medicine',
-              text: 'Nursing and subjects and vocations allied to medicine (88)'
+                text: '8 - Leisure, Travel and Tourism',
+                value: '8'
               },
               {
-              value: 'Other languages, literature and culture',
-              text: 'Other languages, literature and culture (9)'
+                text: '8.1 - Sport, leisure and recreation',
+                value: '8.1'
               },
               {
-              value: 'Performing arts',
-              text: 'Performing arts (1,011)'
+                text: '8.2 - Travel and tourism',
+                value: '8.2'
               },
               {
-              value: 'Philosophy',
-              text: 'Philosophy (281)'
+                text: '9 - Arts, Media and Publishing',
+                value: '9'
               },
               {
-              value: 'Politics',
-              text: 'Politics (2)'
+                text: '9.1 - Performing arts',
+                value: '9.1'
               },
               {
-              value: 'Preparation for work',
-              text: 'Preparation for work (43)'
+                text: '9.2 - Crafts, creative arts and design',
+                value: '9.2'
               },
               {
-              value: 'Public services',
-              text: 'Public services (89)'
+                text: '9.3 - Media and communication',
+                value: '9.3'
               },
               {
-              value: 'Publishing and information services',
-              text: 'Publishing and information services (82)'
+                text: '9.4 - Publishing and information services',
+                value: '9.4'
               },
               {
-              value: 'Retailing and wholesaling',
-              text: 'Retailing and wholesaling (46)'
+                text: '10 - History, Philosophy and Theology',
+                value: '10'
               },
               {
-              value: 'Science',
-              text: 'Science (12)'
+                text: '10.1 - History',
+                value: '10.1'
               },
               {
-              value: 'Service enterprises',
-              text: 'Service enterprises (834)'
+                text: '10.2 - Archaeology and archaeological sciences',
+                value: '10.2'
               },
               {
-              value: 'Sociology and social policy',
-              text: 'Sociology and social policy (454)'
+                text: '10.3 - Philosophy',
+                value: '10.3'
               },
               {
-              value: 'Sport, leisure and recreation',
-              text: 'Sport, leisure and recreation (92)'
+                text: '10.4 - Theology and religious studies',
+                value: '10.4'
               },
               {
-              value: 'Teaching and lecturing',
-              text: 'Teaching and lecturing (91)'
+                text: '11 - Social Sciences',
+                value: '11'
               },
               {
-              value: 'Theology and religious studies',
-              text: 'Theology and religious studies (99)'
+                text: '11.1 - Geography',
+                value: '11.1'
               },
               {
-              value: 'Transportation operations and maintenance',
-              text: 'Transportation operations and maintenance (34)'
+                text: '11.2 - Sociology',
+                value: '11.2'
               },
               {
-              value: 'Travel and tourism',
-              text: 'Travel and tourism (43)'
+                text: '11.3 - Politics',
+                value: '11.3'
               },
               {
-              value: 'Urban, rural and regional planning',
-              text: 'Urban, rural and regional planning (1)'
+                text: '11.4 - Economics',
+                value: '11.4'
               },
               {
-              value: 'Warehousing and distribution',
-              text: 'Warehousing and distribution (43)',
-              checked: true
+                text: '11.5 - Anthropology',
+                value: '11.5'
+              },
+              {
+                text: '12 - Languages, Literature and Culture',
+                value: '12'
+              },
+              {
+                text: '12.1 - Linguistics',
+                value: '12.1'
+              },
+              {
+                text: '12.2 - Literature',
+                value: '12.2'
+              },
+              {
+                text: '12.3 - Cultural studies',
+                value: '12.3'
+              },
+              {
+                text: '12.4 - English language and literature',
+                value: '12.4'
+              },
+              {
+                text: '13 - Education and Training',
+                value: '13'
+              },
+              {
+                text: '13.1 - Teaching and lecturing',
+                value: '13.1'
+              },
+              {
+                text: '13.2 - Direct learning support',
+                value: '13.2'
+              },
+              {
+                text: '13.3 - Educational support',
+                value: '13.3'
+              },
+              {
+                text: '14 - Preparation for Life and Work',
+                value: '14'
+              },
+              {
+                text: '14.1 - Foundations for learning and life',
+                value: '14.1'
+              },
+              {
+                text: '14.2 - Preparation for work',
+                value: '14.2'
+              },
+              {
+                text: '15 - Business, Administration and Law',
+                value: '15'
+              },
+              {
+                text: '15.1 - Business management',
+                value: '15.1'
+              },
+              {
+                text: '15.2 - Marketing and sales',
+                value: '15.2'
+              },
+              {
+                text: '15.3 - Finance, banking and insurance',
+                value: '15.3'
+              },
+              {
+                text: '15.4 - Administration',
+                value: '15.4'
+              },
+              {
+                text: '15.5 - Law and legal services',
+                value: '15.5'
               }
             ]
           }) }}
@@ -2126,46 +2200,46 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
             }
             },
             items: [
-            {
-            value: 'portfolio',
-            text: 'Portfolio of evidence (3,301)'
-            },
-            {
-            value: 'exam',
-            text: 'Written exam (1,386)'
-            },
-            {
-            value: 'practical-demo',
-            text: 'Practical demonstration or assignment (1,316)'
-            },
-            {
-            value: 'coursework',
-            text: 'Coursework (1,078)'
-            },
-            {
-            value: 'controlled-assessment',
-            text: 'Task-based controlled assessment (810)'
-            },
-            {
-            value: 'oral',
-            text: 'Oral exam (653)'
-            },
-            {
-            value: 'multiple-choice',
-            text: 'Multiple choice exam (580)'
-            },
-            {
-            value: 'E-assessment',
-            text: 'E-assessment (550)'
-            },
-            {
-            value: 'practical-exam',
-            text: 'Practical exam (538)'
-            },
-            {
-            value: 'aural',
-            text: 'Aural exam (492)'
-            }
+              {
+                value: 'aural',
+                text: 'Aural exam (492)'
+              },
+              {
+                value: 'coursework',
+                text: 'Coursework (1,078)'
+              },
+              {
+                value: 'controlled-assessment',
+                text: 'Task-based controlled assessment (810)'
+              },
+              {
+                value: 'E-assessment',
+                text: 'E-assessment (550)'
+              },
+              {
+                value: 'exam',
+                text: 'Written exam (1,386)'
+              },
+              {
+                value: 'multiple-choice',
+                text: 'Multiple choice exam (580)'
+              },
+              {
+                value: 'oral',
+                text: 'Oral exam (653)'
+              },
+              {
+                value: 'portfolio',
+                text: 'Portfolio of evidence (3,301)'
+              },
+              {
+                value: 'practical-demo',
+                text: 'Practical demonstration or assignment (1,316)'
+              },
+              {
+                value: 'practical-exam',
+                text: 'Practical exam (538)'
+              }
             ]
             }) }}
           </div>

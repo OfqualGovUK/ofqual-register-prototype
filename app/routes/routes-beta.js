@@ -93,6 +93,21 @@ module.exports = function (router) {
    res.render('/' + version + '/search-qualifications/search', { 'version': version })
  })
 
+ router.all('/' + version + '/search-qualifications/qualification-search-pearson', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-search-pearson', { 'version': version })
+ })
+
+ router.all('/' + version + '/search-qualifications/qualification-details', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-details', { 'version': version })
+ })
+
+ router.all('/' + version + '/search-qualifications/qualification-details-full-fieldset', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-details-full-fieldset', { 'version': version })
+ })
+
 //---------------------- Application error pages -------------------------------//
 
 router.all('/' + version + '/page-not-found-error', function (req,res)
