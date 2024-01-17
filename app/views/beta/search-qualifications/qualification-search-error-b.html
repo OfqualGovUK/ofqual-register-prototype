@@ -22,6 +22,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
+
 {% set searchQuery = "Paersoon" %}
 {% set searchTerm = "Search results – '" + searchQuery + "'" %}
 
@@ -31,18 +32,6 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
   <div class="govuk-width-container">
     <div class="govuk-grid-column-two-thirds"></div>
 
-    {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-    {{ govukErrorSummary({
-      titleText: "There is a problem",
-      errorList: [
-        {
-          text: "There are no results for this search query – you should adjust your search query or filters",
-          href: "#keywords-error"
-        }
-      ]
-    }) }}
-
     {% set formaction = "/" + version + "/search-qualifications/qualification-search" %}
 
     <h1 class="govuk-heading-l">Qualification search</h1>
@@ -51,14 +40,12 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
       <form action="{{ formaction }}" method="get" novalidate="" role="search">
 
 
-        <div class="govuk-form-group govuk-form-group--error">
+        <div class="govuk-form-group">
           <label class="govuk-label app-search__label govuk-label--s" for="keywords">
             Search for a qualification
           </label>
-          <p id="keywords-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error: </span>There are no results for this search query
-          </p>
-          <input class="govuk-input app-search__input govuk-input--error" id="selected-qualification" name="selected-qualification" type="search" value="{{ searchQuery }}" autocomplete="on">
+
+          <input class="govuk-input app-search__input" id="selected-qualification" name="selected-qualification" type="search" value="{{ searchQuery }}" autocomplete="on">
 
         </div>
 
@@ -2410,7 +2397,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 
   <div class="govuk-grid-column-two-thirds">
     <div class="app-application-cards" aria-live="polite">
-      <h2 class="govuk-heading-l">No results found</h2>
+      <h2 class="govuk-heading-m">No results found</h2>
       <div class="govuk-body">There are no results for this search query. You should try adjusting your query or the filters selected.</div>
     </div>
   </div>

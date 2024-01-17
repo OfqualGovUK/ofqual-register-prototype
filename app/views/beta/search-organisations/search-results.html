@@ -28,43 +28,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-        {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+      <h1 class="govuk-heading-m">{{ searchTerm }}</h1>
 
-        {{ govukInput({
-          label: {
-            text: searchTerm,
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          id: "selected-organisation",
-          name: "selected-organisation",
-          value: searchQuery
-        }) }}
+      {% set formaction = "/" + version + "/search-organisations/search-results" %}
 
-        {{ govukButton({
-          text: "Search organisation"
-        }) }}
+      <div class="app-search govuk-!-margin-bottom-4">
+        <form action="{{ formaction }}" method="get" novalidate="">
+  
+  
+          <div class="govuk-form-group">
+            <label class="govuk-label app-search__label govuk-label--s" for="keywords">
+              Search for an organisation
+            </label>
+  
+            <input class="govuk-input app-search__input" id="selected-organisation" name="selected-organisation" type="search" value="{{ searchQuery }}">
+  
+          </div>
+  
+          <button class="govuk-button app-search__button" data-module="govuk-button">
+            Search
+          </button>
+        </form>
+      </div>
 
         <ul class="govuk-list govuk-list--spaced">
-          <li class="results-list-item">
-            <p class="govuk-body-!-margin-top-2"><a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="organisation-details">Pearson Education Ltd</a><br />
-              <span class="govuk-body-s">Pearson</p>
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-quarter">Ofqual status: </div>
-              <div class="govuk-grid-column-one-half">{{ govukTag({
-                text: "Recognised",
-                classes: "govuk-tag--green"
-              }) }}</div>
-            </div>
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-quarter">CCEA status: </div>
-              <div class="govuk-grid-column-one-half">{{ govukTag({
-                text: "Recognised",
-                classes: "govuk-tag--green"
-              }) }}</div>
-            </div>
-          </li>
           <li class="results-list-item">
             <p class="govuk-body-!-margin-top-2"><a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="organisation-details">Pearson EDI</a><br />
               <span class="govuk-body-s">Pearson EDI</p>
@@ -83,6 +70,24 @@
               }) }}</div>
             </div>
             </p>
+          </li>
+          <li class="results-list-item">
+            <p class="govuk-body-!-margin-top-2"><a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="organisation-details">Pearson Education Ltd</a><br />
+              <span class="govuk-body-s">Pearson</p>
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-quarter">Ofqual status: </div>
+              <div class="govuk-grid-column-one-half">{{ govukTag({
+                text: "Recognised",
+                classes: "govuk-tag--green"
+              }) }}</div>
+            </div>
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-quarter">CCEA status: </div>
+              <div class="govuk-grid-column-one-half">{{ govukTag({
+                text: "Recognised",
+                classes: "govuk-tag--green"
+              }) }}</div>
+            </div>
           </li>
           <li class="results-list-item">
             <p class="govuk-body-!-margin-top-2"><a class="govuk-link govuk-link--no-underline govuk-body govuk-!-font-weight-bold" href="organisation-details">Person Centred Awards</a><br />
