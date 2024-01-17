@@ -23,6 +23,21 @@ module.exports = function (router) {
     });
   });
 
+   // Download button on the search-organisations/organisation-details page triggers this
+   router.get('/download/download-org-results', (req, res) => {
+    // Path to the file you want to download
+    const filePath = 'app/data/org-search-results.csv';
+  
+    // Trigger the file download
+    res.download(filePath, 'org-search-results.csv', (err) => {
+      if (err) {
+        // Handle any error that occurred during the download
+        console.log('Error downloading file:', err);
+        res.status(500).send('Error downloading file');
+      }
+    });
+  });
+
   // Download button on the search-qualifications/search-results page triggers this
   router.get('/download/download-results', (req, res) => {
     // Path to the file you want to download
@@ -76,6 +91,11 @@ module.exports = function (router) {
     res.render('/' + version + '/search-organisations/search-error', { 'version': version })
   })
 
+  router.all('/' + version + '/search-organisations/search-error-b', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/search-error-b', { 'version': version })
+  })
+
  //---------------------- Routing Search Qualifications -------------------------------//
 
  router.all('/' + version + '/search-qualifications/qualification-search', function (req,res)
@@ -86,6 +106,11 @@ module.exports = function (router) {
  router.all('/' + version + '/search-qualifications/qualification-search-error', function (req,res)
  {
    res.render('/' + version + '/search-qualifications/qualification-search-error', { 'version': version })
+ })
+
+ router.all('/' + version + '/search-qualifications/qualification-search-error-b', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-search-error-b', { 'version': version })
  })
 
  router.all('/' + version + '/search-qualifications/search', function (req,res)
