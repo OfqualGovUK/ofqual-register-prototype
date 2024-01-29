@@ -2,14 +2,14 @@
   {% for qualType, qualTypeData in scopeData %}
     <li>
       <details>
-        <summary class="govuk-body" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-list" role="treeitem">
+        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-list" role="treeitem">
           {{ qualType }}
         </summary>
         <ul id="{{ qualType | stripSpace }}-list">
           {% for qualLevel, qualLevelData in qualTypeData %}
             <li>
               <details>
-                <summary class="govuk-body" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="treeitem">
+                <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="treeitem">
                   {{ qualLevel }}
                 </summary>
                 <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list"">
