@@ -1,0 +1,17 @@
+<ul class="ofq-tree" id="exclusion-tree" role="tree" aria-labelledby="exclusion-title">
+  {% for qualType, qualTypeData in exclusionData %}
+    <li>
+      <details>
+        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="x-{{ qualType | stripSpace }}-list" role="treeitem">
+          {{ qualType }}
+        </summary>
+        <ul id="x-{{ qualType | stripSpace }}-list">
+          {% for qualTitle in qualTypeData %}
+            <li class="govuk-body"><div role="treeitem">{{ qualTitle }}</div></li>
+
+          {% endfor %}
+        </ul>
+      </details>
+    </li>
+  {% endfor %}
+</ul>

@@ -6,9 +6,7 @@
   Organisation details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block header %}
-  {{ super() }}
-
+{% block beforeContent %}
   {{ govukPhaseBanner({
     tag: {
       text: "beta"
@@ -183,21 +181,23 @@
       <!-- Display scope of recognition -->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title" id="sor-title">Scope of recognition</h2>
+          <h2 class="govuk-summary-card__title" id="sor">Scope of recognition</h2>
         </div>
         <div class="govuk-summary-card__content">
+          {{ govukInsetText({
+            text: "This expandable list shows the types of qualifications, and subject areas or apprenticeship standards that Pearson is recognised to offer, or excluded from offering, as regulated qualifications."
+          }) }}
+          <h3 id="sor-title" class="govuk-heading-s">Pearson is recognised to award the following regulated qualifications</h3>
           {% include "/" + version + "/components/scope-of-recognition.html" %}
 
-          {% from "govuk/components/button/macro.njk" import govukButton %}
+          <h3 id="exclusion-title" class="govuk-heading-s">The following Pearson qualifications are not regulated</h3>
+          {% include "/" + version + "/components/recognition-exclusions.html" %}
 
+          {% from "govuk/components/button/macro.njk" import govukButton %}
           {{ govukButton({
-            text: "Download CSV file",
+            text: "Download scope of recognition CSV file",
             classes: "govuk-button--secondary",
             href: "/download/download-sor"
-          }) }}
-
-          {{ govukInsetText({
-            text: "This expandable list shows the types of qualifications, and subject areas or apprenticeship standards, Pearson is recognised to offer."
           }) }}
         </div>
       </div>

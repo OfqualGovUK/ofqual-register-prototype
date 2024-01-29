@@ -2,6 +2,7 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 
 // Load JSON data sources
 const scopeData = require('../data/pearson_sor.json');
+const exclusionData = require('../data/pearson_sor_exclusions.json');
 
 module.exports = function (router) {
   const version = 'beta'
@@ -73,7 +74,7 @@ module.exports = function (router) {
  
  router.all('/' + version + '/search-organisations/organisation-details', function (req,res)
   {
-    res.render('/' + version + '/search-organisations/organisation-details', { 'version': version, 'scopeData': scopeData })
+    res.render('/' + version + '/search-organisations/organisation-details', { 'version': version, 'scopeData': scopeData, 'exclusionData': exclusionData })
   })
 
   router.all('/' + version + '/search-organisations/search', function (req,res)

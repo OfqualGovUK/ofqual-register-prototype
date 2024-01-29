@@ -12,7 +12,7 @@
                 <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="treeitem">
                   {{ qualLevel }}
                 </summary>
-                <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list"">
+                <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list">
                   {% for qualDetail, qualDetailData in qualLevelData %}
                     {% for qualDetailItem in qualDetailData %}
                       <li class="govuk-body"><div role="treeitem">{{ qualDetailItem }}</div></li>
