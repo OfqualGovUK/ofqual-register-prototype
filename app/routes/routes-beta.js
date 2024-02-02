@@ -60,6 +60,10 @@ module.exports = function (router) {
     res.render(version + '/start', { 'version': version })
   }) 
 
+  router.all('/' + version + '/start-ni', function (req, res) {
+    res.render(version + '/start-ni', { 'version': version })
+  }) 
+
   router.all('/' + version + '/', function (req, res) {
     res.render(version + '/start', { 'version': version })
   }) 
@@ -114,6 +118,11 @@ module.exports = function (router) {
    res.render('/' + version + '/search-qualifications/qualification-search-error-b', { 'version': version })
  })
 
+ router.all('/' + version + '/search-qualifications/qualification-search-ni', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-search-ni', { 'version': version })
+ })
+
  router.all('/' + version + '/search-qualifications/search', function (req,res)
  {
    res.render('/' + version + '/search-qualifications/search', { 'version': version })
@@ -134,6 +143,10 @@ module.exports = function (router) {
    res.render('/' + version + '/search-qualifications/qualification-details-full-fieldset', { 'version': version })
  })
 
+ router.all('/' + version + '/qualification-details-ni-funding', function (req,res)
+ {
+   res.render('/' + version + '/qualification-details-ni-funding', { 'version': version })
+ })
 //---------------------- Application error pages -------------------------------//
 
 router.all('/' + version + '/page-not-found-error', function (req,res)

@@ -9,7 +9,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% block beforeContent %}
 {{ govukPhaseBanner({
 tag: {
-text: "alpha"
+text: "beta"
 },
 html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
 }) }}
@@ -76,11 +76,46 @@ text: "Back"
         </div>
       </div>
 
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Assessment method</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Portfolio of evidence</a></li>
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/_unchecked"><span
+              class="govuk-visually-hidden">Remove this filter</span> Practical demonstration or<br> assignment</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Status</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Available</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Funding</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> Northern Ireland</a></li>
+
+      </ul>
+
       <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Awarding organisation</h3>
       <ul class="app-filter-tags">
 
         <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
               class="govuk-visually-hidden">Remove this filter</span> Pearson</a></li>
+
+      </ul>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Sector subject area</h3>
+      <ul class="app-filter-tags">
+
+        <li><a class="app-filter__tag" href="/applications/remove-cycle-filter/2022 to 2023"><span
+              class="govuk-visually-hidden">Remove this filter</span> 7.2 – Warehousing and distribution</a></li>
 
       </ul>
 
@@ -119,7 +154,8 @@ text: "Back"
             items: [
               {
                 value: 'available',
-                text: 'Available (936)'
+                text: 'Available (936)',
+                checked: true
               },
               {
                 value: 'not-awarded',
@@ -451,13 +487,14 @@ text: "Back"
             name: 'filter-qual-sub-level',
             classes: "govuk-checkboxes--small",
             fieldset: {
-            legend: {
-            }
+              legend: {
+              }
             },
             items: [
               {
                 value: 'northern-ireland',
-                text: 'Northern Ireland'
+                text: 'Northern Ireland',
+                checked: true
               }
             ]
           }) }}
@@ -1411,8 +1448,7 @@ text: "Back"
               },
               {
               value: 'Pearson Education Ltd',
-              text: 'Pearson Education Ltd (544)',
-              checked: true
+              text: 'Pearson Education Ltd (544)'
               },
               {
               value: 'PIABC Ltd',
@@ -1958,7 +1994,8 @@ text: "Back"
               },
               {
                 text: '7.2 - Warehousing and distribution',
-                value: '7.2'
+                value: '7.2',
+                checked: true
               },
               {
                 text: '7.3 - Service enterprises',
@@ -2440,7 +2477,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2474,7 +2511,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2508,7 +2545,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2541,7 +2578,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2574,7 +2611,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2607,7 +2644,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2640,7 +2677,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2673,7 +2710,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2706,7 +2743,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2739,7 +2776,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details">View qualification details</a>
+                <a href="qualification-details-ni-funding">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>

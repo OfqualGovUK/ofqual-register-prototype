@@ -9,7 +9,7 @@ Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% block beforeContent %}
 {{ govukPhaseBanner({
 tag: {
-text: "alpha"
+text: "beta"
 },
 html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
 }) }}
@@ -448,6 +448,44 @@ text: "Back"
               {
                 value: 'entry 123',
                 text: 'Entry 1,2,3 (3)'
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="accordionExpander">
+      <div class="accordionItem">
+       <h3 class="accordionTitle" id="funding">
+         <span class="govuk-visually-hidden">Select filters for </span><button class="accordionItem__button" type="button">Funding</button>
+          <div class="selected-counter"><span id="selected">0</span> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+            <path
+              d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+            </path>
+          </svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+            class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+            <path
+              d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+            </path>
+          </svg>
+        </h3>
+        <div class="accordionContent">
+          {{ govukCheckboxes({
+            idPrefix: 'filter-funding',
+            name: 'filter-qual-sub-level',
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+            legend: {
+            }
+            },
+            items: [
+              {
+                value: 'northern-ireland',
+                text: 'Northern Ireland'
               }
             ]
           }) }}
@@ -2419,8 +2457,8 @@ text: "Back"
         <header class="app-application-card__header">
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation2" name="organisation" type="checkbox" value="2">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation2">
+              <input class="govuk-checkboxes__input" id="organisation1" name="organisation" type="checkbox" value="1">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation1">
                 Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles
             </div>
           </div>
@@ -2430,7 +2468,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="qualification-details.html">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2443,7 +2481,6 @@ text: "Back"
               <dd class="govuk-body-s govuk-!-font-size-16">
                 Level 2
               </dd>
-              <dt class="govuk-visually-hidden">Level</dt>
             </dl>
           </div>
         </div>
@@ -2465,7 +2502,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2499,7 +2536,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2532,7 +2569,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2565,7 +2602,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2598,7 +2635,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2631,7 +2668,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2664,7 +2701,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2697,7 +2734,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
@@ -2730,7 +2767,7 @@ text: "Back"
           <div class="govuk-grid-column-two-thirds">
             <dl class="app-application-card__list">
               <dd class="govuk-body-m">
-                <a href="">View qualification details</a>
+                <a href="qualification-details">View qualification details</a>
               </dd>
               <br>
               <dt class="govuk-visually-hidden">Availability</dt>
