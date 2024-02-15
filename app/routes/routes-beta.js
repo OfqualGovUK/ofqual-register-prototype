@@ -57,20 +57,20 @@ module.exports = function (router) {
   //---------------------- Routing Start ---------------------------------//
    
   router.all('/' + version + '/start', function (req, res) {
-    res.render(version + '/start', { 'version': version })
+    res.render('/' + version + '/start', { 'version': version })
   }) 
 
   router.all('/' + version + '/start-ni', function (req, res) {
-    res.render(version + '/start-ni', { 'version': version })
-  }) 
+    res.render('/' + version + '/start-ni', { 'version': version })
+  })
+  
+  router.all('/' + version + '/home-services', function (req, res) {
+    res.render('/' + version + '/home-services', { 'version': version })
+  })
 
   router.all('/' + version + '/', function (req, res) {
-    res.render(version + '/start', { 'version': version })
+    res.render('/' + version + '/start', { 'version': version })
   }) 
-    
-  router.all('/' + version, function (req, res) {
-    res.render(version + '/start', { 'version': version })
-  })
 
  //---------------------- Routing Search Organisations -------------------------------//
   

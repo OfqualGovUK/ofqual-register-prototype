@@ -17,3 +17,15 @@
 .ofq-tree-parent-node {
     cursor: pointer;
 }
+
+.ofq-action-buttons--list {
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-inline-start: 0px;
+}
+
+.ofq-action-buttons--item {
+    display: inline-block;
+    list-style: none;
+    padding-right: 8px;
+}

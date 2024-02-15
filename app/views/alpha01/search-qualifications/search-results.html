@@ -1,5 +1,47 @@
 {% extends "layouts/main.html" %}
 
+{% block head %}
+
+{{ super() }}
+
+<!-- Hacky fix for broken MoJ components -->
+<style>
+  .moj-filter-layout {
+    @include govuk-clearfix;
+  }
+
+  .moj-filter-layout__filter {
+    box-shadow: inset 0 0 0 1px govuk-colour("light-grey"); // Extends the inset border left full height of the filters on mobile
+
+    @include govuk-media-query(desktop) {
+      float: left;
+      margin-right: govuk-spacing(7);
+      max-width: 385px;
+      min-width: 260px;
+      width: 100%;
+    }
+  }
+
+  // Filters with javascript enabled
+  @include govuk-media-query($until: desktop) {
+
+    .js-enabled .moj-filter-layout__filter {
+      background-color: govuk-colour("white");
+      position: fixed; top: 0; right: 0; bottom: 0;
+      overflow-y: scroll;
+      z-index: 100;
+    }
+
+  }
+
+  .moj-filter-layout__content {
+    overflow: hidden;
+    overflow-x: auto;
+  }
+</style>
+
+{% endblock %}
+
 {% block pageTitle %}
   Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -24,383 +66,371 @@
 {%- from "govuk/components/checkboxes/macro.njk" import govukCheckboxes -%}
 {%- from "govuk/components/input/macro.njk" import govukInput -%}
 {%- from "govuk/components/table/macro.njk" import govukTable -%}
-{%- from "moj/components/filter/macro.njk" import mojFilter -%}
-{%- from "moj/components/button-menu/macro.njk" import mojButtonMenu -%}
 
-{% set filterOptionsHtml %}
-
+<div>
   {{ govukInput({
-    id: 'selected-qualification',
-    name: 'selected-qualification',
+    id: 'search-qualification',
+    name: 'search-qualification',
     label: {
       text: 'Search for qualification',
       classes: 'govuk-label--m'
     },
-    value: data['selected-qualification']
+    value: data['search-qualification']
   }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: 'assessment-method',
-    name: 'assessment-method',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Assessment method',
-        classes: 'govuk-fieldset__legend--m'
-      }
-    },
-    items: [
-      {
-        value: 'portfolio',
-        text: 'Portfolio of evidence (3301)'
-      },
-      {
-        value: 'exam',
-        text: 'Written exam (1386)'
-      },
-      {
-        value: 'practical-demo',
-        text: 'Practical demonstration or assignment (1316)'
-      },
-      {
-        value: 'coursework',
-        text: 'Coursework (1078)'
-      },
-      {
-        value: 'controlled-assessment',
-        text: 'Task-based controlled assessment (810)'
-      },
-      {
-        value: 'oral',
-        text: 'Oral exam (653)'
-      },
-      {
-        value: 'multiple-choice',
-        text: 'Multiple choice exam (580)'
-      },
-      {
-        value: 'E-assessment',
-        text: 'E-assessment (550)'
-      },
-      {
-        value: 'practical-exam',
-        text: 'Practical exam (538)'
-      },
-      {
-        value: 'aural',
-        text: 'Aural exam (492)'
-      }
-    ]
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: 'ao',
-    name: 'ao',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Awarding organisation',
-        classes: 'govuk-fieldset__legend--m'
-      }
-    },
-    items: [
-      {
-        value: 'aqa',
-        text: 'AQA (936)'
-      },
-      {
-        value: 'ocr',
-        text: 'OCR (251)'
-      },
-      {
-        value: 'pearson',
-        text: 'Pearson (3877)'
-      },
-      {
-        value: 'wjec',
-        text: 'WJEC-Eduqas (42)'
-      }
-    ]
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: 'status',
-    name: 'status',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Status',
-        classes: 'govuk-fieldset__legend--m'
-      }
-    },
-    items: [
-      {
-        value: 'available',
-        text: 'Available (936)'
-      },
-      {
-        value: 'unavailable',
-        text: 'Unavailable to new learners (251)'
-      },
-      {
-        value: 'not-awarded',
-        text: 'No longer awarded (3877)'
-      },
-      {
-        value: 'not-yet-available',
-        text: 'Not available yet (42)'
-      }
-    ]
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: 'ssa',
-    name: 'ssa',
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: 'Sector subject area',
-        classes: 'govuk-fieldset__legend--m'
-      }
-    },
-    items: [ 
-      {
-        value: '1',
-        text: 'Building and construction (402)'
-      },
-      {
-        value: '2',
-        text: 'Foundations for learning and life (346)'
-      },
-      {
-        value: '3',
-        text: 'Engineering (332)'
-      },
-      {
-        value: '4',
-        text: 'Crafts, creative arts and design (320)'
-      },
-      {
-        value: '5',
-        text: 'Health and social care (291)'
-      },
-      {
-        value: '6',
-        text: 'Other languages, literature and culture (268)'
-      },
-      {
-        value: '7',
-        text: 'Business management (241)'
-      },
-      {
-        value: '8',
-        text: 'Public services (220)'
-      },
-      {
-        value: '9',
-        text: 'Sport, leisure and recreation (201)'
-      },
-      {
-        value: '10',
-        text: 'Hospitality and catering (191)'
-      },
-      {
-        value: '11',
-        text: 'Performing arts (182)'
-      },
-      {
-        value: '12',
-        text: 'ICT practitioners (167)'
-      },
-      {
-        value: '13',
-        text: 'Science (155)'
-      },
-      {
-        value: '14',
-        text: 'Transportation operations and maintenance (141)'
-      },
-      {
-        value: '15',
-        text: 'Administration (131)'
-      },
-      {
-        value: '16',
-        text: 'Service enterprises (131)'
-      },
-      {
-        value: '17',
-        text: 'Preparation for work (111)'
-      },
-      {
-        value: '18',
-        text: 'Media and communication (106)'
-      },
-      {
-        value: '19',
-        text: 'Manufacturing technologies (96)'
-      },
-      {
-        value: '20',
-        text: 'Child development and well-being (86)'
-      },
-      {
-        value: '21',
-        text: 'Retailing and wholesaling (85)'
-      },
-      {
-        value: '22',
-        text: 'Travel and tourism (85)'
-      },
-      {
-        value: '23',
-        text: 'Agriculture (83)'
-      },
-      {
-        value: '24',
-        text: 'Animal care and veterinary science (73)'
-      },
-      {
-        value: '25',
-        text: 'Horticulture and forestry (70)'
-      },
-      {
-        value: '26',
-        text: 'Accounting and finance (62)'
-      },
-      {
-        value: '27',
-        text: 'Languages, literature and culture of the British Isles (60)'
-      },
-      {
-        value: '28',
-        text: 'Teaching and lecturing (60)'
-      },
-      {
-        value: '29',
-        text: 'Direct learning support (59)'
-      },
-      {
-        value: '30',
-        text: 'ICT for users (59)'
-      },
-      {
-        value: '31',
-        text: 'Mathematics and statistics (59)'
-      },
-      {
-        value: '32',
-        text: 'Warehousing and distribution (45)'
-      },
-      {
-        value: '33',
-        text: 'Marketing and sales (35)'
-      },
-      {
-        value: '34',
-        text: 'Environmental conservation (29)'
-      },
-      {
-        value: '35',
-        text: 'History (23)'
-      },
-      {
-        value: '36',
-        text: 'Geography (22)'
-      },
-      {
-        value: '37',
-        text: 'Theology and religious studies (19)'
-      },
-      {
-        value: '38',
-        text: 'Nursing and subjects and vocations allied to medicine (17)'
-      },
-      {
-        value: '39',
-        text: 'Economics (12)'
-      },
-      {
-        value: '40',
-        text: 'Law and legal services (11)'
-      },
-      {
-        value: '41',
-        text: 'Medicine and Dentistry (7)'
-      },
-      {
-        value: '42',
-        text: 'Politics (6)'
-      },
-      {
-        value: '43',
-        text: 'Publishing and information services (2)'
-      },
-      {
-        value: '44',
-        text: 'Sociology and social policy (2)'
-      },
-      {
-        value: '45',
-        text: 'Archaeology and archaeological sciences (1)'
-      },
-      {
-        value: '46',
-        text: 'Architecture (1)'
-      },
-      {
-        value: '47',
-        text: 'Urban, rural and regional planning (1)'
-      }
-    ]
-  }) }}
-
-{% endset %}
-
+</div>
 
 <div class="moj-filter-layout">
 
+  <div class="moj-action-bar__filter"></div>
   <div class="moj-filter-layout__filter">
 
-    {{ mojFilter({
-      heading: {
-      text: 'Filter results'
+    {{ govukCheckboxes({
+      idPrefix: 'assessment-method',
+      name: 'assessment-method',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Assessment method',
+          classes: 'govuk-fieldset__legend--m'
+        }
       },
-      selectedFilters: {
-      },
-      clearLink: {
-        text: 'Clear filters'
-      },
-      optionsHtml: filterOptionsHtml
+      items: [
+        {
+          value: 'portfolio',
+          text: 'Portfolio of evidence (3301)'
+        },
+        {
+          value: 'exam',
+          text: 'Written exam (1386)'
+        },
+        {
+          value: 'practical-demo',
+          text: 'Practical demonstration or assignment (1316)'
+        },
+        {
+          value: 'coursework',
+          text: 'Coursework (1078)'
+        },
+        {
+          value: 'controlled-assessment',
+          text: 'Task-based controlled assessment (810)'
+        },
+        {
+          value: 'oral',
+          text: 'Oral exam (653)'
+        },
+        {
+          value: 'multiple-choice',
+          text: 'Multiple choice exam (580)'
+        },
+        {
+          value: 'E-assessment',
+          text: 'E-assessment (550)'
+        },
+        {
+          value: 'practical-exam',
+          text: 'Practical exam (538)'
+        },
+        {
+          value: 'aural',
+          text: 'Aural exam (492)'
+        }
+      ]
     }) }}
-
+  
+    {{ govukCheckboxes({
+      idPrefix: 'ao',
+      name: 'ao',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Awarding organisation',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'aqa',
+          text: 'AQA (936)'
+        },
+        {
+          value: 'ocr',
+          text: 'OCR (251)'
+        },
+        {
+          value: 'pearson',
+          text: 'Pearson (3877)'
+        },
+        {
+          value: 'wjec',
+          text: 'WJEC-Eduqas (42)'
+        }
+      ]
+    }) }}
+  
+    {{ govukCheckboxes({
+      idPrefix: 'status',
+      name: 'status',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Status',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [
+        {
+          value: 'available',
+          text: 'Available (936)'
+        },
+        {
+          value: 'unavailable',
+          text: 'Unavailable to new learners (251)'
+        },
+        {
+          value: 'not-awarded',
+          text: 'No longer awarded (3877)'
+        },
+        {
+          value: 'not-yet-available',
+          text: 'Not available yet (42)'
+        }
+      ]
+    }) }}
+  
+    {{ govukCheckboxes({
+      idPrefix: 'ssa',
+      name: 'ssa',
+      classes: "govuk-checkboxes--small",
+      fieldset: {
+        legend: {
+          text: 'Sector subject area',
+          classes: 'govuk-fieldset__legend--m'
+        }
+      },
+      items: [ 
+        {
+          value: '1',
+          text: 'Building and construction (402)'
+        },
+        {
+          value: '2',
+          text: 'Foundations for learning and life (346)'
+        },
+        {
+          value: '3',
+          text: 'Engineering (332)'
+        },
+        {
+          value: '4',
+          text: 'Crafts, creative arts and design (320)'
+        },
+        {
+          value: '5',
+          text: 'Health and social care (291)'
+        },
+        {
+          value: '6',
+          text: 'Other languages, literature and culture (268)'
+        },
+        {
+          value: '7',
+          text: 'Business management (241)'
+        },
+        {
+          value: '8',
+          text: 'Public services (220)'
+        },
+        {
+          value: '9',
+          text: 'Sport, leisure and recreation (201)'
+        },
+        {
+          value: '10',
+          text: 'Hospitality and catering (191)'
+        },
+        {
+          value: '11',
+          text: 'Performing arts (182)'
+        },
+        {
+          value: '12',
+          text: 'ICT practitioners (167)'
+        },
+        {
+          value: '13',
+          text: 'Science (155)'
+        },
+        {
+          value: '14',
+          text: 'Transportation operations and maintenance (141)'
+        },
+        {
+          value: '15',
+          text: 'Administration (131)'
+        },
+        {
+          value: '16',
+          text: 'Service enterprises (131)'
+        },
+        {
+          value: '17',
+          text: 'Preparation for work (111)'
+        },
+        {
+          value: '18',
+          text: 'Media and communication (106)'
+        },
+        {
+          value: '19',
+          text: 'Manufacturing technologies (96)'
+        },
+        {
+          value: '20',
+          text: 'Child development and well-being (86)'
+        },
+        {
+          value: '21',
+          text: 'Retailing and wholesaling (85)'
+        },
+        {
+          value: '22',
+          text: 'Travel and tourism (85)'
+        },
+        {
+          value: '23',
+          text: 'Agriculture (83)'
+        },
+        {
+          value: '24',
+          text: 'Animal care and veterinary science (73)'
+        },
+        {
+          value: '25',
+          text: 'Horticulture and forestry (70)'
+        },
+        {
+          value: '26',
+          text: 'Accounting and finance (62)'
+        },
+        {
+          value: '27',
+          text: 'Languages, literature and culture of the British Isles (60)'
+        },
+        {
+          value: '28',
+          text: 'Teaching and lecturing (60)'
+        },
+        {
+          value: '29',
+          text: 'Direct learning support (59)'
+        },
+        {
+          value: '30',
+          text: 'ICT for users (59)'
+        },
+        {
+          value: '31',
+          text: 'Mathematics and statistics (59)'
+        },
+        {
+          value: '32',
+          text: 'Warehousing and distribution (45)'
+        },
+        {
+          value: '33',
+          text: 'Marketing and sales (35)'
+        },
+        {
+          value: '34',
+          text: 'Environmental conservation (29)'
+        },
+        {
+          value: '35',
+          text: 'History (23)'
+        },
+        {
+          value: '36',
+          text: 'Geography (22)'
+        },
+        {
+          value: '37',
+          text: 'Theology and religious studies (19)'
+        },
+        {
+          value: '38',
+          text: 'Nursing and subjects and vocations allied to medicine (17)'
+        },
+        {
+          value: '39',
+          text: 'Economics (12)'
+        },
+        {
+          value: '40',
+          text: 'Law and legal services (11)'
+        },
+        {
+          value: '41',
+          text: 'Medicine and Dentistry (7)'
+        },
+        {
+          value: '42',
+          text: 'Politics (6)'
+        },
+        {
+          value: '43',
+          text: 'Publishing and information services (2)'
+        },
+        {
+          value: '44',
+          text: 'Sociology and social policy (2)'
+        },
+        {
+          value: '45',
+          text: 'Archaeology and archaeological sciences (1)'
+        },
+        {
+          value: '46',
+          text: 'Architecture (1)'
+        },
+        {
+          value: '47',
+          text: 'Urban, rural and regional planning (1)'
+        }
+      ]
+    }) }}
   </div>
 
   <div class="moj-filter-layout__content">
 
-  <div class="moj-action-bar">
-    
-      <div class="moj-action-bar__filter"></div>
-      {% set compareURL = "/" + version + "/routing/compare-quals-route?ixVariant=compareQuals1" %}
-      {{ 
-        mojButtonMenu({
-        items: [
-        {
-          text: 'Compare selected',
-          classes: 'govuk-button--primary',
-          href: compareURL
-        },
-        {
-          text: 'Save selected',
-          classes: 'govuk-button--secondary'
-        },
-        {
-          text: 'Download results',
-          classes: 'govuk-button--secondary',
-          href: '/download/download-results'
-        }]
-      }) }}
+    <div>
 
+      {% set compareURL = "/" + version + "/routing/compare-quals-route?ixVariant=compareQuals1" %}
+      
+      <ul id="action-buttons-row" class="ofq-action-buttons--list">
+        <li class="ofq-action-buttons--item">
+          {{ govukButton({
+            text: 'Compare selected',
+            classes: 'govuk-button--primary',
+            href: compareURL
+          }) }}
+        </li>
+        <li class="ofq-action-buttons--item">
+          {{ govukButton({
+            text: 'Save selected',
+            classes: 'govuk-button--secondary ofq-button-row-element',
+            href: '#'
+          }) }}
+        </li>
+        <li class="ofq-action-buttons--item">
+          {{ govukButton({
+            text: 'Download results',
+            classes: 'govuk-button--secondary ofq-button-row-element',
+            href: '/download/download-results'
+          }) }}
+        </li>
+      </ul>    
+      
   </div>
 
   <div class="moj-scrollable-pane">

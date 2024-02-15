@@ -2432,21 +2432,22 @@ text: "Back"
 
   <div class="govuk-grid-column-two-thirds">
 
-    {{
-    mojButtonMenu({
-    items: [
-    {
-    text: 'Compare selected',
-    classes: 'govuk-button--primary',
-    href: '../compare-results'
-    },
-    {
-      text: 'Download results as CSV',
-      classes: 'govuk-button--secondary',
-      href: '/download/download-results'
-      }
-    ]
-    }) }}
+    <ul id="action-buttons-row" class="ofq-action-buttons--list">
+      <li class="ofq-action-buttons--item">
+        {{ govukButton({
+          text: 'Compare selected',
+          classes: 'govuk-button--primary',
+          href: '../compare-results'
+        }) }}
+      </li>
+      <li class="ofq-action-buttons--item">
+        {{ govukButton({
+          text: 'Download results as CSV',
+          classes: 'govuk-button--secondary ofq-button-row-element',
+          href: '/download/download-results'
+        }) }}
+      </li>
+    </ul>
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
