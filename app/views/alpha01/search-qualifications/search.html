@@ -29,27 +29,17 @@
     <div class="govuk-grid-column-two-thirds">
       <search>
         <form action="{{ formaction }}" method="post">
-
-          {{ xGovukAutocomplete({
-            id: "selected-qualification",
-            name: "selected-qualification",
-            allowEmpty: false,
-            showAllValues: true,
-            minLength: 2,
-            attributes: {
-              role: 'search'
-            },
-            hint: {
-              text: "Start typing to show a list of matching qualifications"
-            },
+          {{ govukInput({
             label: {
               classes: "govuk-label--l",
               isPageHeading: true,
-              text: "Search for a qualification"
+              text: "Find a regulated awarding organisation"
             },
-            items: qualsAutoComplete
+            id: "selected-organisation",
+            name: "selected-organisation",
+            allowEmpty: false,
+            autocomplete: "search"
           }) }}
-
           {{ govukButton({
             text: "Search qualifications"
           }) }}
