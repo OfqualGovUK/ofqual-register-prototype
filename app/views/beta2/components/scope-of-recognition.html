@@ -1,0 +1,29 @@
+<ul class="ofq-tree" id="scope-tree" role="tree" aria-labelledby="sor-title">
+  {% for qualType, qualTypeData in scopeData %}
+    <li>
+      <details>
+        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-list" role="treeitem">
+          {{ qualType }}
+        </summary>
+        <ul id="{{ qualType | stripSpace }}-list">
+          {% for qualLevel, qualLevelData in qualTypeData %}
+            <li>
+              <details>
+                <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="treeitem">
+                  {{ qualLevel }}
+                </summary>
+                <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list">
+                  {% for qualDetail, qualDetailData in qualLevelData %}
+                    {% for qualDetailItem in qualDetailData %}
+                      <li class="govuk-body"><div role="treeitem">{{ qualDetailItem }}</div></li>
+                    {% endfor %}
+                  {% endfor %}
+                </ul>
+              </details>
+            </li>
+          {% endfor %}
+        </ul>
+      </details>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{# Alter the service title to match the journey #}
+{% set serviceName = "Find a regulated qualification" %}
+
+{# Set the status of the search filters #}
+{% set amPortfolio = "" %}
+{% set amPractical = "" %}
+{% set stAvailable = "" %}
+{% set aoPearson = "" %}
+{% set saWarehouse = "" %}
+{% set fnNI = "" %}
+{% set showfnNI = "" %}
+{% set showfnEN = "" %}
+{% set fnEN23 = "" %}
+{% set fnEN24 = "" %}
+{% set fnEN25 = "" %}
+
+{% block pageTitle %}
+Search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  <nav>
+  {{ govukBackLink({
+    href: "javascript:window.history.back()",
+    text: "Back"
+  }) }}
+  </nav>
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set searchQuery = "Paersoon" %}
+{% set searchTerm = "Search results – '" + searchQuery + "'" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-column-two-thirds"></div>
+
+    {% set formaction = "/" + version + "/search-qualifications/qualification-search" %}
+
+    <h1 class="govuk-heading-l">Qualification search</h1>
+
+    <search class="app-search govuk-!-margin-bottom-4">
+      <form action="{{ formaction }}" method="get" novalidate="" role="search">
+
+
+        <div class="govuk-form-group">
+          <label class="govuk-label app-search__label govuk-label--s" for="keywords">
+            Search for a qualification
+          </label>
+
+          <input class="govuk-input app-search__input" id="selected-qualification" name="selected-qualification" type="search" value="{{ searchQuery }}" autocomplete="on">
+
+        </div>
+
+        <button class="govuk-button app-search__button" data-module="govuk-button">
+          Search
+        </button>
+
+
+      </form>
+    </search>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break">
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    {% include "/" + version + "/components/filters.html" %}
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    <div class="app-application-cards" aria-live="polite">
+      <h2 class="govuk-heading-m">No results found</h2>
+      <div class="govuk-body">There are no results for this search query. You should try adjusting your query or the filters selected.</div>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    const accordionTitles = document.querySelectorAll(".accordionTitle");
+
+    accordionTitles.forEach(accordionTitle => {
+      accordionTitle.addEventListener("click", () => {
+        accordionTitle.classList.toggle("is-open")
+      })
+    })
+
+    const accordionIcons = document.querySelectorAll(".accordionItem");
+
+    accordionIcons.forEach(accordionIcon => {
+      accordionIcon.addEventListener("click", () => {
+        accordionIcon.classList.toggle("is-open")
+      })
+    })
+
+
+    const selectedElm = document.getElementById('selected');
+
+    function showChecked() {
+      selectedElm.innerHTML = document.querySelectorAll('input[name=assessment-method]:checked').length;
+    }
+
+    document.querySelectorAll("input[name=assessment-method]").forEach(i => {
+      i.onclick = () => showChecked();
+    });
+
+
+  </script>
+
+
+  {% endblock %}

@@ -63,6 +63,62 @@
           },
           {
             key: {
+              text: "Qualification level"
+            },
+            value: {
+              text: "Entry"
+            }
+          },
+          {
+            key: {
+              text: "Qualification sub-level"
+            },
+            value: {
+              text: "Entry 3"
+            }
+          },
+          {
+            key: {
+              text: "Qualification number"
+            },
+            value: {
+              text: "600/1946/3"
+            }
+          },
+          {
+            key: {
+              text: "Guided learning hours"
+            },
+            value: {
+              text: "120"
+            }
+          },
+          {
+            key: {
+              text: "Total qualification time"
+            },
+            value: {
+              text: "360"
+            }
+          },
+          {
+            key: {
+              text: "Assessment methods"
+            },
+            value: {
+              html: "Oral examination,<br/>Practical demonstration or assignment,<br/>Written examination"
+            }
+          },
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
+            }
+          },
+          {
+            key: {
               text: "Sector subject area"
             },
             value: {
@@ -71,18 +127,18 @@
           },
           {
             key: {
-              text: "Qualification level"
+              text: "Grading scale"
             },
             value: {
-              text: "Level 2"
+              text: "Pass, Merit, Distinction"
             }
           },
           {
             key: {
-              text: "Availability"
+              text: "End-point assessment standard"
             },
             value: {
-              html: '<div class="govuk-label__green">Available to learners</div>'
+              text: "Engineering operative (ST0537)"
             }
           }
         ]
@@ -112,120 +168,43 @@
       {{ govukSummaryList({
         card: {
           title: {
-            text: "Qualification details"
+            text: "Further details"
           },
           attributes: {
-            id: "qual-details"
+            id: "details"
           }
         },
         rows: [
-          {
-            key: {
-              text: "Qualification number"
-            },
-            value: {
-              text: "610/3185/9"
-            }
-          },
-          {
-            key: {
-              text: "EPA standard code"
-            },
-            value: {
-              text: "ST0259"
-            }
-          },
-          {
-            key: {
-              text: "EPA standard title"
-            },
-            value: {
-              text: "Supply chain warehouse operative"
-            }
-          },
           {
             key: {
               text: "Grading type"
             },
             value: {
-              text: "Graded"
+              text: 'Pass or Fail'
             }
           },
           {
             key: {
-              text: "Grading scale"
+              text: "UCAS points"
             },
             value: {
-              text: "Pass/Distinction"
+              text: "30"
             }
           },
           {
             key: {
-              text: "Standard qualification fee"
+              text: "Specialisms"
             },
             value: {
-              text: "£245"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#info-fees",
-                  text: "information on fees"
-                }
-              ]
+              text: "Construction rigging"
             }
           },
           {
             key: {
-              text: "Assessment methods"
+              text: "Academic entry code"
             },
             value: {
-              text: "Oral examination, practical demonstration or assignment, written examination"
-            }
-          },
-          {
-            key: {
-              text: "Specification"
-            },
-            value: {
-              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            text: "Regulatory details"
-          },
-          attributes: {
-            id: "reg-details"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Regulation start date"
-            },
-            value: {
-              html: '<time datetime="2023-08-30" lang="en">30 August 2023</time>'
-            }
-          },
-          {
-            key: {
-              text: "Start date"
-            },
-            value: {
-              html: '<time datetime="2023-09-01" lang="en">1 September 2023</time>'
-            }
-          },
-          {
-            key: {
-              text: "National availability"
-            },
-            value: {
-              html: "England only"
+              text: "7201"
             }
           }
         ]
@@ -246,11 +225,156 @@
               text: "Funding in England"
             },
             value: {
-              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=61031859&Status=All">Check if this qualification is funded in England</a>'
+              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=60019463&Status=All">Check if this qualification is funded in England</a>'
+            }
+          },
+          {
+            key: {
+              text: "Standard qualification fee"
+            },
+            value: {
+             text: "£245"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#info-fees",
+                  text: "information on fees"
+                }
+              ]
             }
           }
         ]
       }) }}
+  
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Availability"
+          },
+          attributes: {
+            id: "availability"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: '<div class="govuk-label__green">Available to learners</div>'
+            }
+          },
+          {
+            key: {
+              text: "National availability"
+            },
+            value: {
+              text: "England, Northern Ireland and International"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Northern Ireland"
+          },
+          attributes: {
+            id: "northern-ireland"
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Available in Northern Ireland"
+          },
+          value: {
+            html: 'Yes'
+          }
+        },
+        {
+          key: {
+            text: "Funded in Northern Ireland"
+          },
+          value: {
+            html: 'Yes'
+          },
+          actions: {
+            items: [
+              {
+                href: "https://www.education-ni.gov.uk/articles/qualifications",
+                text: "information on funding"
+              }
+            ]
+          }
+        }
+      ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Additional information"
+          },
+          attributes: {
+            id: "additional-info"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Regulation start date"
+            },
+            value: {
+              html: '<time datetime="2023-08-30" lang="en">30 August 2023</time>'
+            }
+          },
+          {
+            key: {
+              text: "Operational start date"
+            },
+            value: {
+              html: '<time datetime="2023-09-01" lang="en">1 September 2023</time>'
+            }
+          },
+          {
+            key: {
+              text: "Operational end date"
+            },
+            value: {
+              html: '<time datetime="2033-07-01" lang="en">1 July 2033</time>'
+            }
+          },
+          {
+            key: {
+              text: "Final certification date"
+            },
+            value: {
+              html: '<time datetime="2033-07-01" lang="en">1 July 2033</time>'
+            }
+          },
+          {
+            key: {
+              text: "European qualification level"
+            },
+            value: {
+              html: "Level 3"
+            }
+          },
+          {
+            key: {
+              text: "Optional routes"
+            },
+            value: {
+              html: "Construction rigging,<br/>Crane and hoist rigging"
+            }
+          }
+        ]
+      }) }}
+
+      
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 

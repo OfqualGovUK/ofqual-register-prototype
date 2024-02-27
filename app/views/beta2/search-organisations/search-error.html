@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName = "Find a regulated awarding organisation" %}
+
+{% block pageTitle %}
+  Search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  <nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  </nav>
+{% endblock %}
+
+{% set searchQuery = data['selected-organisation'] if data['selected-organisation']| length else 'Paersoon'%}
+{% set searchTerm = "Search results – '" + searchQuery + "'" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-m">{{ searchTerm }}</h1>
+
+      {% set formaction = "/" + version + "/search-organisations/search-results" %}
+
+      <div class="app-search govuk-!-margin-bottom-4">
+        <form action="{{ formaction }}" method="get" novalidate="">
+  
+  
+          <div class="govuk-form-group">
+            <label class="govuk-label app-search__label govuk-label--s" for="keywords">
+              Search for an organisation
+            </label>
+            <input class="govuk-input app-search__input" id="selected-organisation" name="selected-organisation" type="search" value="{{ searchQuery }}">
+          </div>
+  
+          <button class="govuk-button app-search__button" data-module="govuk-button">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-s">No results</h2>
+      <p class="govuk-body-m">No search results found. Try a searching for something different.</p>
+
+
+    </div>
+  </div>
+{% endblock %}

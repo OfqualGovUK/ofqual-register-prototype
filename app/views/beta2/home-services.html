@@ -1,0 +1,420 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName = " " %}
+
+{% block head %}
+  {{ super() }}
+  <style>
+    .brand--department-for-education.brand__border-color,
+    .brand--department-for-education .brand__border-color
+    {
+      border-color: #003a69;
+    }
+    .organisation__margin-bottom
+    {
+      margin-bottom: 30px;
+    }
+
+    .logocrop
+    {
+      width: 250px;
+      overflow: hidden;
+      margin: -30px 0px 0px 0px;  
+    }
+
+    .organisation__section-wrap
+    {
+      word-wrap: break-word;
+    }
+
+    .organisation__brand-border-top
+    {
+      border-top-width: 5px;
+      border-top-style: solid;
+      padding-top: 12px;
+    }
+
+    .gem-c-image-card__context, .gem-c-image-card__metadata
+    {
+      margin-bottom: 0;
+    }
+
+    .gem-c-image-card__context, .gem-c-image-card__metadata
+    {
+      font-family: "GDS Transport",arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 16px;
+      font-size: 1rem;
+      margin: 0 0 7.5px;
+      color: #505a5f;
+    }
+
+    .gem-c-image-card__context, .gem-c-image-card__metadata, .gem-c-image-card__description
+    {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gem-c-document-list {
+      color: #0b0c0c;
+      font-family: "GDS Transport",arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.25;
+      margin: 0;
+      padding: 0;
+    }
+
+    .gem-c-document-list__item {
+      margin-top: 25px;
+      padding-top: 10px;
+      border-top: 1px solid #b1b4b6;
+      list-style: none;
+    }
+
+    .gem-c-document-list__item:first-child {
+      margin-top: 0;
+    }
+
+    .gem-c-document-list__item-title {
+      font-family: "GDS Transport",arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 700;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.25;
+      display: inline-block;
+    }
+
+    .gem-c-document-list__item-metadata {
+      padding: 0;
+    }
+
+    .gem-c-document-list__attribute {
+      color: #0b0c0c;
+      font-family: "GDS Transport",arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 400;
+      font-size: 14px;
+      font-size: .875rem;
+      line-height: 1.1428571429;
+      color: #505a5f;
+      display: inline-block;
+      list-style: none;
+      padding-right: 20px;
+    }
+
+    .gem-c-subscription-links {
+      color: #0b0c0c;
+      font-family: "GDS Transport",arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 700;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .gem-c-subscription-links__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .gem-c-subscription-links__list-item {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 20px;
+      margin-bottom: 15px;
+    }
+
+    .gem-c-subscription-links__list-item:last-child {
+      margin-right: 0;
+    }
+
+    hr.zipper {
+      border: none;
+    }
+
+    .zipper {
+      height: 15px;
+      background: repeating-linear-gradient(90deg, rgb(100, 100, 100) 0 3px, #0000 0 6px) top, /* top gradient*/
+      repeating-linear-gradient(90deg, #0000 0 3px, rgb(100, 100, 100) 0 6px) bottom, /* bottom  gradient*/
+      linear-gradient(rgb(100, 100, 100) 0 0) center;
+      /* a line in the middle */
+      background-size: 200% calc(100%/3);
+      /* the 3 with the same size */
+      background-repeat: no-repeat;
+    }
+
+  </style>
+{% endblock %}
+
+{% block pageTitle %}
+  Ofqual – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "https://gov.uk"
+    },
+    {
+      text: "Organisations",
+      href: "https://gov.uk/government/organisations"
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third organisation__margin-bottom">
+    
+    <div class="gem-c-organisation-logo brand--department-for-education">
+      <div class="gem-c-organisation-logo__container gem-c-organisation-logo__crest gem-c-organisation-logo__crest--single-identity brand__border-color">
+        <img alt="Ofqual" width="250" class="gem-c-organisation-logo__image logocrop" src="https://assets.publishing.service.gov.uk/media/5bba55baed915d23b049e12f/ofqual_gov_uk_logo.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-two-thirds organisation__margin-bottom">
+        
+    <ul class="govuk-list app-c-topic-list brand--department-for-education" lang="en">
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://contact.ofqual.gov.uk/">Contact Ofqual</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/government/organisations/ofqual/about/complaints-procedure">Complaints, whistleblowing, malpractice and fraud</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/find-a-regulated-qualification">Find a regulated qualification</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/check-awarding-body-recognised">Find a regulated awarding organisation</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/awarding-organisations-understanding-our-regulatory-requirements">Understand our rules</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/government/collections/early-years-and-childcare-guidance-for-providers">Apply to have your qualifications regulated</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/guidance/subject-matter-specialists-for-ofqual">Become an Ofqual subject matter specialist</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://theportal.ofqual.gov.uk">Sign in to Ofqual online services</a>
+      </li>
+      <li class="app-c-topic-list__item govuk-!-font-weight-bold">
+        <a class="govuk-link govuk-link--no-underline app-c-topic-list__link brand__color" href="https://www.gov.uk/guidance/ofqual-rolling-update">Latest updates from Ofqual</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<section class="govuk-width-container brand--department-for-education brand__border-color organisation__brand-border-top organisation__section-wrap organisation__margin-bottom" id="featured-documents">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+        Featured
+      </h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <!-- 1 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/65c34e713f6aea0013c15543/s712_apprentice_supervisor.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2024-02-07" lang="en">7 February 2024</time>
+        <span aria-hidden=""true"> – </span>
+        Guidance
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/government/publications/end-point-assessment-guide-for-apprentices-2024">End-point assessment guide for apprentices 2024</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        This guide will help apprentices find out what to expect from the end-point assessment (EPA), an independent assessment at the final stage of an apprenticeship.
+      </p>
+    </div>
+    <!-- 2 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/65b237781702b1000dcb1294/s465_computer_users.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2023-01-25" lang="en">25 January 2024</time>
+        <span aria-hidden=""true"> – </span>
+        Guidance
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/guidance/vtq-information-hub-2023-to-2024-key-dates-and-deadlines">VTQ information hub 2023 to 2024: key dates and deadlines</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        For Level 3, Level 1/2 and Level 2 vocational and technical qualifications (VTQs) used for progression and taken alongside or in place of A-levels and GCSEs.
+      </p>
+    </div>
+    <!-- 3 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/65c0b5fbc43191000d1a4520/s465_Student_laptop_writing.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2023-01-29" lang="en">29 January 2024</time>
+        <span aria-hidden=""true"> – </span>
+        Research and analysis
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/government/publications/a-review-of-the-assessment-of-reformed-functional-skills-qualifications-in-english-and-maths">A review of the assessment of reformed Functional Skills qualifications in English and maths​</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        This report sets out Ofqual's findings from its review of the assessment of reformed Functional Skills qualifications in English and maths.
+      </p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <!-- 4 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/655b308e544aea0019fb2fe2/s465_iStock-students.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2023-12-19" lang="en">19 December 2023</time>
+        <span aria-hidden=""true"> – </span>
+        Guidance
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/government/publications/ofqual-student-guide-2024">Ofqual Student Guide 2024</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        This guide provides you with information about this year’s arrangements for qualifications regulated by Ofqual. It also explains what support is in place when taking exams and assessments.
+      </p>
+    </div>
+    <!-- 5 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/657ad3f2095987000d95e0b4/s465_exam_writing.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2023-12-14" lang="en">14 December 2023</time>
+        <span aria-hidden=""true"> – </span>
+        Corporate report
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/government/publications/ofqual-delivery-report-2023">Ofqual delivery report 2023</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        A delivery report covering all general, vocational and technical, and apprenticeship end-point assessments regulated by Ofqual awarded between 1 September 2022 and 31 August 2023.
+      </p>
+    </div>
+    <!-- 6 -->
+    <div class="govuk-grid-column-one-third">
+      <img class="gem-c-image-card__image" src="https://assets.publishing.service.gov.uk/media/60f95a048fa8f5043034b090/s465_adeolu-eletu-rFUFqjEKzfY-unsplash_-_edit_960x640.jpg" height="200" width="300" /><br/>
+      <p class="gem-c-image-card__context" style="margin-bottom: 0px;">
+        <time datetime="2024-01-25" lang="en">25 January 2024</time>
+        <span aria-hidden=""true"> – </span>
+        Guidance
+      </p>
+      <h3 class="govuk-heading-s" style="margin-top: 0px; padding-top: 0px; margin-bottom: 8px; padding-bottom: 0px;">
+        <a href="https://www.gov.uk/guidance/ofqual-rolling-update">Ofqual: rolling update</a>
+      </h3>
+      <p class="govuk-body" style="margin-top: 0px;">
+        Recent updates regarding regulated qualifications.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="govuk-width-container brand--department-for-education brand__border-color organisation__brand-border-top organisation__section-wrap organisation__margin-bottom" id="latest">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+        Latest from Ofqual
+      </h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <!-- 1 -->
+    <div class="govuk-grid-column-two-thirds">
+      <ul class="gem-c-document-list govuk-!-margin-bottom-5">
+        <!-- 1 -->
+        <li class="gem-c-document-list__item brand--department-for-education">
+          <div class="gem-c-document-list__item-title">
+            <a class="brand__color  govuk-link" lang="en" href="https://www.gov.uk/government/publications/external-quality-assurance-of-end-point-assessments-status">Regulation of end-point assessments: status</a>
+          </div>  
+          <ul class="gem-c-document-list__item-metadata">
+            <li class="gem-c-document-list__attribute">
+              <time datetime="2024-02-12">
+                12 February 2024
+              </time>
+            </li>
+            <li class="gem-c-document-list__attribute">
+              Guidance
+            </li>
+          </ul>
+        </li>
+        <!-- 2 -->
+        <li class="gem-c-document-list__item brand--department-for-education">
+          <div class="gem-c-document-list__item-title">
+            <a class="brand__color  govuk-link" lang="en" href="https://www.gov.uk/government/publications/end-point-assessment-outcomes-guide-to-the-data-submission-process">End-Point Assessment Outcomes: guide to the data submission process</a>
+          </div>  
+          <ul class="gem-c-document-list__item-metadata">
+            <li class="gem-c-document-list__attribute">
+              <time datetime="2024-02-12">
+                12 February 2024
+              </time>
+            </li>
+            <li class="gem-c-document-list__attribute">
+              Guidance
+            </li>
+          </ul>
+        </li>
+        <!-- 3 -->
+        <li class="gem-c-document-list__item brand--department-for-education">
+          <div class="gem-c-document-list__item-title">
+            <a class="brand__color  govuk-link" lang="en" href="https://www.gov.uk/government/publications/awarding-organisations-scope-of-recognition">Awarding organisations: scope of recognition</a>
+          </div>  
+          <ul class="gem-c-document-list__item-metadata">
+            <li class="gem-c-document-list__attribute">
+              <time datetime="2024-02-09">
+                9 February 2024
+              </time>
+            </li>
+            <li class="gem-c-document-list__attribute">
+              Transparency data
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="organisation__margin-bottom brand--department-for-education">
+        <a href="https://www.gov.uk/search/all?organisations[]=ofqual&amp;order=updated-newest&amp;parent=ofqual" class="govuk-link brand__color govuk-body-s">
+          See all latest documents
+        </a>
+      </p>
+
+      <div>
+        <ul class="gem-c-subscription-links__list">
+          <li class="gem-c-subscription-links__list-item">
+            <a class="govuk-link gem-c-subscription-links__item brand__color gem-c-subscription-links__item--link govuk-body" href="/email-signup?link=/government/organisations/ofqual">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15.75" class="gem-c-subscription-links__icon" focusable="false" fill="currentColor" aria-hidden="true">
+                <path d="M19.687 0H1.312C.589 0 0 .587 0 1.313v13.124c0 .726.588 1.313 1.313 1.313h18.374c.725 0 1.313-.587 1.313-1.313V1.313C21 .587 20.412 0 19.687 0zm-2.625 2.625L10.5 7.875l-6.563-5.25h13.126zm1.313 10.5H2.625V3.937L10.5 10.5l7.875-6.563v9.188z"></path>
+              </svg></a>
+              <a class="govuk-link gem-c-subscription-links__item brand__color gem-c-subscription-links__item--link govuk-body" href="/email-signup?link=/government/organisations/ofqual">
+                Get emails
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="zipper" />
+
+<div class="govuk-grid-row">
+  <p class="govuk-body" style="text-align: center;">Rest of home page content would continue here.</p>
+</div>
+{% endblock %}

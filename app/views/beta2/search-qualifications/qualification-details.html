@@ -63,14 +63,6 @@
           },
           {
             key: {
-              text: "Sector subject area"
-            },
-            value: {
-              text: "7.2 – Warehousing and distribution"
-            }
-          },
-          {
-            key: {
               text: "Qualification level"
             },
             value: {
@@ -79,10 +71,50 @@
           },
           {
             key: {
-              text: "Availability"
+              text: "Qualification number"
             },
             value: {
-              html: '<div class="govuk-label__green">Available to learners</div>'
+              text: "600/1946/3"
+            }
+          },
+          {
+            key: {
+              text: "Assessment methods"
+            },
+            value: {
+              html: "Oral examination,<br/>Practical demonstration or assignment,<br/>Written examination"
+            }
+          },
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
+            }
+          },
+          {
+            key: {
+              text: "Sector subject area"
+            },
+            value: {
+              text: "7.2 – Warehousing and distribution"
+            }
+          },
+          {
+            key: {
+              text: "Grading scale"
+            },
+            value: {
+              text: "Pass, Merit, Distinction"
+            }
+          },
+          {
+            key: {
+              text: "End-point assessment standard"
+            },
+            value: {
+              text: "Engineering operative (ST0537)"
             }
           }
         ]
@@ -112,120 +144,19 @@
       {{ govukSummaryList({
         card: {
           title: {
-            text: "Qualification details"
+            text: "Further details"
           },
           attributes: {
-            id: "qual-details"
+            id: "details"
           }
         },
         rows: [
-          {
-            key: {
-              text: "Qualification number"
-            },
-            value: {
-              text: "610/3185/9"
-            }
-          },
-          {
-            key: {
-              text: "EPA standard code"
-            },
-            value: {
-              text: "ST0259"
-            }
-          },
-          {
-            key: {
-              text: "EPA standard title"
-            },
-            value: {
-              text: "Supply chain warehouse operative"
-            }
-          },
           {
             key: {
               text: "Grading type"
             },
             value: {
-              text: "Graded"
-            }
-          },
-          {
-            key: {
-              text: "Grading scale"
-            },
-            value: {
-              text: "Pass/Distinction"
-            }
-          },
-          {
-            key: {
-              text: "Standard qualification fee"
-            },
-            value: {
-              text: "£245"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#info-fees",
-                  text: "information on fees"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Assessment methods"
-            },
-            value: {
-              text: "Oral examination, practical demonstration or assignment, written examination"
-            }
-          },
-          {
-            key: {
-              text: "Specification"
-            },
-            value: {
-              html: '<a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification\'s specification</a>'
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            text: "Regulatory details"
-          },
-          attributes: {
-            id: "reg-details"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Regulation start date"
-            },
-            value: {
-              html: '<time datetime="2023-08-30" lang="en">30 August 2023</time>'
-            }
-          },
-          {
-            key: {
-              text: "Start date"
-            },
-            value: {
-              html: '<time datetime="2023-09-01" lang="en">1 September 2023</time>'
-            }
-          },
-          {
-            key: {
-              text: "National availability"
-            },
-            value: {
-              html: "England only"
+              text: 'Graded'
             }
           }
         ]
@@ -246,11 +177,116 @@
               text: "Funding in England"
             },
             value: {
-              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=61031859&Status=All">Check if this qualification is funded in England</a>'
+              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=60019463&Status=All">Check if this qualification is funded in England</a>'
+            }
+          },
+          {
+            key: {
+              text: "Standard qualification fee"
+            },
+            value: {
+             text: "£245"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#info-fees",
+                  text: "information on fees"
+                }
+              ]
+            }
+          }
+          ]
+        }) }}
+    
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Availability"
+            },
+            attributes: {
+              id: "availability"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: '<div class="govuk-label__green">Available to learners</div>'
+              }
+            },
+            {
+              key: {
+                text: "National availability"
+              },
+              value: {
+                text: "England, Northern Ireland and International"
+              }
+            }
+          ]
+        }) }}
+  
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Northern Ireland"
+            },
+            attributes: {
+              id: "northern-ireland"
+            }
+          },
+          rows: [
+          {
+            key: {
+              text: "Available in Northern Ireland"
+            },
+            value: {
+              html: 'Yes'
+            }
+          },
+          {
+            key: {
+              text: "Funded in Northern Ireland"
+            },
+            value: {
+              html: '<a href="https://www.education-ni.gov.uk/articles/qualifications#toc-main-skip">Check if this qualification is funded in Northern Ireland</a>'
+            }
+          }
+        ]
+        }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Additional information"
+          },
+          attributes: {
+            id: "additional-info"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Regulation start date"
+            },
+            value: {
+              html: '<time datetime="2023-08-30" lang="en">30 August 2023</time>'
+            }
+          },
+          {
+            key: {
+              text: "Operational start date"
+            },
+            value: {
+              html: '<time datetime="2023-09-01" lang="en">1 September 2023</time>'
             }
           }
         ]
       }) }}
+
+      
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 

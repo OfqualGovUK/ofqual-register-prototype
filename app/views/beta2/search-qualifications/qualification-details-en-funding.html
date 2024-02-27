@@ -33,14 +33,6 @@
         Pearson Apprenticeship End-point Assessment for Warehouse Operative (Level 2)
       </h1>
 
-      <!--form action="../search-qualifications/results-pearson" method="post" novalidate>
-
-        {{ govukButton({
-          text: "Find all Pearson qualifications"
-        }) }}
-
-      </form-->
-
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
       {{ govukSummaryList({
@@ -79,7 +71,7 @@
           },
           {
             key: {
-              text: "Availability"
+              text: "Status"
             },
             value: {
               html: '<div class="govuk-label__green">Available to learners</div>'
@@ -129,18 +121,10 @@
           },
           {
             key: {
-              text: "EPA standard code"
+              text: "End-point assessment standard"
             },
             value: {
-              text: "ST0259"
-            }
-          },
-          {
-            key: {
-              text: "EPA standard title"
-            },
-            value: {
-              text: "Supply chain warehouse operative"
+              text: "Engineering operative (ST0537)"
             }
           },
           {
@@ -234,7 +218,7 @@
       {{ govukSummaryList({
         card: {
           title: {
-            text: "Funding details"
+            text: "Funding in England"
           },
           attributes: {
             id: "funding-details"
@@ -243,10 +227,18 @@
         rows: [
           {
             key: {
-              text: "Funding in England"
+              text: "Funded for"
             },
             value: {
-              html: '<a href="https://www.qualifications.education.gov.uk/Search?Num=61031859&Status=All">Check if this qualification is funded in England</a>'
+              html: '<ul class="govuk-list"><li>2023 to 2024</li><li>2024 to 2025</li><li>2025 to 2026</li></ul>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#info-funding",
+                  text: "information on funding"
+                }
+              ]
             }
           }
         ]
@@ -270,6 +262,20 @@
                 The fee listed is the standard quoted fee from the awarding organisation.
                 It does not necessarily mean that this is the fee you will pay as
                 awarding organisations may offer discount schemes or other pricing models.
+              </div>
+            </div>
+          </div>
+
+          <header class="app-application-card__header">
+            <h2 class="govuk-heading-s">
+                  Information about funding
+            </h2>
+          </header>
+
+          <div class="govuk-grid-row app-grid-row--flex">
+            <div class="govuk-grid-column-full">
+              <div class="govuk-body-s" id="info-funding">
+              More details on approved funding arrangements for England can be found in the Department for Education's <a href="https://www.qualifications.education.gov.uk/Search?Num=60019463&Status=All" class="govuk-link">list of qualifications approved for funding</a>.
               </div>
             </div>
           </div>

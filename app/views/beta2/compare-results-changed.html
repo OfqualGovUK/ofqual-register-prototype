@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% set newQualTitle = data['changeQualification'] if data['changeQualification'] | length else 'Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles (Pearson)' %}
+
 {% block pageTitle %}
 Search results – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -35,12 +37,16 @@ text: "Back"
 
   <div class="govuk-grid-column-one-half">
 
-    <h2 class="govuk-heading-s ofq-comparison-title">Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Removals Operative (Level 2)</h2>
-    <p><a href="change-qualification">Change qualification</a></p>
+    <h2 class="govuk-heading-s ofq-comparison-title" id="qual1">{{newQualTitle}}</h2>
+      {{ govukButton({
+        text: "Change qualification",
+        href: "change-qualification",
+        classes: "govuk-button--secondary"
+      }) }}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Differing information</h3>
+        <h3 class="govuk-summary-card__title" id="differences1">Differing information</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -60,15 +66,48 @@ text: "Back"
               £475
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Operational end date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              -
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Certification end date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              -
+            </dd>
+          </div>
         </dl>
       </div>
     </div>
+ 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Qualification information</h3>
+        <h3 class="govuk-summary-card__title" id="quals-summary1">Qualification summary</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Qualification type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Apprenticeship end-point assessment
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Qualification level
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Entry Level: Entry 2,3
+            </dd>
+          </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Qualification number
@@ -79,58 +118,26 @@ text: "Back"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Organisation
+              Guided learning hours	
             </dt>
             <dd class="govuk-summary-list__value">
-              Pearson Education Ltd
+              120 (90 min, 150 max)
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Organisation acronym
+              Total qualification time	
             </dt>
             <dd class="govuk-summary-list__value">
-              Pearson
+               360 (360 min, 400 max)
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Qualification level
+              Assessment methods
             </dt>
             <dd class="govuk-summary-list__value">
-              Level 2
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Qualification sub-level
-            </dt>
-            <dd class="govuk-summary-list__value">
-              None
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Total credits
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Sector subject area
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Warehousing and distribution
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Status
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Available to learners
+              Oral Examination<br>Practical Demonstration or Assignment<br>Written Examination	
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -138,15 +145,15 @@ text: "Back"
               Specification		
             </dt>
             <dd class="govuk-summary-list__value">
-              <a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View the specification on the awarding organisation's website</a>
+              <a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification's specification</a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Grading type	
+              Sector subject area
             </dt>
             <dd class="govuk-summary-list__value">
-              Graded
+              7.2 Warehousing and distribution
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -159,26 +166,166 @@ text: "Back"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Assessment methods
+              End-point assessment standard
             </dt>
             <dd class="govuk-summary-list__value">
-              Oral Examination<br> Practical Demonstration or Assignment<br> Written Examination	
+              Engineering operative (ST0537)
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="org1">Organisation</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Awarding organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="search-organisations/organisation-details">Pearson Education Ltd</a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="details1">Further details</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Grading type	
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Graded
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Fees <a href="#info-fees" aria-label="Information about fees"><img src="/public/images/ofq-icon-info.svg" width="24" height="24" alt="Information about fees"/></a>
+              UCAS points
+            </dt>
+            <dd class="govuk-summary-list__value">
+              30
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Specialisms
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Construction rigging
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Academic entry code	
+            </dt>
+            <dd class="govuk-summary-list__value">
+              7201
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="funding1">Funding</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Funding in England
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="https://www.qualifications.education.gov.uk/Search?Num=60019463&Status=All">Check if this qualification is funded in England</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Standard qualification fee <a href="#info-fees" aria-label="Information about fees"><img src="/public/images/ofq-icon-info.svg" width="24" height="24" alt="Information about fees"/></a>
             </dt>
             <dd class="govuk-summary-list__value">
               £475
             </dd>
           </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="avail1">Availability</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Available to learners
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              National availability
+            </dt>
+            <dd class="govuk-summary-list__value">
+              England, Northern Ireland and International
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="northern-ireland1">Northern Ireland</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Available in Northern Ireland
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Funded in Northern Ireland
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="https://www.education-ni.gov.uk/articles/qualifications#toc-main-skip">Check if this qualification is funded in Northern Ireland</a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="additional1">Additional information</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Regulation start date
             </dt>
             <dd class="govuk-summary-list__value">
-              30 July 2023
+              <time datetime="2023-07-30" lang="en">30 July 2023</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -186,7 +333,7 @@ text: "Back"
               Operational start date
             </dt>
             <dd class="govuk-summary-list__value">
-              1 August 2023
+              <time datetime="2023-08-01" lang="en">1 August 2023</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -206,131 +353,52 @@ text: "Back"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Minimum guided learning hours	
+              European qualification level		
             </dt>
             <dd class="govuk-summary-list__value">
-              -
+              Level 3
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Maximum guided learning hours	
+              Optional routes		
             </dt>
             <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Guided learning hours	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Total qualification time	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              National availability	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Northern Ireland discount code		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Equivalent A level (GCE) size		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Equivalent GCSE size	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Entitlement framework designation		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Specialisms		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Pathways		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              DEL funded		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              CCEA funded		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              No
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Available internationally		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              No
+              Construction rigging,<br/>Crane and hoist rigging
             </dd>
           </div>
         </dl>
       </div>
     </div>
-
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   <div class="govuk-grid-column-one-half">
-    <h2 class="govuk-heading-s ofq-comparison-title">Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Traffic Office (Level 2)</h2>
-    <p><a href="change-qualification">Change qualification</a></p>
+    <h2 class="govuk-heading-s ofq-comparison-title" id="qual2">Pearson Apprenticeship End-point Assessment for Supply Chain Operator - Traffic Office (Level 2)</h2>
+    {{ govukButton({
+      text: "Change qualification",
+      href: "change-qualification",
+      classes: "govuk-button--secondary"
+    }) }}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Differing information</h3>
+        <h3 class="govuk-summary-card__title" id="differences1">Differing information</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -339,7 +407,7 @@ text: "Back"
               Qualification number
             </dt>
             <dd class="govuk-summary-list__value">
-              610/3179/3
+              610/3174/6
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -347,40 +415,41 @@ text: "Back"
               Fees <a href="#info-fees" aria-label="Information about fees"><img src="/public/images/ofq-icon-info.svg" width="24" height="24" alt="Information about fees"/></a>
             </dt>
             <dd class="govuk-summary-list__value">
-              £425
+              £495
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Operational end date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <time datetime="2033-08-01" lang="en">1 August 2033</time>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Certification end date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <time datetime="2035-08-01" lang="en">1 August 2035</time>
             </dd>
           </div>
         </dl>
       </div>
     </div>
+
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Qualification information</h3>
+        <h3 class="govuk-summary-card__title" id="quals-summary1">Qualification summary</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Qualification number
+              Qualification type
             </dt>
             <dd class="govuk-summary-list__value">
-              610/3179/3
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisation
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Pearson Education Ltd
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisation acronym
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Pearson
+              Apprenticeship end-point assessment
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -388,39 +457,39 @@ text: "Back"
               Qualification level
             </dt>
             <dd class="govuk-summary-list__value">
-              Level 2
+              Entry Level: Entry 2,3
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Qualification sub-level
+              Qualification number
             </dt>
             <dd class="govuk-summary-list__value">
-              None
+              610/3174/6
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Total credits
+              Guided learning hours	
             </dt>
             <dd class="govuk-summary-list__value">
-              -
+              120 (90 min, 150 max)
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Sector subject area
+              Total qualification time	
             </dt>
             <dd class="govuk-summary-list__value">
-              Warehousing and distribution
+               360 (360 min, 400 max)
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Status
+              Assessment methods
             </dt>
             <dd class="govuk-summary-list__value">
-              Available to learners
+              Oral Examination<br>Practical Demonstration or Assignment<br>Written Examination	
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -428,15 +497,15 @@ text: "Back"
               Specification		
             </dt>
             <dd class="govuk-summary-list__value">
-              <a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View the specification on the awarding organisation's website</a>
+              <a href="https://qualifications.pearson.com/en/qualifications/apprenticeship-sectors.html">View this qualification's specification</a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Grading type	
+              Sector subject area
             </dt>
             <dd class="govuk-summary-list__value">
-              Graded
+              7.2 Warehousing and distribution
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -449,26 +518,166 @@ text: "Back"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Assessment methods
+              End-point assessment standard
             </dt>
             <dd class="govuk-summary-list__value">
-              Oral Examination<br> Practical Demonstration or Assignment<br> Written Examination	
+              Engineering operative (ST0537)
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="org1">Organisation</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Awarding organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="search-organisations/organisation-details">Pearson Education Ltd</a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="details1">Further details</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Grading type	
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Graded
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Fees <a href="#info-fees" aria-label="Information about fees"><img src="/public/images/ofq-icon-info.svg" width="24" height="24" alt="Information about fees"/></a>
+              UCAS points
             </dt>
             <dd class="govuk-summary-list__value">
-              £425
+              30
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Specialisms
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Construction rigging
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Academic entry code	
+            </dt>
+            <dd class="govuk-summary-list__value">
+              7201
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="funding2">Funding</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Funding in England
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="https://www.qualifications.education.gov.uk/Search?Num=60019463&Status=All">Check if this qualification is funded in England</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Standard qualification fee <a href="#info-fees" aria-label="Information about fees"><img src="/public/images/ofq-icon-info.svg" width="24" height="24" alt="Information about fees"/></a>
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £475
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="avail2">Availability</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Available to learners
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              National availability
+            </dt>
+            <dd class="govuk-summary-list__value">
+              England, Northern Ireland and International
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="northern-ireland2">Northern Ireland</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Available in Northern Ireland
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Funded in Northern Ireland
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="https://www.education-ni.gov.uk/articles/qualifications#toc-main-skip">Check if this qualification is funded in Northern Ireland</a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="additional1">Additional information</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Regulation start date
             </dt>
             <dd class="govuk-summary-list__value">
-              30 July 2023
+              <time datetime="2023-07-30" lang="en">30 July 2023</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -476,7 +685,7 @@ text: "Back"
               Operational start date
             </dt>
             <dd class="govuk-summary-list__value">
-              1 August 2023
+              <time datetime="2023-08-01" lang="en">1 August 2023</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -484,133 +693,37 @@ text: "Back"
               Operational end date
             </dt>
             <dd class="govuk-summary-list__value">
-              -
+              <time datetime="2033-08-01" lang="en">1 August 2033</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Certification end date
             <dd class="govuk-summary-list__value">
-              -
+              <time datetime="2035-08-01" lang="en">1 August 2035</time>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Minimum guided learning hours	
+              European qualification level		
             </dt>
             <dd class="govuk-summary-list__value">
-              -
+              Level 3
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Maximum guided learning hours	
+              Optional routes		
             </dt>
             <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Guided learning hours	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Total qualification time	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              National availability	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Northern Ireland discount code		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Equivalent A level (GCE) size		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Equivalent GCSE size	
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Entitlement framework designation		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Specialisms		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Pathways		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              DEL funded		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              -
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              CCEA funded		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              No
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Available internationally		
-            </dt>
-            <dd class="govuk-summary-list__value">
-              No
+              Construction rigging,<br/>Crane and hoist rigging
             </dd>
           </div>
         </dl>
       </div>
     </div>
-    
-    </div>
+  </div>
+
 
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-s">Information about fees</h2>
@@ -622,6 +735,8 @@ text: "Back"
     </div>
 
   </div>
+
+
 
 
 
