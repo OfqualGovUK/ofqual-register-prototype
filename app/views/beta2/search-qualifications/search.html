@@ -2,6 +2,11 @@
 
 {% set serviceName = "Find a regulated qualification" %}
 
+{% block head %}
+  {{ super() }}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
 {% block pageTitle %}
   Search qualifications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}

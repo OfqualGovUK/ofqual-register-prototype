@@ -2,6 +2,11 @@
 
 {% set serviceName = "Find a regulated awarding organisation" %}
 
+{% block head %}
+  {{ super() }}
+  <meta name="robots" content="noindex">
+{% endblock %}
+
 {% block pageTitle %}
   Search organisations – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
