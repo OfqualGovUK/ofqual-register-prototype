@@ -1,0 +1,520 @@
+{% extends "layouts/main.html" %}
+
+{# Alter the service title to match the journey #}
+{% set serviceName = "Find a regulated qualification" %}
+
+{# Set the status of the search filters #}
+{% set amPortfolio = "true" %}
+{% set amPractical = "true" %}
+{% set stAvailable = "true" %}
+{% set aoPearson = "true" %}
+{% set saWarehouse = "true" %}
+{% set fnNI = "" %}
+{% set showfnNI = "" %}
+{% set showfnEN = "" %}
+{% set fnEN23 = "" %}
+{% set fnEN24 = "" %}
+{% set fnEN25 = "" %}
+
+
+{% block pageTitle %}
+Search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "beta"
+},
+html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+{{ govukBackLink({
+href: "search",
+text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-column-two-thirds"></div>
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#compare-error">Select at least 2 qualifications to compare</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <h1 class="govuk-heading-l">Qualification search</h1>
+
+    <p>Select all the qualifications you want to compare.</p>
+
+    <div class="govuk-inset-text">
+      Enable Javascript to allow you to compare results from different pages.
+    </div>
+
+    {% set formaction = "/" + version + "/search-qualifications/qualification-search" %}
+
+    <div class="app-search govuk-!-margin-bottom-4">
+      <form action="{{ formaction }}" method="get" novalidate="">
+
+
+        <div class="govuk-form-group">
+          <label class="govuk-label app-search__label govuk-label--s" for="selected-qualification">
+            Search for a qualification
+          </label>
+
+          <input class="govuk-input app-search__input " id="selected-qualification" name="selected-qualification" type="search" value="{{ data['selected-qualification']}}">
+
+        </div>
+
+        <button class="govuk-button app-search__button" data-module="govuk-button">
+          Search
+        </button>
+
+
+      </form>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break">
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    {% include "/" + version + "/components/filters.html" %}
+
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+
+    <ul id="action-buttons-row" class="ofq-action-buttons--list">
+      <li class="ofq-action-buttons--item">
+        {{ govukButton({
+          text: 'Compare selected',
+          classes: 'govuk-button--primary',
+          href: '../compare-results'
+        }) }}
+      </li>
+      <li class="ofq-action-buttons--item">
+        {{ govukButton({
+          text: 'Download results as CSV',
+          classes: 'govuk-button--secondary ofq-button-row-element',
+          href: '/download/download-results'
+        }) }}
+      </li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+    <div class="app-application-cards govuk-form-group govuk-form-group--error" aria-live="polite">
+
+      <p id="compare-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Select at least 2 qualifications to compare
+      </p>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation1" name="organisation" type="checkbox" value="1" {{data['organisation1']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation1">
+                Pearson BTEC Level 2 Certificate in Warehousing and Storage Principles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation2" name="organisation" type="checkbox" value="2" {{data['organisation2']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation2">
+                Pearson Edexcel Level 2 Award in Forklift Truck Operations
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation3" name="organisation" type="checkbox" value="3" {{data['organisation3']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation3">
+                Pearson Edexcel Level 2 Certificate in Warehousing and Storage
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation4" name="organisation" type="checkbox" value="4" {{data['organisation4']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation4">
+                Pearson Edexcel Level 1 Award in Warehousing and Storage
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation5" name="organisation" type="checkbox" value="5" {{data['organisation5']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation5">
+                Pearson Edexcel Level 1 Certificate in Warehousing and Storage
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation6" name="organisation" type="checkbox" value="6" {{data['organisation6']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation6">
+                Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation7" name="organisation" type="checkbox" value="7" {{data['organisation7']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation7">
+                Pearson Edexcel Level 3 Diploma in Warehouse Operations Management
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--green govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Available to learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 3
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation8" name="organisation" type="checkbox" value="8"  {{data['organisation8']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation8">
+                Pearson Edexcel Level 2 Certificate in Manual Handling Operations
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Not yet available
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation9" name="organisation" type="checkbox" value="9" {{data['organisation9']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation9">
+                Pearson Edexcel Level 1/2 Award in Driving Goods Vehicles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                Not available to new learners
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1/2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-application-card">
+        <header class="app-application-card__header">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation10" name="organisation" type="checkbox" value="10"  {{data['organisation10']}}>
+              <label class="govuk-label govuk-checkboxes__label" for="organisation10">
+                Pearson Edexcel Level 1/2 Certificate in Driving Heavy Goods Vehicles
+            </div>
+          </div>
+        </header>
+
+        <div class="govuk-grid-row app-grid-row--flex">
+          <div class="govuk-grid-column-two-thirds">
+            <dl class="app-application-card__list">
+              <dd class="govuk-body-m">
+                <a href="qualification-details">View qualification details</a>
+              </dd>
+              <br>
+              <dt class="govuk-visually-hidden">Availability</dt>
+              <dd class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-1 govuk-!-font-size-14">
+                No longer awarded
+              </dd>
+              <dt class="govuk-visually-hidden">Organisation</dt>
+              <dd class="govuk-body-s govuk-!-margin-bottom-1">Pearson</dd>
+              <dt class="govuk-visually-hidden">Level</dt>
+              <dd class="govuk-body-s govuk-!-font-size-16">
+                Level 1/2
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+      {{ govukPagination({
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            current: true,
+            href: "#"
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            number: 3,
+            href: "#"
+          }
+        ]
+      }) }}
+
+      </form>
+    </div>
+  </div>
+
+
+
+  <script>
+    const accordionTitles = document.querySelectorAll(".accordionTitle");
+
+    accordionTitles.forEach(accordionTitle => {
+      accordionTitle.addEventListener("click", () => {
+        accordionTitle.classList.toggle("is-open")
+      })
+    })
+
+    const accordionIcons = document.querySelectorAll(".accordionItem");
+
+    accordionIcons.forEach(accordionIcon => {
+      accordionIcon.addEventListener("click", () => {
+        accordionIcon.classList.toggle("is-open")
+      })
+    })
+
+
+    const selectedElm = document.getElementById('selected');
+
+    function showChecked() {
+      selectedElm.innerHTML = document.querySelectorAll('input[name=assessment-method]:checked').length;
+    }
+
+    document.querySelectorAll("input[name=assessment-method]").forEach(i => {
+      i.onclick = () => showChecked();
+    });
+
+
+  </script>
+
+
+  {% endblock %}

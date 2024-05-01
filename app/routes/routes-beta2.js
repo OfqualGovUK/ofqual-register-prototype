@@ -173,6 +173,16 @@ module.exports = function (router) {
    res.render('/' + version + '/ni/qualification-search-ni-funding', { 'version': version })
  })
 
+ router.all('/' + version + '/search-qualifications/qualification-search-no-js', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-search-no-js', { 'version': version })
+ })
+
+ router.all('/' + version + '/search-qualifications/qualification-search-no-compare', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/qualification-search-no-compare', { 'version': version })
+ })
+
  router.all('/' + version + '/ni/start', function (req,res)
  {
    res.render('/' + version + '/ni/start', { 'version': version })
