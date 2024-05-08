@@ -1,9 +1,11 @@
 {% extends "layouts/main.html" %}
 
+{% set serviceName = "Find a regulated qualification" %}
+
 {% set newQualTitle = data['changeQualification'] if data['changeQualification'] | length else 'Pearson Edexcel Level 2 Certificate in Driving Goods Vehicles (Pearson)' %}
 
 {% block pageTitle %}
-Search results – {{ serviceName }} – GOV.UK Prototype Kit
+Compare qualifications – {{ serviceName }} – Ofqual – GOV.UK (Prototype)
 {% endblock %}
 
 {% block beforeContent %}

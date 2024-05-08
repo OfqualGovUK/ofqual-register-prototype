@@ -18,7 +18,7 @@
 
 
 {% block pageTitle %}
-Search results – {{ serviceName }} – GOV.UK Prototype Kit
+'{{ data['selected-qualification'] }}' – Search results – {{ serviceName }} – Ofqual – GOV.UK (Prototype)
 {% endblock %}
 
 {% block beforeContent %}
@@ -54,7 +54,7 @@ text: "Back"
             Search for a qualification
           </label>
 
-          <input class="govuk-input app-search__input " id="selected-qualification" name="selected-qualification" type="search" value="{{ data['selected-qualification']}}">
+          <input class="govuk-input app-search__input " id="selected-qualification" name="selected-qualification" type="search" value="{{ data['selected-qualification'] }}">
 
         </div>
 
