@@ -198,6 +198,16 @@ module.exports = function (router) {
    res.render('/' + version + '/search-qualifications/qualification-search-en-funding', { 'version': version })
  })
 
+ router.all('/' + version + '/search-qualifications/cookies-search', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/cookies-search', { 'version': version })
+ })
+
+ router.all('/' + version + '/search-qualifications/cookies', function (req,res)
+ {
+   res.render('/' + version + '/search-qualifications/cookies', { 'version': version })
+ })
+
 //---------------------- Routing Compare Qualifications -------------------------------//
 
 router.all('/' + version + '/change-qualification', function (req,res)
