@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 
-{% set serviceName = "Find a regulated qualification and Find a regulated awarding organisation" %}
+{% set serviceName = "Find a regulated qualification" %}
 
 {% block pageTitle %}
   Cookies on {{ serviceName }} – Ofqual – GOV.UK (Prototype)
@@ -42,8 +42,12 @@
 
     {% else %}
       <form method="post" action="#" id="cookie-form" novalidate>
-        <h1 class="govuk-heading-l">Cookies on {{ serviceName }}</h1>
+        <h1 class="govuk-heading-l">Cookies on {{ serviceName | lower }}</h1>
         
+        {{ govukInsetText({
+          text: "Your selection here will apply to the both the 'find a regulated qualification' and 'find a regulated awarding organisation' services."
+        }) }}
+
         <p class="govuk-body">Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
         <p class="govuk-body">We use cookies to collect and store information about how you use this digital service, such as the pages you visit.</p>
         <p class="govuk-body">This page has a brief explanation of each type of cookie we use.</p>
