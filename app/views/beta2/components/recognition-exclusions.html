@@ -1,14 +1,13 @@
 <ul class="ofq-tree" id="exclusion-tree" role="tree" aria-labelledby="exclusion-title">
   {% for qualType, qualTypeData in exclusionData %}
-    <li>
+    <li role="treeitem">
       <details>
-        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="x-{{ qualType | stripSpace }}-list" role="treeitem">
+        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="x-{{ qualType | stripSpace }}-list" aria-owns="x-{{ qualType | stripSpace }}-list">
           {{ qualType }}
         </summary>
         <ul id="x-{{ qualType | stripSpace }}-list">
           {% for qualTitle in qualTypeData %}
-            <li class="govuk-body"><div role="treeitem">{{ qualTitle }}</div></li>
-
+            <li class="govuk-body" role="treeitem">{{ qualTitle }}</li>
           {% endfor %}
         </ul>
       </details>

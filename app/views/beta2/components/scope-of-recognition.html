@@ -1,21 +1,21 @@
 <ul class="ofq-tree" id="scope-tree" role="tree" aria-labelledby="sor-title">
   {% for qualType, qualTypeData in scopeData %}
-    <li>
+    <li role="treeitem">
       <details>
-        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-list" role="treeitem">
+        <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-list" aria-owns="{{ qualType | stripSpace }}-list">
           {{ qualType }}
         </summary>
-        <ul id="{{ qualType | stripSpace }}-list">
+        <ul id="{{ qualType | stripSpace }}-list" role="group">
           {% for qualLevel, qualLevelData in qualTypeData %}
-            <li>
+            <li role="treeitem">
               <details>
-                <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="treeitem">
+                <summary class="govuk-body ofq-tree-parent-node" aria-expanded="false" aria-controls="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list"  aria-owns="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list">
                   {{ qualLevel }}
                 </summary>
-                <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list">
+                <ul id="{{ qualType | stripSpace }}-{{ qualLevel | stripSpace }}-list" role="group">
                   {% for qualDetail, qualDetailData in qualLevelData %}
                     {% for qualDetailItem in qualDetailData %}
-                      <li class="govuk-body"><div role="treeitem">{{ qualDetailItem }}</div></li>
+                      <li class="govuk-body" role="treeitem">{{ qualDetailItem }}</li>
                     {% endfor %}
                   {% endfor %}
                 </ul>
