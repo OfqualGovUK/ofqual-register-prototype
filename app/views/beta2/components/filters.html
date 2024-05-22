@@ -117,7 +117,7 @@
         <h3 class="accordionTitle" id="availability">
           <span class="govuk-visually-hidden">Select filters for </span>
           <button class="accordionItem__button" type="button">Availability</button>
-          <div class="selected-counter"><span id="selected">1</span> selected</div>
+          <span class="selected-counter" id="selected-availability">1 selected</span>
           <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
             class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
             <path
@@ -136,9 +136,13 @@
             idPrefix: 'filter-availability',
             name: 'filter-availability',
             classes: "govuk-checkboxes--small",
+            describedBy: 'availability',
             fieldset: {
-            legend: {
-            }
+              legend: {
+                text: 'Availability',
+                isPageHeading: false,
+                classes: 'govuk-visually-hidden'
+              }
             },
             items: [
               {
