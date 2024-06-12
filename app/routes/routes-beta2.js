@@ -101,6 +101,11 @@ module.exports = function (router) {
     res.render('/' + version + '/search-organisations/organisation-details', { 'version': version, 'scopeData': scopeData, 'exclusionData': exclusionData })
   })
 
+  router.all('/' + version + '/search-organisations/organisation-surrendered', function (req,res)
+  {
+    res.render('/' + version + '/search-organisations/organisation-surrendered', { 'version': version, 'scopeData': scopeData, 'exclusionData': exclusionData })
+  })
+
   router.all('/' + version + '/search-organisations/search', function (req,res)
   {
     res.render('/' + version + '/search-organisations/search', { 'version': version })

@@ -9,12 +9,6 @@ Find a regulated awarding organisation – Ofqual – GOV.UK (Prototype)
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "beta"
-    },
-    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-  }) }}
   {{ govukBackLink({
     href: "start",
     text: "Back"
@@ -42,7 +36,7 @@ Find a regulated awarding organisation – Ofqual – GOV.UK (Prototype)
       }) }}
 
       <h2 class="govuk-heading-m">Download information</h2>
-      <p class="govuk-body">You can download CSV formatted files containing sets of information from the register.</p>
+      <p class="govuk-body">You can download CSV formatted files containing sets of information from Ofqual's Register of Regulated Qualifications.</p>
       <ul class="govuk-list">
         <li><a class="govuk-link" href="#">Download the qualifications dataset</a></li>
         <li><a class="govuk-link" href="#">Download the organisations dataset</a></li>

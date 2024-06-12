@@ -1,0 +1,209 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName = "Find a regulated awarding organisation" %}
+
+{% block pageTitle %}
+Pearson Education Ltd – {{ serviceName }} – Ofqual – GOV.UK (Prototype)
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  <nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      <h1 class="govuk-heading-xl">
+        Pearson Education Ltd
+      </h1>
+
+      <form action="../search-qualifications/qualification-search-pearson" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Find all Pearson qualifications"
+        }) }}
+
+      </form>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Contact details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              html: "<a href='mailto:examsofficers@pearson.com'>examsofficers@pearson.com</a>"
+            }
+          },
+          {
+            key: {
+              text: "Website"
+            },
+            value: {
+              html: "<a href='https://qualifications.pearson.com/'>Pearson qualifications | Edexcel, BTEC, LCCI and EDI</a>"
+            }
+          },
+          {
+            key: {
+              text: "Pricing and fees"
+            },
+            value: {
+              html: "<a href='https://support.pearson.com/uk/s/article/Qualification-Fees-Prices'>Qualification fees and prices</a>"
+            }
+          }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Ofqual recognition"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: "<strong class='govuk-tag--purple'>Surrendered</strong>"
+            }
+          },
+          {
+            key: {
+              text: "Recognised from"
+            },
+            value: {
+              html: '<time datetime="2010-04-01" lang="en">1 April 2010</time> to <time datetime="2021-09-19" lang="en">19 September 2021</time>'
+            }
+          },
+          {
+            key: {
+              text: "Recognition number"
+            },
+            value: {
+              html: "RN5133"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "CCEA recognition"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              html: "<strong class='govuk-tag--blue'>Withdrawn</strong>"
+            }
+          },
+          {
+            key: {
+              text: "Recognised from"
+            },
+            value: {
+              html: '<time datetime="2010-04-01" lang="en">1 April 2010</time> to <time datetime="2021-09-19" lang="en">19 September 2021</time>'
+            }
+          },
+          {
+            key: {
+              text: "Recognition number"
+            },
+            value: {
+              html: "RN5133"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Organisation details"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Pearson Education Ltd"
+            }
+          },
+          {
+            key: {
+              text: "Legal name"
+            },
+            value: {
+              html: "Pearson Education Ltd"
+            }
+          },
+          {
+            key: {
+              text: "Known as"
+            },
+            value: {
+              html: "Pearson"
+            }
+          }
+        ]
+      }) }}
+
+      <!-- Display scope of recognition -->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title" id="sor">Scope of recognition</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          <p class="govuk-body">Pearson is recognised to offer regulated qualifications within the following qualification types, levels, and subject areas or apprenticeship standards.</p>
+          {{ govukInsetText({
+            text: "You can expand the list by selecting a qualification type"
+          }) }}
+          
+          {% include "/" + version + "/components/scope-of-recognition.html" %}
+
+          <h3 id="exclusion-title" class="govuk-heading-s">The following Pearson qualifications are not regulated</h3>
+          {% include "/" + version + "/components/recognition-exclusions.html" %}
+
+          {% from "govuk/components/button/macro.njk" import govukButton %}
+          {{ govukButton({
+            text: "Download scope of recognition CSV file",
+            classes: "govuk-button--secondary",
+            href: "/download/download-sor"
+          }) }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
