@@ -2338,6 +2338,81 @@
 
       <div class="accordionExpander">
         <div class="accordionItem">
+         <h3 class="accordionTitle" id="year-availability">
+           <span class="govuk-visually-hidden">Select filters for </span>
+           <button class="accordionItem__button" type="button">Availability by academic year</button>
+            <div class="selected-counter"><span id="selected">0</span> selected</div>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon" aria-hidden="true" focusable="false">
+              <path
+                d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z">
+              </path>
+            </svg>
+            <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+              class="accordionItem__accordion-icon--up" aria-hidden="true" focusable="false">
+              <path
+                d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z">
+              </path>
+            </svg>
+          </h3>
+          <div class="accordionContent">
+            {{ govukCheckboxes({
+              idPrefix: 'filter-year-availability',
+              name: 'filter-year-availability',
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+              legend: {
+              }
+              },
+              items: [
+                {
+                  value: '2023-2024',
+                  text: '2023 to 2024'
+                },
+                {
+                  value: '2024-2025',
+                  text: '2024 to 2025'
+                },
+                {
+                  value: '2025-2026',
+                  text: '2025 to 2026'
+                },
+                {
+                  value: '2026-2027',
+                  text: '2026 to 2027'
+                },
+                {
+                  value: '2027-2028',
+                  text: '2027 to 2028'
+                },
+                {
+                  value: '2028-2029',
+                  text: '2028 to 2029'
+                },
+                {
+                  value: '2029-2030',
+                  text: '2020 to 2030'
+                },
+                {
+                  value: '2030-2031',
+                  text: '2030 to 2031'
+                },
+                {
+                  value: '2031-2032',
+                  text: '2031 to 2032'
+                },
+                {
+                  value: '2032-2033',
+                  text: '2032 to 2033'
+                }
+              ]
+            }) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="accordionExpander">
+        <div class="accordionItem">
          <h3 class="accordionTitle" id="glh">
            <span class="govuk-visually-hidden">Select filters for </span>
            <button class="accordionItem__button" type="button">Guided learning hours</button>
