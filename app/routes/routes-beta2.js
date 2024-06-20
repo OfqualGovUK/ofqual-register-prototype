@@ -54,6 +54,36 @@ module.exports = function (router) {
     });
   });
   
+  // Download XML sitemap
+  router.get('/download/sitemap-xml', (req, res) => {
+    // Path to the file you want to download
+    const filePath = 'app/data/sitemap.xml';
+  
+    // Trigger the file download
+    res.download(filePath, 'sitemap.xml', (err) => {
+      if (err) {
+        // Handle any error that occurred during the download
+        console.log('Error downloading file:', err);
+        res.status(500).send('Error downloading file');
+      }
+    });
+  });
+
+    // Download XML sitemap
+    router.get('/download/robots.txt', (req, res) => {
+      // Path to the file you want to download
+      const filePath = 'app/data/robots.txt';
+    
+      // Trigger the file download
+      res.download(filePath, 'robots.txt', (err) => {
+        if (err) {
+          // Handle any error that occurred during the download
+          console.log('Error downloading file:', err);
+          res.status(500).send('Error downloading file');
+        }
+      });
+    });
+
   //---------------------- Routing Start ---------------------------------//
    
   router.all('/' + version + '/start', function (req, res) {
@@ -90,6 +120,21 @@ module.exports = function (router) {
   router.all('/' + version + '/start-find-an-organisation', function (req,res)
   {
     res.render('/' + version + '/start-find-an-organisation', { 'version': version })
+  })
+
+  router.all('/' + version + '/site-map-html', function (req,res)
+  {
+    res.render('/' + version + '/site-map-html', { 'version': version })
+  })
+
+  router.all('/' + version + '/site-map-organisations', function (req,res)
+  {
+    res.render('/' + version + '/site-map-organisations', { 'version': version })
+  })
+
+  router.all('/' + version + '/site-map-qualifications', function (req,res)
+  {
+    res.render('/' + version + '/site-map-qualifications', { 'version': version })
   })
 
  //---------------------- Routing Search Organisations -------------------------------//

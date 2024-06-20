@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Qualifications - site map – {{ serviceName }} – Ofqual – GOV.UK (Prototype)
+{% endblock %}
+
+{% set backLink = "/" + version + "/start" %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  <nav>
+  {{ govukBackLink({
+  text: "Back",
+  href: backLink
+  }) }}
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Qualifications</h1>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000008" class="govuk-link">EDEXCEL Intermediate GNVQ in Retail and Distributive Services</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/1000001X" class="govuk-link">EDEXCEL Intermediate GNVQ in Art and Design</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000021" class="govuk-link">EDEXCEL Intermediate GNVQ in Business</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000033" class="govuk-link">EDEXCEL Intermediate GNVQ in Construction and the Built Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000045" class="govuk-link">EDEXCEL Intermediate GNVQ in Engineering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000057" class="govuk-link">EDEXCEL Intermediate GNVQ in Health and Social Care</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000069" class="govuk-link">EDEXCEL Intermediate GNVQ in Hospitality and Catering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000070" class="govuk-link">EDEXCEL Intermediate GNVQ in Information and Communication Technology</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000082" class="govuk-link">EDEXCEL Intermediate GNVQ in Land and Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000094" class="govuk-link">EDEXCEL Intermediate GNVQ in Leisure and Tourism</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000100" class="govuk-link">EDEXCEL Intermediate GNVQ in Manufacturing</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000124" class="govuk-link">EDEXCEL Intermediate GNVQ in Performing Arts</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000136" class="govuk-link">EDEXCEL Intermediate GNVQ in Science</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000148" class="govuk-link">EDEXCEL Foundation GNVQ in Art and Design</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/1000015X" class="govuk-link">EDEXCEL Foundation GNVQ in Business</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000161" class="govuk-link">EDEXCEL Foundation GNVQ in Construction and the Built Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000173" class="govuk-link">EDEXCEL Foundation GNVQ in Engineering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000185" class="govuk-link">EDEXCEL Foundation GNVQ in Health and Social Care</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000197" class="govuk-link">EDEXCEL Foundation GNVQ in Hospitality and Catering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000203" class="govuk-link">EDEXCEL Foundation GNVQ in Information and Communication Technology</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000215" class="govuk-link">EDEXCEL Foundation GNVQ in Land and Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000227" class="govuk-link">EDEXCEL Foundation GNVQ in Leisure and Tourism</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000239" class="govuk-link">EDEXCEL Foundation GNVQ in Manufacturing</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000240" class="govuk-link">EDEXCEL Foundation GNVQ in Performing Arts</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000252" class="govuk-link">EDEXCEL Foundation GNVQ in Retail and Distributive Services</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000264" class="govuk-link">EDEXCEL Foundation GNVQ in Science</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000276" class="govuk-link">EDEXCEL Intermediate GNVQ in Media: Communication and Production</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/1000029X" class="govuk-link">OCR Foundation GNVQ in Art and Design</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000306" class="govuk-link">OCR Foundation GNVQ in Business</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000318" class="govuk-link">OCR Foundation GNVQ in Construction and the Built Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/1000032X" class="govuk-link">OCR Foundation GNVQ in Engineering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000331" class="govuk-link">OCR Foundation GNVQ in Health and Social Care</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000343" class="govuk-link">OCR Foundation GNVQ in Hospitality and Catering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000355" class="govuk-link">OCR Foundation GNVQ in Information and Communication Technology</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000367" class="govuk-link">OCR Foundation GNVQ in Leisure and Tourism</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000379" class="govuk-link">OCR Foundation GNVQ in Manufacturing</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000380" class="govuk-link">OCR Foundation GNVQ in Performing Arts</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000392" class="govuk-link">OCR Foundation GNVQ in Science</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000409" class="govuk-link">OCR Intermediate GNVQ in Art and Design</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000410" class="govuk-link">OCR Intermediate GNVQ in Business</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000422" class="govuk-link">OCR Intermediate GNVQ in Construction and the Built Environment</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000434" class="govuk-link">OCR Intermediate GNVQ in Engineering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000446" class="govuk-link">OCR Intermediate GNVQ in Health and Social Care</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000458" class="govuk-link">OCR Intermediate GNVQ in Hospitality and Catering</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/1000046X" class="govuk-link">OCR Intermediate GNVQ in Information and Communication Technology</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000471" class="govuk-link">OCR Intermediate GNVQ in Leisure and Tourism</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000483" class="govuk-link">OCR Intermediate GNVQ in Manufacturing</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000495" class="govuk-link">OCR Intermediate GNVQ in Media: Communication and Production</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000501" class="govuk-link">OCR Intermediate GNVQ in Performing Arts</a></li>
+          <li><a href="https://ofq-prod-register-frontend.azurewebsites.net/qualifications/10000513" class="govuk-link">OCR Intermediate GNVQ in Science</a></li>
+        </ul>
+        <div id="pagination">
+          {{ govukPagination({
+            next: {
+              href: "#"
+            },
+            items: [
+              {
+                number: 1,
+                current: true,
+                href: "#"
+              },
+              {
+                number: 2,
+                href: "#"
+              },
+              {
+                number: 3,
+                href: "#"
+              },
+              {
+                ellipsis: true
+              },
+              {
+                number: 985,
+                href: "#"
+              }
+            ]
+          }) }}
+        </div>
+    </div>
+  </div>
+
+{% endblock %}
