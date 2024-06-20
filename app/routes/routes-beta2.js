@@ -122,19 +122,19 @@ module.exports = function (router) {
     res.render('/' + version + '/start-find-an-organisation', { 'version': version })
   })
 
-  router.all('/' + version + '/site-map-html', function (req,res)
+  router.all('/' + version + '/sitemap', function (req,res)
   {
-    res.render('/' + version + '/site-map-html', { 'version': version })
+    res.render('/' + version + '/sitemap', { 'version': version })
   })
 
-  router.all('/' + version + '/site-map-organisations', function (req,res)
+  router.all('/' + version + '/sitemap-organisations', function (req,res)
   {
-    res.render('/' + version + '/site-map-organisations', { 'version': version })
+    res.render('/' + version + '/sitemap-organisations', { 'version': version })
   })
 
-  router.all('/' + version + '/site-map-qualifications', function (req,res)
+  router.all('/' + version + '/sitemap-qualifications', function (req,res)
   {
-    res.render('/' + version + '/site-map-qualifications', { 'version': version })
+    res.render('/' + version + '/sitemap-qualifications', { 'version': version })
   })
 
  //---------------------- Routing Search Organisations -------------------------------//
