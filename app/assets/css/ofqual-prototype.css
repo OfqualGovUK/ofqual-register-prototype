@@ -13,3 +13,9 @@
 	background-color: #fdedde;
   border-bottom: 2px solid #ffbf80;
 }
+.ofq-grid-column-35pc {
+	box-sizing: border-box;
+	padding: 0 15px;
+  width: 35%;
+  float: left;
+}
