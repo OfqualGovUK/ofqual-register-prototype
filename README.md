@@ -35,7 +35,7 @@ To create a new prototype version:
 
 Edit your new routing file, in the example above it is ```app/routes/routes-delta.js```, and add the following code:
 
-    require('./routes/routes-alpha01.js')(router);
+    const govukPrototypeKit = require("govuk-prototype-kit");
     module.exports = function (router) {
       const version = 'delta';
       // Place your routing rules here
