@@ -1,7 +1,7 @@
 const govukPrototypeKit = require("govuk-prototype-kit");
 
 // Load JSON data sources
-const scopeData = require('../data/pearson_sor.json');
+const scopeData = require('../data/pearson_sor_v3.json');
 const exclusionData = require('../data/pearson_sor_exclusions.json');
 
 module.exports = function (router) {
